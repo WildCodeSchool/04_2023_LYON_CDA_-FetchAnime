@@ -1,7 +1,12 @@
 import React from "react";
+import AnimeCard from "../components/AnimeCard";
 
 function Home() {
-  return <div>FetchAnime</div>;
+  return (
+    <div>
+      <AnimeCard />
+    </div>
+  );
 }
 
 export default Home;
