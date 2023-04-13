@@ -1,17 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import {
-  Input,
-  Card,
-  CardActions,
-  Button,
-  Typography,
-  CardContent,
-  CardMedia,
-  Grid,
-} from "@mui/material";
+import { Input, Button, Typography, CardMedia, Grid, Box } from "@mui/material";
 
 function AnimeCard() {
   const [list, setList] = useState([]);
@@ -20,7 +10,7 @@ function AnimeCard() {
   useEffect(() => {
     axios
       .get(
-        `https://api.consumet.org/anime/enime/${
+        `https://api.consumet.org/meta/anilist/${
           search === "" ? "demon" : search
         }?page=${page}`
       )
@@ -34,43 +24,74 @@ function AnimeCard() {
   return (
     <>
       <Input value={search} onChange={handleChange} />
-      <Grid container spacing={2} sx={{ mt: 5 }}>
+      <Grid
+        container
+        spacing={4}
+        sx={(theme) => ({
+          [theme.breakpoints.down("md")]: {
+            p: 1,
+          },
+          [theme.breakpoints.up("md")]: {
+            p: 15,
+          },
+        })}
+      >
         {list.results
           ? list.results.map((item) => (
-              <Grid container item md={3} xs={6} key={item.id}>
-                <Card>
-                  <CardMedia
-                    component="img"
-                    image={item.image}
-                    sx={(theme) => ({
-                      [theme.breakpoints.down("md")]: {
-                        height: "250px",
-                        width: "250px",
-                      },
-                      [theme.breakpoints.up("md")]: {
-                        height: "500px",
-                        width: "500px",
-                      },
-                    })}
-                  />
-                  <CardContent>
-                    <Typography>{item.title}</Typography>
-                    <CardActions>
-                      <Button size="small" color="primary">
-                        Add
-                      </Button>
-                      <FavoriteBorderIcon />
-                    </CardActions>
-                  </CardContent>
-                </Card>
+              <Grid
+                container
+                item
+                md={2}
+                xs={4}
+                key={item.id}
+                justifyContent="center"
+              >
+                <CardMedia
+                  component="img"
+                  image={item.image}
+                  sx={(theme) => ({
+                    [theme.breakpoints.down("md")]: {
+                      height: "180px",
+                      width: "125px",
+                      borderRadius: 1,
+                    },
+                    [theme.breakpoints.up("md")]: {
+                      height: "300px",
+                      width: "210px",
+                      borderRadius: 1,
+                    },
+                  })}
+                />
+
+                <Typography sx={{ mt: 1, width: 210 }}>
+                  {(() => {
+                    const title = item.title.english || item.title.romaji;
+                    if (title.length > 50) {
+                      return `${title.slice(0, 50)}...`;
+                    }
+                    return title;
+                  })()}
+                </Typography>
               </Grid>
             ))
-          : "rien"}
+          : ""}
+      </Grid>
+      <Box sx={{ mb: 5, textAlign: "center" }}>
+        {page !== 1 ? (
+          <Button
+            size="md"
+            variant="solid"
+            color="secondary"
+            onClick={() => setPage(page - 1)}
+          >
+            Precedent
+          </Button>
+        ) : null}
         {list.hasNextPage === true ? (
           <Button
             size="md"
             variant="solid"
-            color="primary"
+            color="secondary"
             onClick={() => setPage(page + 1)}
           >
             Suivant
@@ -78,7 +99,7 @@ function AnimeCard() {
         ) : (
           ""
         )}
-      </Grid>
+      </Box>
     </>
   );
 }
