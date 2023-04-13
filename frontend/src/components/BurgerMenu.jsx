@@ -1,7 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
 import { Fab, Grid, MenuList, MenuItem, Popover } from "@mui/material";
-
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import React from "react";
 
@@ -19,17 +18,35 @@ function BurgerMenu() {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  const theme = createTheme({
+    palette: {
+      mode: "light",
+      primary: {
+        main: "#FDFBE2",
+      },
+      secondary: {
+        main: "#C90D56",
+      },
+    },
+  });
+
   return (
-    <div className="BurgerMenu">
+    <div
+      className="BurgerMenu"
+      style={{ position: "fixed", bottom: 0, right: 0 }}
+    >
       <Grid
         container
         direction="row"
         justifyContent="flex-end"
         alignItems="flex-end"
+        style={{ padding: "16px" }}
       >
-        <Fab color="secondary" aria-describedby={id} onClick={handleClick}>
-          <SearchIcon />
-        </Fab>
+        <ThemeProvider theme={theme}>
+          <Fab color="secondary" aria-describedby={id} onClick={handleClick}>
+            <SearchIcon />
+          </Fab>
+        </ThemeProvider>
 
         <Popover
           id={id}
@@ -44,8 +61,16 @@ function BurgerMenu() {
             vertical: "bottom",
             horizontal: "right",
           }}
+          PaperProps={{
+            sx: {
+              borderRadius: "20px",
+              marginTop: "30px",
+              marginLeft: "3px",
+              backgroundColor: theme.palette.primary.main,
+            },
+          }}
         >
-          <MenuList sx={{ borderRadius: 20 }}>
+          <MenuList>
             <MenuItem>Search</MenuItem>
             <MenuItem>My Lists</MenuItem>
           </MenuList>
