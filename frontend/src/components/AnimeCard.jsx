@@ -59,7 +59,7 @@ function AnimeCard() {
 
                 <Typography
                   xs={{ width: 125, fontSize: 12 }}
-                  ml={{ width: 210, fontSize: 18 }}
+                  ml={{ width: 210, fontSize: 12 }}
                   sx={{ height: 55, mt: "5px" }}
                 >
                   {(() => {
