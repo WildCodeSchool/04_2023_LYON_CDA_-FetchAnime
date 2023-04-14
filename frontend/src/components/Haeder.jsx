@@ -14,7 +14,7 @@ const StyledToolbar = styled(Toolbar)({
   position: "relative",
   justifyContent: "space-between",
   backgroundColor: "#D9D9D9",
-  padding: "10px",
+  padding: "3px",
 });
 
 const Search = styled("div")(({ theme }) => ({
@@ -54,8 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
+  position: "fixed",
   pointerEvents: "none",
   display: "flex",
   alignItems: "center",
@@ -65,7 +64,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 function Haeder() {
   return (
     <div>
-      <AppBar position="sticky">
+      <AppBar>
         <StyledToolbar>
           <Typography>
             <img alt="e" src="src/assets/image/Frame.png" />
