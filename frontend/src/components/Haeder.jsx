@@ -14,7 +14,7 @@ const StyledToolbar = styled(Toolbar)({
   position: "relative",
   justifyContent: "space-between",
   backgroundColor: "#D9D9D9",
-  padding: "10px",
+  padding: "3px",
 });
 
 const Search = styled("div")(({ theme }) => ({
