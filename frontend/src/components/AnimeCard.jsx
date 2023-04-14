@@ -24,7 +24,7 @@ function AnimeCard() {
   console.warn(list);
   return (
     <>
-      <Input value={search} onChange={handleChange} />
+      <Input value={search} onChange={handleChange} sx={{ marginTop: 10 }} />
       <Grid
         container
         spacing={2}
