@@ -11,7 +11,7 @@ function AnimeCard() {
     axios
       .get(
         `https://api.consumet.org/meta/anilist/${
-          search === "" ? "demon" : search
+          search === "" ? "attack" : search
         }?page=${page}`
       )
       .then((response) => response.data)
@@ -19,6 +19,7 @@ function AnimeCard() {
   }, [search, page]);
   const handleChange = (e) => {
     setSearch(e.target.value);
+    setPage(1);
   };
   console.warn(list);
   return (
@@ -26,7 +27,7 @@ function AnimeCard() {
       <Input value={search} onChange={handleChange} />
       <Grid
         container
-        spacing={4}
+        spacing={2}
         sx={(theme) => ({
           [theme.breakpoints.down("md")]: {
             p: 1,
@@ -38,14 +39,7 @@ function AnimeCard() {
       >
         {list.results
           ? list.results.map((item) => (
-              <Grid
-                container
-                item
-                md={2}
-                xs={4}
-                key={item.id}
-                justifyContent="center"
-              >
+              <Grid container item md={2} xs={4} key={item.id}>
                 <CardMedia
                   component="img"
                   image={item.image}
@@ -58,16 +52,20 @@ function AnimeCard() {
                     [theme.breakpoints.up("md")]: {
                       height: "300px",
                       width: "210px",
-                      borderRadius: 1,
+                      borderRadius: "5px",
                     },
                   })}
                 />
 
-                <Typography sx={{ mt: 1, width: 210 }}>
+                <Typography
+                  xs={{ width: 125, fontSize: 12 }}
+                  ml={{ width: 210, fontSize: 18 }}
+                  sx={{ height: 55, mt: "5px" }}
+                >
                   {(() => {
                     const title = item.title.english || item.title.romaji;
-                    if (title.length > 50) {
-                      return `${title.slice(0, 50)}...`;
+                    if (title.length > 30) {
+                      return `${title.slice(0, 30)}...`;
                     }
                     return title;
                   })()}
