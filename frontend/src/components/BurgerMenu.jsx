@@ -5,6 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import React from "react";
 
 function BurgerMenu() {
+  // Handle click & popover
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -17,7 +18,7 @@ function BurgerMenu() {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
-
+  // Component customization
   const theme = createTheme({
     palette: {
       mode: "light",
@@ -35,6 +36,7 @@ function BurgerMenu() {
       className="BurgerMenu"
       style={{ position: "fixed", bottom: 0, right: 0 }}
     >
+      {/* Component positioning */}
       <Grid
         container
         direction="row"
@@ -42,12 +44,14 @@ function BurgerMenu() {
         alignItems="flex-end"
         style={{ padding: "16px" }}
       >
+        {/* Applying component customization */}
         <ThemeProvider theme={theme}>
           <Fab color="secondary" aria-describedby={id} onClick={handleClick}>
             <SearchIcon />
           </Fab>
         </ThemeProvider>
 
+        {/* Customizing and positioning this component */}
         <Popover
           id={id}
           open={open}
@@ -70,6 +74,7 @@ function BurgerMenu() {
             },
           }}
         >
+          {/* Popover content */}
           <MenuList>
             <MenuItem>Search</MenuItem>
             <MenuItem>My Lists</MenuItem>
