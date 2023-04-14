@@ -2,11 +2,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Input, Button, Typography, CardMedia, Grid, Box } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 function AnimeCard() {
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
+
   useEffect(() => {
     axios
       .get(
@@ -21,7 +23,11 @@ function AnimeCard() {
     setSearch(e.target.value);
     setPage(1);
   };
-  console.warn(list);
+
+  const handleClick = (id) => {
+    localStorage.setItem("animeId", id);
+  };
+
   return (
     <>
       <Input value={search} onChange={handleChange} sx={{ marginTop: 10 }} />
@@ -39,27 +45,38 @@ function AnimeCard() {
       >
         {list.results
           ? list.results.map((item) => (
-              <Grid container item md={2} xs={4} key={item.id}>
-                <CardMedia
-                  component="img"
-                  image={item.image}
-                  sx={(theme) => ({
-                    [theme.breakpoints.down("md")]: {
-                      height: "180px",
-                      width: "125px",
-                      borderRadius: 1,
-                    },
-                    [theme.breakpoints.up("md")]: {
-                      height: "300px",
-                      width: "210px",
-                      borderRadius: "5px",
-                    },
-                  })}
-                />
+              <Grid
+                onClick={() => handleClick(item.id)}
+                container
+                item
+                md={2}
+                xs={6}
+                key={item.id}
+              >
+                <NavLink to="/description">
+                  <CardMedia
+                    component="img"
+                    image={item.image}
+                    sx={(theme) => ({
+                      [theme.breakpoints.down("md")]: {
+                        height: "250px",
+                        width: "180px",
+                        borderRadius: 1,
+                        objectFit: "fill",
+                      },
+                      [theme.breakpoints.up("md")]: {
+                        height: "300px",
+                        objectFit: "fill",
+                        width: "210px",
+                        borderRadius: "5px",
+                      },
+                    })}
+                  />
+                </NavLink>
 
                 <Typography
-                  xs={{ width: 125, fontSize: 12 }}
-                  ml={{ width: 210, fontSize: 12 }}
+                  xs={{ width: 180, fontSize: 12 }}
+                  ml={{ width: 210, fontSize: 17 }}
                   sx={{ height: 55, mt: "5px" }}
                 >
                   {(() => {
