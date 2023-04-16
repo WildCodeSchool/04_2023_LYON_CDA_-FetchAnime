@@ -1,24 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/system";
-import { Button, CardMedia, CircularProgress, Typography } from "@mui/material";
+import {
+  Button,
+  CardMedia,
+  CircularProgress,
+  Step,
+  StepLabel,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import SwipeableViews from "react-swipeable-views-react-18-fix";
 import CardItem from "@components/CardItem";
-import { NavLink } from "react-router-dom";
 import Haeder from "../components/Haeder";
 
 function AnimeDescription() {
   const [anime, setAnime] = useState([]);
-  const [id] = useState(localStorage.getItem("animeId"));
+  const [id, setId] = useState(localStorage.getItem("animeId"));
+  const handleClick = (animeId) => {
+    localStorage.setItem("animeId", animeId);
+    setId(localStorage.getItem("animeId"));
+  };
   useEffect(() => {
     axios
       .get(`https://api.consumet.org/meta/anilist/info/${id}`)
       .then((response) => response.data)
       .then((data) => setAnime(data));
   }, [id]);
-  const handleClick = (animeId) => {
-    localStorage.setItem("animeId", animeId);
-  };
+
   return (
     <>
       <Haeder />
@@ -30,18 +39,16 @@ function AnimeDescription() {
               image={anime.cover}
               sx={(theme) => ({
                 [theme.breakpoints.down("md")]: {
-                  height: "150px",
+                  height: "180px",
                   width: "100%",
-                  objectFit: "fill",
+                  objectFit: "cover",
                   margin: "auto",
-                  borderRadius: "10px",
                 },
                 [theme.breakpoints.up("md")]: {
                   height: "150px",
                   width: "90%",
                   objectFit: "cover",
                   margin: "auto",
-                  borderRadius: "10px",
                 },
               })}
             />
@@ -104,13 +111,24 @@ function AnimeDescription() {
         ) : (
           <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
         )}
-        {anime.recommendations
-          ? anime.recommendations.map((item) => (
-              <NavLink to="description">
-                <CardItem item={item} handleClick={handleClick} />
-              </NavLink>
-            ))
-          : null}
+        <Typography variant="h5" mb={2}>
+          Recommandations
+        </Typography>
+
+        <SwipeableViews
+          enableMouseEvents
+          style={{ display: "flex", flexDirection: "row", width: "100%" }}
+        >
+          {anime.recommendations
+            ? anime.recommendations.map((item) => (
+                <Step key={item.id} className="stepItem" sx={{ width: "100%" }}>
+                  <StepLabel>
+                    <CardItem item={item} handleClick={handleClick} />
+                  </StepLabel>
+                </Step>
+              ))
+            : null}
+        </SwipeableViews>
       </Box>
     </>
   );

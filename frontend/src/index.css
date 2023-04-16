@@ -3,3 +3,13 @@
   margin: 0;
   box-sizing: border-box;
 }
+.stepItem {
+  width: 33%;
+  margin: 0;
+  padding: 0;
+}
+.SwipeableViews-root {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
