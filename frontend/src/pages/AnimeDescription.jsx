@@ -6,12 +6,15 @@ import {
   CircularProgress,
   Step,
   StepLabel,
+  Tab,
+  Tabs,
   Typography,
 } from "@mui/material";
 import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import SwipeableViews from "react-swipeable-views-react-18-fix";
 import CardItem from "@components/CardItem";
+import Charachters from "@components/Charachters";
 import Haeder from "../components/Haeder";
 
 function AnimeDescription() {
@@ -28,6 +31,11 @@ function AnimeDescription() {
       .then((data) => setAnime(data));
   }, [id]);
 
+  const [selectedTab, setSelectedTab] = useState("characters");
+
+  const handleTabChange = (event, newValue) => {
+    setSelectedTab(newValue);
+  };
   return (
     <>
       <Haeder />
@@ -39,7 +47,7 @@ function AnimeDescription() {
               image={anime.cover}
               sx={(theme) => ({
                 [theme.breakpoints.down("md")]: {
-                  height: "180px",
+                  height: "230px",
                   width: "100%",
                   objectFit: "cover",
                   margin: "auto",
@@ -52,8 +60,11 @@ function AnimeDescription() {
                 },
               })}
             />
-            <Typography variant="h5" textAlign="center" m={2}>
+            <Typography variant="h4" textAlign="center" m={2}>
               {anime.title.english ? anime.title.english : anime.title.romaji}
+            </Typography>
+            <Typography variant="h5" textAlign="center" m={2} fontSize="0.9rem">
+              {anime.title.native ? anime.title.native : ""}
             </Typography>
             <Box
               width="100%"
@@ -62,15 +73,15 @@ function AnimeDescription() {
               flexDirection="row-reverse"
               justifyContent="space-between"
             >
-              <Box margin="5%">
+              <Box margin="3%">
                 <CardMedia
                   component="img"
                   image={anime.image}
                   sx={(theme) => ({
                     [theme.breakpoints.down("md")]: {
-                      height: "127px",
-                      width: "100px",
-                      objectFit: "contain",
+                      height: "157px",
+                      width: "115px",
+                      objectFit: "fill",
                       borderRadius: "5px",
                     },
                     [theme.breakpoints.up("md")]: {
@@ -86,9 +97,9 @@ function AnimeDescription() {
                 <Button
                   variant="contained"
                   color="primary"
-                  sx={{ height: 30, padding: 2, margin: "5%", borderRadius: 8 }}
+                  sx={{ height: 30, padding: 2, margin: "4%", borderRadius: 2 }}
                 >
-                  + Add
+                  + Add to list
                 </Button>
                 <Typography
                   variant="body1"
@@ -111,6 +122,21 @@ function AnimeDescription() {
         ) : (
           <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
         )}
+        <Box>
+          <Tabs
+            value={selectedTab}
+            onChange={handleTabChange}
+            variant="scrollable"
+            scrollButtons={false}
+            aria-label="scrollable prevent tabs example"
+          >
+            <Tab label="Charachters" value="characters" />
+            <Tab label="Watch" value="watch" />
+            <Tab label="Episodes" value="episodes" />
+            <Tab label="Staff" value="staff" />
+          </Tabs>
+          {selectedTab === "characters" && <Charachters />}
+        </Box>
         <Typography variant="h5" mb={2}>
           Recommandations
         </Typography>
@@ -123,7 +149,10 @@ function AnimeDescription() {
             ? anime.recommendations.map((item) => (
                 <Step key={item.id} className="stepItem" sx={{ width: "100%" }}>
                   <StepLabel>
-                    <CardItem item={item} handleClick={handleClick} />
+                    <a href="#top-description">
+                      <CardItem item={item} handleClick={handleClick} />
+                    </a>
+                    *
                   </StepLabel>
                 </Step>
               ))
