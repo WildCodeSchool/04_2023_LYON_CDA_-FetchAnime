@@ -1,9 +1,9 @@
-import { Fab, Grid, MenuList, MenuItem, Popover } from "@mui/material";
+import { Fab, Grid, MenuList, MenuItem, Popover, Input } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
 
-function BurgerMenu() {
+function BurgerMenu({ search, handleChange }) {
   // Handle click & popover
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -75,7 +75,9 @@ function BurgerMenu() {
         >
           {/* Popover content */}
           <MenuList>
-            <MenuItem>Search</MenuItem>
+            <MenuItem>
+              <Input value={search} onChange={handleChange} />
+            </MenuItem>
             <MenuItem>My Lists</MenuItem>
           </MenuList>
         </Popover>
