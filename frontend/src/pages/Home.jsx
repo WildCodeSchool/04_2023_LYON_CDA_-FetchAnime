@@ -1,13 +1,13 @@
 import React from "react";
-import Haeder from "../components/Haeder";
+import Header from "../components/Header";
 import BurgerMenu from "../components/BurgerMenu";
-import AnimeCard from "../components/AnimeCard";
+import AnimeList from "../components/AnimeList";
 
 function Home() {
   return (
     <>
-      <Haeder />
-      <AnimeCard />
+      <Header />
+      <AnimeList />
       <BurgerMenu />
     </>
   );
