@@ -17,7 +17,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import SwipeableViews from "react-swipeable-views-react-18-fix";
 import CardItem from "@components/CardItem";
 import Charachters from "@components/Charachters";
-import Haeder from "../components/Haeder";
+import Header from "@components/Header";
 
 function AnimeDescription() {
   const [anime, setAnime] = useState([]);
@@ -40,7 +40,7 @@ function AnimeDescription() {
   };
   return (
     <>
-      <Haeder />
+      <Header />
       <Box component="div" mt={11} backgroundColor={anime.color}>
         {anime.title ? (
           <Box component="div">

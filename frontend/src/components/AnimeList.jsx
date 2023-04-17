@@ -5,7 +5,7 @@ import { Input, Button, Box, CircularProgress, Grid } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import CardItem from "./CardItem";
 
-function AnimeCard() {
+function AnimeList() {
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -83,4 +83,4 @@ function AnimeCard() {
   );
 }
 
-export default AnimeCard;
+export default AnimeList;
