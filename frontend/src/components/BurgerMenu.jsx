@@ -1,6 +1,6 @@
 import { Fab, Grid, MenuList, MenuItem, Popover } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
 
 function BurgerMenu() {
@@ -46,7 +46,7 @@ function BurgerMenu() {
         {/* Applying component customization */}
         <ThemeProvider theme={theme}>
           <Fab color="secondary" aria-describedby={id} onClick={handleClick}>
-            <SearchIcon />
+            <MenuIcon />
           </Fab>
         </ThemeProvider>
 
