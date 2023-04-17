@@ -67,7 +67,7 @@ function Haeder() {
       <AppBar>
         <StyledToolbar>
           <Typography>
-            <img alt="e" src="src/assets/image/Frame.png" />
+            <img alt="e" src="src/assets/img/Frame.png" />
           </Typography>
           <Search>
             <SearchIconWrapper>
