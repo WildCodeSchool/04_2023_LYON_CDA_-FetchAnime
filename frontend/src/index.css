@@ -2,14 +2,12 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
-.stepItem {
-  width: 33%;
-  margin: 0;
-  padding: 0;
+body {
+  background-color: whitesmoke;
 }
-.SwipeableViews-root {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+a,
+a:visited {
+  color: black;
 }

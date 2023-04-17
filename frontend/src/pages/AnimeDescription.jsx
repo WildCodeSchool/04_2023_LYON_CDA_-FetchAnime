@@ -4,6 +4,8 @@ import {
   Button,
   CardMedia,
   CircularProgress,
+  ListItemText,
+  Rating,
   Step,
   StepLabel,
   Tab,
@@ -53,25 +55,53 @@ function AnimeDescription() {
                   margin: "auto",
                 },
                 [theme.breakpoints.up("md")]: {
-                  height: "150px",
-                  width: "90%",
+                  height: "350px",
+                  width: "100%",
                   objectFit: "cover",
                   margin: "auto",
                 },
               })}
             />
-            <Typography variant="h4" textAlign="center" m={2}>
+            <Typography
+              variant="h4"
+              textAlign="center"
+              m={2}
+              sx={(theme) => ({
+                [theme.breakpoints.down("md")]: {
+                  fontSize: "1.6rem",
+                },
+                [theme.breakpoints.up("md")]: {
+                  fontSize: "3.5rem",
+                },
+              })}
+            >
               {anime.title.english ? anime.title.english : anime.title.romaji}
             </Typography>
-            <Typography variant="h5" textAlign="center" m={2} fontSize="0.9rem">
-              {anime.title.native ? anime.title.native : ""}
+            <Typography
+              variant="h5"
+              textAlign="center"
+              m={2}
+              sx={(theme) => ({
+                [theme.breakpoints.down("md")]: {
+                  fontSize: "0.9rem",
+                },
+                [theme.breakpoints.up("md")]: {
+                  fontSize: "1rem",
+                },
+              })}
+            >
+              {anime.title.native !== anime.title.romaji
+                ? anime.title.native
+                : ""}
             </Typography>
+
             <Box
               width="100%"
               component="div"
               display="flex"
               flexDirection="row-reverse"
               justifyContent="space-between"
+              marginTop="10%"
             >
               <Box margin="3%">
                 <CardMedia
@@ -92,25 +122,56 @@ function AnimeDescription() {
                     },
                   })}
                 />
-              </Box>
-              <Box>
+                <Rating
+                  name="size-small"
+                  defaultValue={2}
+                  size="small"
+                  sx={{ margin: "7.5%" }}
+                />
                 <Button
                   variant="contained"
                   color="primary"
-                  sx={{ height: 30, padding: 2, margin: "4%", borderRadius: 2 }}
+                  sx={{
+                    height: 30,
+                    padding: 2,
+                    margin: "4%",
+                    borderRadius: 2,
+                    fontSize: "0.6rem",
+                  }}
                 >
                   + Add to list
                 </Button>
+              </Box>
+              <Box
+                sx={(theme) => ({
+                  [theme.breakpoints.down("md")]: {
+                    width: "100%",
+                  },
+                  [theme.breakpoints.up("md")]: {
+                    width: "75%",
+                  },
+                })}
+              >
                 <Typography
                   variant="body1"
                   color="initial"
+                  marginTop="5%"
                   marginLeft="5%"
-                  fontSize="0.8rem"
+                  sx={(theme) => ({
+                    [theme.breakpoints.down("md")]: {
+                      fontSize: "0.9rem",
+                    },
+                    [theme.breakpoints.up("md")]: {
+                      fontSize: "1.7rem",
+                      width: "90%",
+                      margin: 3.8,
+                    },
+                  })}
                   dangerouslySetInnerHTML={{
                     __html: (() => {
                       const { description } = anime;
                       if (description.length > 150) {
-                        return `${description.slice(0, 150)}...`;
+                        return ` ${description.slice(0, 150)}  ...`;
                       }
                       return description;
                     })(),
@@ -122,6 +183,25 @@ function AnimeDescription() {
         ) : (
           <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
         )}
+        <Box margin="3%">
+          <ListItemText
+            primary={`${anime.studios}`}
+            sx={(theme) => ({
+              [theme.breakpoints.down("md")]: {
+                backgroundColor: "white",
+                opacity: 0.8,
+                width: "50%",
+                textAlign: "center",
+                padding: "3px",
+                borderRadius: "5px",
+                fontSize: 8,
+              },
+              [theme.breakpoints.up("md")]: {
+                fontSize: "0.rem",
+              },
+            })}
+          />
+        </Box>
         <Box>
           <Tabs
             value={selectedTab}
@@ -149,10 +229,7 @@ function AnimeDescription() {
             ? anime.recommendations.map((item) => (
                 <Step key={item.id} className="stepItem" sx={{ width: "100%" }}>
                   <StepLabel>
-                    <a href="#top-description">
-                      <CardItem item={item} handleClick={handleClick} />
-                    </a>
-                    *
+                    <CardItem item={item} handleClick={handleClick} />
                   </StepLabel>
                 </Step>
               ))
