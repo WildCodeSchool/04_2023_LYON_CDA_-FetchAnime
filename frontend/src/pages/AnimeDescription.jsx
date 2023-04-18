@@ -18,6 +18,7 @@ import SwipeableViews from "react-swipeable-views-react-18-fix";
 import Charachters from "../components/Charachters";
 import Header from "../components/Header";
 import CardItem from "../components/CardItem";
+import BurgerMenu from "../components/BurgerMenu";
 
 function AnimeDescription() {
   const [anime, setAnime] = useState([]);
@@ -236,6 +237,7 @@ function AnimeDescription() {
             : null}
         </SwipeableViews>
       </Box>
+      <BurgerMenu />
     </>
   );
 }

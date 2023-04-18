@@ -1,16 +1,30 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Backdrop from "@mui/material/Backdrop";
 import SpeedDial from "@mui/material/SpeedDial";
 import MenuIcon from "@mui/icons-material/Menu";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
 import HomeIcon from "@mui/icons-material/Home";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { NavLink } from "react-router-dom";
 
 const actions = [
-  { icon: <HomeIcon />, name: "Home" },
-  { icon: <PermMediaIcon />, name: "Lists" },
+  {
+    icon: (
+      <NavLink to="/">
+        <HomeIcon />
+      </NavLink>
+    ),
+    name: "Home",
+  },
+  {
+    icon: (
+      <NavLink to="/description">
+        <PermMediaIcon />
+      </NavLink>
+    ),
+    name: "Lists",
+  },
 ];
 const theme = createTheme({
   palette: {
@@ -24,7 +38,7 @@ const theme = createTheme({
   },
 });
 
-export default function SpeedDialTooltipOpen() {
+export default function BurgerMenu() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -40,7 +54,6 @@ export default function SpeedDialTooltipOpen() {
         right: 16,
       }}
     >
-      <Backdrop open={open} />
       <ThemeProvider theme={theme}>
         <SpeedDial
           ariaLabel="FetchAnime SpeedDial"
@@ -52,10 +65,9 @@ export default function SpeedDialTooltipOpen() {
           {actions.map((action) => (
             <SpeedDialAction
               key={action.name}
-              icon={action.icon}
-              onClick={handleClose}
               tooltipTitle={action.name}
               tooltipOpen
+              icon={action.icon}
             />
           ))}
         </SpeedDial>
