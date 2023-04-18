@@ -54,7 +54,16 @@ function AnimeList() {
         ) : (
           <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
         )}
-        <Box sx={{ mb: 5, textAlign: "center" }}>
+        <Box
+          component="div"
+          sx={{
+            textAlign: "center",
+            mb: 2,
+            width: "100%",
+            position: "relative",
+            bottom: "0",
+          }}
+        >
           {page !== 1 ? (
             <Button
               size="md"

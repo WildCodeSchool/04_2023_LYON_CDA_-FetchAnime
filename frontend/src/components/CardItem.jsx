@@ -28,7 +28,7 @@ function CardItem({ item, handleClick }) {
 
       <Typography
         xs={{ width: 180, fontSize: 12 }}
-        ml={{ width: 210, fontSize: 17 }}
+        md={{ width: 210, fontSize: 17 }}
         sx={{ height: 55, mt: "5px" }}
       >
         {(() => {

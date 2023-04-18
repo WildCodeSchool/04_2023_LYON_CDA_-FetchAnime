@@ -4,10 +4,8 @@ import {
   Button,
   CardMedia,
   CircularProgress,
-  ListItemText,
   Rating,
   Step,
-  StepLabel,
   Tab,
   Tabs,
   Typography,
@@ -15,13 +13,14 @@ import {
 import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import SwipeableViews from "react-swipeable-views-react-18-fix";
-import CardItem from "@components/CardItem";
-import Charachters from "@components/Charachters";
-import Header from "@components/Header";
+import CardItem from "../components/CardItem";
+import Charachters from "../components/Charachters";
+import Header from "../components/Header";
 
 function AnimeDescription() {
   const [anime, setAnime] = useState([]);
   const [id, setId] = useState(localStorage.getItem("animeId"));
+
   const handleClick = (animeId) => {
     localStorage.setItem("animeId", animeId);
     setId(localStorage.getItem("animeId"));
@@ -33,6 +32,7 @@ function AnimeDescription() {
       .then((data) => setAnime(data));
   }, [id]);
 
+  const rating = anime.rating / 20;
   const [selectedTab, setSelectedTab] = useState("characters");
 
   const handleTabChange = (event, newValue) => {
@@ -41,7 +41,7 @@ function AnimeDescription() {
   return (
     <>
       <Header />
-      <Box component="div" mt={11} backgroundColor={anime.color}>
+      <Box component="div" mt={10.5} backgroundColor="#FDFBE2">
         {anime.title ? (
           <Box component="div">
             <CardMedia
@@ -94,16 +94,33 @@ function AnimeDescription() {
                 ? anime.title.native
                 : ""}
             </Typography>
-
+            <Typography
+              component="span"
+              sx={(theme) => ({
+                [theme.breakpoints.down("md")]: {
+                  fontSize: 12,
+                  textAlign: "center",
+                  padding: 1,
+                  borderRadius: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                },
+                [theme.breakpoints.up("md")]: {
+                  fontSize: "0.rem",
+                },
+              })}
+            >
+              {anime.releaseDate}
+            </Typography>
             <Box
               width="100%"
               component="div"
               display="flex"
               flexDirection="row-reverse"
               justifyContent="space-between"
-              marginTop="10%"
+              marginTop="4%"
             >
-              <Box margin="3%">
+              <Box margin="3%" mb="10%">
                 <CardMedia
                   component="img"
                   image={anime.image}
@@ -124,9 +141,10 @@ function AnimeDescription() {
                 />
                 <Rating
                   name="size-small"
-                  defaultValue={2}
+                  defaultValue={rating}
                   size="small"
                   sx={{ margin: "7.5%" }}
+                  readOnly
                 />
                 <Button
                   variant="contained"
@@ -160,6 +178,7 @@ function AnimeDescription() {
                   sx={(theme) => ({
                     [theme.breakpoints.down("md")]: {
                       fontSize: "0.9rem",
+                      color: "#C90D56",
                     },
                     [theme.breakpoints.up("md")]: {
                       fontSize: "1.7rem",
@@ -171,7 +190,7 @@ function AnimeDescription() {
                     __html: (() => {
                       const { description } = anime;
                       if (description.length > 150) {
-                        return ` ${description.slice(0, 150)}  ...`;
+                        return ` ${description.slice(0, 330)}...    `;
                       }
                       return description;
                     })(),
@@ -183,25 +202,7 @@ function AnimeDescription() {
         ) : (
           <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
         )}
-        <Box margin="3%">
-          <ListItemText
-            primary={`${anime.studios}`}
-            sx={(theme) => ({
-              [theme.breakpoints.down("md")]: {
-                backgroundColor: "white",
-                opacity: 0.8,
-                width: "50%",
-                textAlign: "center",
-                padding: "3px",
-                borderRadius: "5px",
-                fontSize: 8,
-              },
-              [theme.breakpoints.up("md")]: {
-                fontSize: "0.rem",
-              },
-            })}
-          />
-        </Box>
+
         <Box>
           <Tabs
             value={selectedTab}
@@ -221,16 +222,11 @@ function AnimeDescription() {
           Recommandations
         </Typography>
 
-        <SwipeableViews
-          enableMouseEvents
-          style={{ display: "flex", flexDirection: "row", width: "100%" }}
-        >
+        <SwipeableViews enableMouseEvents>
           {anime.recommendations
             ? anime.recommendations.map((item) => (
-                <Step key={item.id} className="stepItem" sx={{ width: "100%" }}>
-                  <StepLabel>
-                    <CardItem item={item} handleClick={handleClick} />
-                  </StepLabel>
+                <Step key={item.id} className="stepItem">
+                  <CardItem item={item} handleClick={handleClick} />
                 </Step>
               ))
             : null}
