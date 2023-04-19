@@ -7,7 +7,16 @@ function MyLists() {
   return (
     <>
       <Haeder />
-      <Box sx={{ marginTop: "30%" }}>
+      <Box
+        sx={(theme) => ({
+          [theme.breakpoints.down("md")]: {
+            marginTop: "30%",
+          },
+          [theme.breakpoints.up("md")]: {
+            marginTop: "7%",
+          },
+        })}
+      >
         <MylistCard title="Watching" />
         <MylistCard title="Planning" />
         <MylistCard title="Completed" />
