@@ -54,7 +54,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  position: "fixed",
+  height: "100%",
+  position: "absolute",
   pointerEvents: "none",
   display: "flex",
   alignItems: "center",

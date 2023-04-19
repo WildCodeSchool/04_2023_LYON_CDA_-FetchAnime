@@ -1,27 +1,44 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import WatchingList from "./components/WatchingList";
 import Home from "./pages/Home";
+
+import MyLists from "./pages/MyLists";
 import AnimeDescription from "./pages/AnimeDescription";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      "Amaranth", // insérer le nom de la police souhaitée ici
+      "sans-serif",
+    ].join(","),
+    color: "#C90D56",
+  },
+});
 
 function App() {
   const [animeId, setAnimeId] = useState();
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="*" element={<Home />} />
-        <Route
-          path="/"
-          element={<Home animeId={animeId} setAnimeId={setAnimeId} />}
-        />
-        <Route
-          path="/description"
-          element={
-            <AnimeDescription animeId={animeId} setAnimeId={setAnimeId} />
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={<Home />} />
+          <Route
+            path="/"
+            element={<Home animeId={animeId} setAnimeId={setAnimeId} />}
+          />
+          <Route
+            path="/description"
+            element={
+              <AnimeDescription animeId={animeId} setAnimeId={setAnimeId} />
+            }
+          />
+          <Route path="/mylists" element={<MyLists />} />
+          <Route path="/watchinglist" element={<WatchingList />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
