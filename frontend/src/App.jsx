@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import WatchingList from "./components/WatchingList";
 import Home from "./pages/Home";
+
+import MyLists from "./pages/MyLists";
 import AnimeDescription from "./pages/AnimeDescription";
 
 const theme = createTheme({
@@ -31,6 +34,8 @@ function App() {
               <AnimeDescription animeId={animeId} setAnimeId={setAnimeId} />
             }
           />
+          <Route path="/mylists" element={<MyLists />} />
+          <Route path="/watchinglist" element={<WatchingList />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

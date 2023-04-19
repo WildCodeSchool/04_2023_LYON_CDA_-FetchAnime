@@ -13,10 +13,9 @@ import {
 import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import SwipeableViews from "react-swipeable-views-react-18-fix";
+import CardItem from "../components/CardItem";
 import Charachters from "../components/Charachters";
 import Header from "../components/Header";
-import CardItem from "../components/CardItem";
-import BurgerMenu from "../components/BurgerMenu";
 
 function AnimeDescription() {
   const [anime, setAnime] = useState([]);
@@ -233,7 +232,6 @@ function AnimeDescription() {
             : null}
         </SwipeableViews>
       </Box>
-      <BurgerMenu />
     </>
   );
 }
