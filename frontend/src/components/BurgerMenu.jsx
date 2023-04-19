@@ -1,87 +1,77 @@
-import { Fab, Grid, MenuList, MenuItem, Popover } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import SpeedDial from "@mui/material/SpeedDial";
 import MenuIcon from "@mui/icons-material/Menu";
-import React from "react";
+import SpeedDialAction from "@mui/material/SpeedDialAction";
+import PermMediaIcon from "@mui/icons-material/PermMedia";
+import HomeIcon from "@mui/icons-material/Home";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { NavLink } from "react-router-dom";
 
-function BurgerMenu() {
-  // Handle click & popover
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
-  // Component customization
-  const theme = createTheme({
-    palette: {
-      mode: "light",
-      primary: {
-        main: "#FDFBE2",
-      },
-      secondary: {
-        main: "#C90D56",
-      },
+const actions = [
+  {
+    icon: (
+      <NavLink to="/">
+        <HomeIcon />
+      </NavLink>
+    ),
+    name: "Home",
+  },
+  {
+    icon: (
+      <NavLink to="/description">
+        <PermMediaIcon />
+      </NavLink>
+    ),
+    name: "Lists",
+  },
+];
+const theme = createTheme({
+  palette: {
+    mode: "light",
+    primary: {
+      main: "#FDFBE2",
     },
-  });
+    secondary: {
+      main: "#C90D56",
+    },
+  },
+});
+
+export default function BurgerMenu() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
-    <div
-      className="BurgerMenu"
-      style={{ position: "fixed", bottom: 0, right: 0 }}
+    <Box
+      sx={{
+        height: 200,
+        transform: "translateZ(0px)",
+        flexGrow: 1,
+        position: "fixed",
+        bottom: 16,
+        right: 16,
+      }}
     >
-      {/* Component positioning */}
-      <Grid
-        container
-        direction="row"
-        justifyContent="flex-end"
-        alignItems="flex-end"
-        style={{ padding: "16px" }}
-      >
-        {/* Applying component customization */}
-        <ThemeProvider theme={theme}>
-          <Fab color="secondary" aria-describedby={id} onClick={handleClick}>
-            <MenuIcon />
-          </Fab>
-        </ThemeProvider>
-
-        {/* Customizing and positioning this component */}
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
+      <ThemeProvider theme={theme}>
+        <SpeedDial
+          ariaLabel="FetchAnime SpeedDial"
+          icon={<MenuIcon />}
           onClose={handleClose}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-          PaperProps={{
-            sx: {
-              borderRadius: "20px",
-              marginTop: "30px",
-              marginLeft: "3px",
-              backgroundColor: theme.palette.primary.main,
-            },
-          }}
+          onOpen={handleOpen}
+          open={open}
         >
-          {/* Popover content */}
-          <MenuList>
-            <MenuItem>Search</MenuItem>
-            <MenuItem>My Lists</MenuItem>
-          </MenuList>
-        </Popover>
-      </Grid>
-    </div>
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              tooltipTitle={action.name}
+              tooltipOpen
+              icon={action.icon}
+            />
+          ))}
+        </SpeedDial>
+      </ThemeProvider>
+    </Box>
   );
 }
-
-export default BurgerMenu;
