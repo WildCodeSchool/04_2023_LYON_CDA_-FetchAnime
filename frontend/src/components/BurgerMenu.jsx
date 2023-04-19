@@ -7,6 +7,7 @@ import PermMediaIcon from "@mui/icons-material/PermMedia";
 import HomeIcon from "@mui/icons-material/Home";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { NavLink } from "react-router-dom";
+import { IconButton } from "@mui/material";
 
 const actions = [
   {
@@ -19,11 +20,11 @@ const actions = [
   },
   {
     icon: (
-      <NavLink to="/description">
+      <NavLink to="/mylists">
         <PermMediaIcon />
       </NavLink>
     ),
-    name: "Lists",
+    name: "My Lists",
   },
 ];
 const theme = createTheme({
@@ -44,34 +45,52 @@ export default function BurgerMenu() {
   const handleClose = () => setOpen(false);
 
   return (
-    <Box
-      sx={{
-        height: 200,
-        transform: "translateZ(0px)",
-        flexGrow: 1,
-        position: "fixed",
-        bottom: 16,
-        right: 16,
-      }}
-    >
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          height: 200,
+          transform: "translateZ(0px)",
+          flexGrow: 1,
+          position: "fixed",
+          bottom: 16,
+          right: 16,
+        }}
+      >
         <SpeedDial
           ariaLabel="FetchAnime SpeedDial"
-          icon={<MenuIcon />}
+          icon={<MenuIcon sx={{ color: theme.palette.primary.main }} />}
           onClose={handleClose}
           onOpen={handleOpen}
           open={open}
+          FabProps={{
+            style: { backgroundColor: theme.palette.secondary.main },
+          }}
         >
           {actions.map((action) => (
             <SpeedDialAction
               key={action.name}
               tooltipTitle={action.name}
-              tooltipOpen
-              icon={action.icon}
+              icon={
+                <IconButton
+                  sx={{
+                    bgcolor: theme.palette.secondary.main,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontSize: "2rem",
+                    height: "3rem",
+                    width: "3rem",
+                  }}
+                >
+                  {React.cloneElement(action.icon, {
+                    style: { color: theme.palette.primary.main },
+                  })}
+                </IconButton>
+              }
             />
           ))}
         </SpeedDial>
-      </ThemeProvider>
-    </Box>
+      </Box>
+    </ThemeProvider>
   );
 }
