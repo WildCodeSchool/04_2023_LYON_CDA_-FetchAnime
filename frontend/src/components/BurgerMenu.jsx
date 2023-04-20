@@ -8,6 +8,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { NavLink } from "react-router-dom";
 import { IconButton } from "@mui/material";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
 
 const actions = [
   {
@@ -22,6 +23,14 @@ const actions = [
     icon: (
       <NavLink to="/mylists">
         <PermMediaIcon />
+      </NavLink>
+    ),
+    name: "My Lists",
+  },
+  {
+    icon: (
+      <NavLink to="/trending">
+        <WhatshotIcon />
       </NavLink>
     ),
     name: "My Lists",

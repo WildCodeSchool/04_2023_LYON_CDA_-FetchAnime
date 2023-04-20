@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 
 import MyLists from "./pages/MyLists";
 import AnimeDescription from "./pages/AnimeDescription";
+import Trending from "./components/Trending";
 
 const theme = createTheme({
   typography: {
@@ -38,6 +39,7 @@ function App() {
           />
           <Route path="/mylists" element={<MyLists />} />
           <Route path="/watchinglist" element={<WatchingList />} />
+          <Route path="/trending" element={<Trending />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
