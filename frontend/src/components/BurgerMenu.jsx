@@ -29,7 +29,7 @@ const actions = [
   },
   {
     icon: (
-      <NavLink to="/trending">
+      <NavLink to="/">
         <WhatshotIcon />
       </NavLink>
     ),

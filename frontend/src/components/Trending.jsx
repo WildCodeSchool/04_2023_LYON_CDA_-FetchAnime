@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Button, Box, CircularProgress, Grid } from "@mui/material";
+import { Button, Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import CardItem from "./CardItem";
 import Header from "./Header";
@@ -24,13 +24,15 @@ function Trending() {
   return (
     <>
       <Header />
+      <Typography variant="h3" textAlign="center" mt={2}>
+        Trending
+      </Typography>
       <Grid
         container
         spacing={2}
         sx={(theme) => ({
           [theme.breakpoints.down("md")]: {
             p: 1,
-            mt: 10,
           },
           [theme.breakpoints.up("md")]: {
             p: 15,
