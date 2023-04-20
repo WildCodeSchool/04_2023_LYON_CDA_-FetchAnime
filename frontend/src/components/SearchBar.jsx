@@ -3,10 +3,15 @@ import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function SearchBar({ search, setSearch, setPage }) {
   const handleChange = (e) => {
     setSearch(e.target.value);
+    setPage(1);
+  };
+  const handleClick = () => {
+    setSearch("");
     setPage(1);
   };
   return (
@@ -16,10 +21,11 @@ export default function SearchBar({ search, setSearch, setPage }) {
         p: "2px 4px",
         display: "flex",
         alignItems: "center",
-        width: "90%",
+        width: "95%",
         margin: "auto",
-        mt: 12,
+        mt: 9.5,
         backgroundColor: "#FDFBE2",
+        height: "40px",
       }}
     >
       <InputBase
@@ -30,7 +36,7 @@ export default function SearchBar({ search, setSearch, setPage }) {
         onChange={handleChange}
       />
       <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-        <SearchIcon />
+        {search === "" ? <SearchIcon /> : <CloseIcon onClick={handleClick} />}
       </IconButton>
     </Paper>
   );

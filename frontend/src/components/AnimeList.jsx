@@ -12,7 +12,7 @@ function AnimeList({ search, page, setPage }) {
     axios
       .get(
         `https://api.consumet.org/meta/anilist/${
-          search === "" ? "ATTACK" : search
+          search === "" ? "" : search
         }?page=${page}`
       )
       .then((response) => response.data)

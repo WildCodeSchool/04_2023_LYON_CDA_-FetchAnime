@@ -45,7 +45,13 @@ function App() {
           <Route
             path="/description"
             element={
-              <AnimeDescription animeId={animeId} setAnimeId={setAnimeId} />
+              <AnimeDescription
+                animeId={animeId}
+                search={search}
+                page={page}
+                setPage={setPage}
+                setAnimeId={setAnimeId}
+              />
             }
           />
           <Route path="/mylists" element={<MyLists />} />

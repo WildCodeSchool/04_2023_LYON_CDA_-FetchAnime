@@ -33,7 +33,7 @@ const actions = [
         <WhatshotIcon />
       </NavLink>
     ),
-    name: "My Lists",
+    name: "Trending",
   },
 ];
 const theme = createTheme({
