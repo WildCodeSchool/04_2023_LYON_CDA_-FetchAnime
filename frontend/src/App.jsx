@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import BurgerMenu from "./components/BurgerMenu";
 import WatchingList from "./components/WatchingList";
 import Home from "./pages/Home";
 
@@ -22,6 +23,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <BurgerMenu />
         <Routes>
           <Route path="*" element={<Home />} />
           <Route

@@ -54,6 +54,7 @@ export default function BurgerMenu() {
           position: "fixed",
           bottom: 16,
           right: 16,
+          zIndex: 1000,
         }}
       >
         <SpeedDial
