@@ -57,12 +57,11 @@ export default function BurgerMenu() {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          height: 200,
           transform: "translateZ(0px)",
           flexGrow: 1,
           position: "fixed",
-          bottom: 16,
           right: 16,
+          bottom: 16,
           zIndex: 1000,
         }}
       >
