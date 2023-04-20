@@ -1,6 +1,6 @@
-import MylistCard from "@components/MylistCard";
 import { Box } from "@mui/system";
 import React from "react";
+import MylistCard from "../components/MylistCard";
 import Haeder from "../components/Header";
 
 function MyLists() {
