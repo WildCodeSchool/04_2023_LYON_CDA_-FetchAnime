@@ -69,6 +69,12 @@ export function Description({ anime }) {
   const [watching, setWatching] = useState(
     localStorage.getItem("watchingList") || []
   );
+  const [planning, setPlanning] = useState(
+    localStorage.getItem("planningList") || []
+  );
+  const [completed, setCompleted] = useState(
+    localStorage.getItem("completedList") || []
+  );
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -81,12 +87,15 @@ export function Description({ anime }) {
   };
 
   const handlePlanning = (itemId) => {
-    localStorage.setItem("planningList", itemId);
-
+    const updatedPlanning = [...planning, itemId];
+    localStorage.setItem("planningList", JSON.stringify(updatedPlanning));
+    setPlanning(updatedPlanning);
     setAnchorEl(null);
   };
   const handleCompleted = (itemId) => {
-    localStorage.setItem("completedList", itemId);
+    const updatedCompleted = [...completed, itemId];
+    localStorage.setItem("completedList", JSON.stringify(updatedCompleted));
+    setCompleted(updatedCompleted);
     setAnchorEl(null);
   };
 
@@ -224,11 +233,17 @@ export function Description({ anime }) {
                   <LiveTvIcon />
                   Watching
                 </MenuItem>
-                <MenuItem onClick={handlePlanning} disableRipple>
+                <MenuItem
+                  onClick={() => handlePlanning(anime.id)}
+                  disableRipple
+                >
                   <AddToQueueIcon />
                   Planning
                 </MenuItem>
-                <MenuItem onClick={handleCompleted} disableRipple>
+                <MenuItem
+                  onClick={() => handleCompleted(anime.id)}
+                  disableRipple
+                >
                   <AddTaskIcon />
                   Completed
                 </MenuItem>
