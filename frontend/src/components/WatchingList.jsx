@@ -1,12 +1,12 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import Haeder from "./Header";
+import Header from "./Header";
 
 function WatchingList() {
   return (
     <>
-      <Haeder />
+      <Header />
       <Box
         sx={(theme) => ({
           [theme.breakpoints.down("md")]: {

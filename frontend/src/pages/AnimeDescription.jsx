@@ -25,7 +25,6 @@ function AnimeDescription() {
       <Header />
       <Description anime={anime} />
       <DescriptionTabs />
-
       <Typography variant="h5" mb={2}>
         Recommandations
       </Typography>
