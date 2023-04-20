@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 
 import AnimeDescription from "./pages/AnimeDescription";
 import SearchBar from "./components/SearchBar";
-import Trending from "./components/Trending";
 import MyLists from "./pages/MyLists";
 
 const theme = createTheme({
@@ -51,7 +50,6 @@ function App() {
           />
           <Route path="/mylists" element={<MyLists />} />
           <Route path="/watchinglist" element={<WatchingList />} />
-          <Route path="/trending" element={<Trending />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
