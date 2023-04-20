@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import BurgerMenu from "./components/BurgerMenu";
 import WatchingList from "./components/WatchingList";
 import Home from "./pages/Home";
 
-import MyLists from "./pages/MyLists";
 import AnimeDescription from "./pages/AnimeDescription";
 import SearchBar from "./components/SearchBar";
+import Trending from "./components/Trending";
+import MyLists from "./pages/MyLists";
 
 const theme = createTheme({
   typography: {
@@ -26,6 +28,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <SearchBar search={search} setSearch={setSearch} setPage={setPage} />
+        <BurgerMenu />
         <Routes>
           <Route path="*" element={<Home />} />
           <Route
@@ -48,6 +51,7 @@ function App() {
           />
           <Route path="/mylists" element={<MyLists />} />
           <Route path="/watchinglist" element={<WatchingList />} />
+          <Route path="/trending" element={<Trending />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

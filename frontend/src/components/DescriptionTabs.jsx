@@ -1,7 +1,7 @@
 import { Tab, Tabs } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import Charachters from "./Charachters";
+import Characters from "./Characters";
 
 function DescriptionTabs() {
   const [selectedTab, setSelectedTab] = useState("characters");
@@ -17,12 +17,12 @@ function DescriptionTabs() {
         scrollButtons={false}
         aria-label="scrollable prevent tabs example"
       >
-        <Tab label="Charachters" value="characters" />
+        <Tab label="Characters" value="characters" />
         <Tab label="Watch" value="watch" />
         <Tab label="Episodes" value="episodes" />
         <Tab label="Staff" value="staff" />
       </Tabs>
-      {selectedTab === "characters" && <Charachters />}
+      {selectedTab === "characters" && <Characters />}
     </Box>
   );
 }
