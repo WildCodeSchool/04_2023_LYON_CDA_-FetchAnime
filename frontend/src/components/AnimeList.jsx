@@ -2,10 +2,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Box, CircularProgress, Grid } from "@mui/material";
-import { NavLink } from "react-router-dom";
 import CardItem from "./CardItem";
 
-function AnimeList({ search, page, setPage }) {
+function AnimeList({ search, page, setPage, handleClick }) {
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -18,10 +17,6 @@ function AnimeList({ search, page, setPage }) {
       .then((response) => response.data)
       .then((data) => setList(data));
   }, [search, page]);
-
-  const handleClick = (itemId) => {
-    localStorage.setItem("animeId", itemId);
-  };
 
   return (
     <Grid
@@ -39,9 +34,7 @@ function AnimeList({ search, page, setPage }) {
       {list.results ? (
         list.results.map((item) => (
           <Grid container item md={2} xs={6} height="100%" key={item.id}>
-            <NavLink to="description">
-              <CardItem item={item} handleClick={handleClick} />
-            </NavLink>
+            <CardItem item={item} handleClick={handleClick} />
           </Grid>
         ))
       ) : (

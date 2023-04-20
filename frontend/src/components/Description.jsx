@@ -94,7 +94,7 @@ function Description({ anime }) {
             justifyContent="space-between"
             marginTop="4%"
           >
-            <Box margin="2%" mt={"4%"} mb="10%">
+            <Box margin="2%" mt="4%" mb="10%">
               <CardMedia
                 component="img"
                 image={anime.image}

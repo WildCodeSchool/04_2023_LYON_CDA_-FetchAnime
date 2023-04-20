@@ -23,6 +23,7 @@ function App() {
   const [animeId, setAnimeId] = useState();
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -48,6 +49,7 @@ function App() {
               <AnimeDescription
                 animeId={animeId}
                 search={search}
+                setSearch={setSearch}
                 page={page}
                 setPage={setPage}
                 setAnimeId={setAnimeId}
