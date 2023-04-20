@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { Tab, Tabs } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import Characters from "./Characters";
 
-function DescriptionTabs() {
+function DescriptionTabs({ anime }) {
   const [selectedTab, setSelectedTab] = useState("characters");
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
@@ -22,7 +23,7 @@ function DescriptionTabs() {
         <Tab label="Episodes" value="episodes" />
         <Tab label="Staff" value="staff" />
       </Tabs>
-      {selectedTab === "characters" && <Characters />}
+      {selectedTab === "characters" && <Characters anime={anime} />}
     </Box>
   );
 }

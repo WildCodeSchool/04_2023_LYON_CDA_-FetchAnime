@@ -19,12 +19,11 @@ function AnimeDescription() {
       .then((response) => response.data)
       .then((data) => setAnime(data));
   }, [id]);
-
   return (
     <>
       <Header />
       <Description anime={anime} />
-      <DescriptionTabs />
+      <DescriptionTabs anime={anime} />
 
       <Typography variant="h5" mb={2}>
         Recommandations
