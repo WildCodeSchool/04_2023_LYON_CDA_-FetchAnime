@@ -1,12 +1,12 @@
-import MylistCard from "@components/MylistCard";
 import { Box } from "@mui/system";
 import React from "react";
-import Haeder from "../components/Header";
+import MylistCard from "../components/MylistCard";
+import Header from "../components/Header";
 
 function MyLists() {
   return (
     <>
-      <Haeder />
+      <Header />
       <Box
         sx={(theme) => ({
           [theme.breakpoints.down("md")]: {

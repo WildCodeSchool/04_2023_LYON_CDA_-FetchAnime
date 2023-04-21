@@ -13,7 +13,7 @@ const StyledToolbar = styled(Toolbar)({
   display: "flex",
   position: "relative",
   justifyContent: "space-between",
-  backgroundColor: "#D9D9D9",
+  backgroundColor: "#FDFBE2",
   padding: "3px",
 });
 
@@ -62,7 +62,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   justifyContent: "center",
 }));
 
-function Haeder() {
+function Header() {
   return (
     <div>
       <AppBar>
@@ -85,4 +85,4 @@ function Haeder() {
   );
 }
 
-export default Haeder;
+export default Header;

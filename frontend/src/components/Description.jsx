@@ -100,7 +100,7 @@ export function Description({ anime }) {
   };
 
   return (
-    <Box component="div" mt={10.5} backgroundColor="#FDFBE2">
+    <Box component="div" mt={1.5} backgroundColor="#FDFBE2">
       {anime.title ? (
         <Box component="div">
           <CardMedia
