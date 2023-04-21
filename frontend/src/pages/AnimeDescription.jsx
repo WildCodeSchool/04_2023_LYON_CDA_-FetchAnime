@@ -35,7 +35,7 @@ function AnimeDescription({ search, page, setPage, setSearch }) {
           {search === "" && anime.title ? (
             <>
               <Description anime={anime} />
-              <DescriptionTabs />
+              <DescriptionTabs anime={anime} />
               <Recommendations anime={anime} setId={setId} />
             </>
           ) : null}
