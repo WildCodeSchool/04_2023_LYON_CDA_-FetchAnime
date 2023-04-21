@@ -10,7 +10,7 @@ function Characters({ anime }) {
             <Grid item xs={3} sm={4} md={6} key={item.name.id}>
               <img
                 src={item.image}
-                alt={item.name.userPreferred}
+                alt={item.name.full}
                 style={{
                   maxWidth: "100%",
                   height: "auto",
@@ -18,7 +18,7 @@ function Characters({ anime }) {
                   objectFit: "fill",
                 }}
               />
-              <p style={{ textAlign: "center" }}>{item.name.full}</p>
+              <p style={{ textAlign: "center" }}>{item.name.userPreferred}</p>
             </Grid>
           ))
         : null}
