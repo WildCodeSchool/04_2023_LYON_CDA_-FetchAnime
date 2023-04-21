@@ -4,7 +4,7 @@ import {
   InputBase,
   styled,
   Toolbar,
-  Typography,
+  CardMedia,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React from "react";
@@ -67,9 +67,24 @@ function Header() {
     <div>
       <AppBar>
         <StyledToolbar>
-          <Typography>
-            <img alt="e" src="src/assets/img/Frame.png" />
-          </Typography>
+          <CardMedia
+            component="img"
+            image="src/assets/img/Frame.png"
+            sx={(theme) => ({
+              [theme.breakpoints.down("md")]: {
+                height: "60px",
+                width: "100%",
+                objectFit: "contain",
+                padding: 0.8,
+              },
+              [theme.breakpoints.up("md")]: {
+                height: "350px",
+                width: "100%",
+                objectFit: "cover",
+                margin: "auto",
+              },
+            })}
+          />
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import SwipeableViews from "react-swipeable-views-react-18-fix";
-import { Step } from "@mui/material";
+import { Step, Typography } from "@mui/material";
 
+import { Box } from "@mui/system";
 import CardItem from "./CardItem";
 
 function Recommendations({ anime, setId }) {
@@ -11,15 +12,24 @@ function Recommendations({ anime, setId }) {
     setId(localStorage.getItem("animeId"));
   };
   return (
-    <SwipeableViews enableMouseEvents>
-      {anime.recommendations
-        ? anime.recommendations.map((item) => (
-            <Step key={item.id} className="stepItem">
-              <CardItem item={item} handleClick={handleClick} />
-            </Step>
-          ))
-        : null}
-    </SwipeableViews>
+    <Box>
+      {anime.recommendations !== null && (
+        <>
+          <Typography variant="h5" mb={2} sx={{ ml: 1.5 }}>
+            Recommandations
+          </Typography>
+          <SwipeableViews enableMouseEvents>
+            {anime.recommendations
+              ? anime.recommendations.map((item) => (
+                  <Step key={item.id} className="stepItem" sx={{ ml: 1.5 }}>
+                    <CardItem item={item} handleClick={handleClick} />
+                  </Step>
+                ))
+              : null}
+          </SwipeableViews>
+        </>
+      )}
+    </Box>
   );
 }
 
