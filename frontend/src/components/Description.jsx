@@ -110,8 +110,10 @@ export function Description({ anime }) {
               [theme.breakpoints.down("md")]: {
                 height: "230px",
                 width: "100%",
-                objectFit: "cover",
+                objectFit: "fit",
                 margin: "auto",
+                borderRadius: 4,
+                border: "0.1px solid white",
               },
               [theme.breakpoints.up("md")]: {
                 height: "350px",
@@ -179,7 +181,7 @@ export function Description({ anime }) {
             justifyContent="space-between"
             marginTop="4%"
           >
-            <Box margin="3%" mb="10%">
+            <Box margin="2%" mt="4%" mb="10%">
               <CardMedia
                 component="img"
                 image={anime.image}

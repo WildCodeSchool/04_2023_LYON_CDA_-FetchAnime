@@ -2,15 +2,15 @@
 import React from "react";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 
-function Characters({ anime }) {
+function Episodes({ anime }) {
   return (
     <Grid container spacing={2} sx={{ padding: "8px" }}>
-      {anime.characters
-        ? anime.characters.map((item) => (
-            <Grid item xs={3} sm={4} md={6} key={item.name.id}>
+      {anime.episodes
+        ? anime.episodes.map((item) => (
+            <Grid item xs={4} sm={6} md={8} key={item.id}>
               <img
                 src={item.image}
-                alt={item.name.userPreferred}
+                alt={item.title}
                 style={{
                   maxWidth: "100%",
                   height: "auto",
@@ -18,7 +18,7 @@ function Characters({ anime }) {
                   objectFit: "fill",
                 }}
               />
-              <p style={{ textAlign: "center" }}>{item.name.full}</p>
+              <p style={{ textAlign: "center" }}>{item.title}</p>
             </Grid>
           ))
         : null}
@@ -26,4 +26,4 @@ function Characters({ anime }) {
   );
 }
 
-export default Characters;
+export default Episodes;

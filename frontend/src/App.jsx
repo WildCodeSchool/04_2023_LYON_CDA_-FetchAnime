@@ -23,6 +23,7 @@ function App() {
   const [animeId, setAnimeId] = useState();
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -45,7 +46,14 @@ function App() {
           <Route
             path="/description"
             element={
-              <AnimeDescription animeId={animeId} setAnimeId={setAnimeId} />
+              <AnimeDescription
+                animeId={animeId}
+                search={search}
+                setSearch={setSearch}
+                page={page}
+                setPage={setPage}
+                setAnimeId={setAnimeId}
+              />
             }
           />
           <Route path="/mylists" element={<MyLists />} />
