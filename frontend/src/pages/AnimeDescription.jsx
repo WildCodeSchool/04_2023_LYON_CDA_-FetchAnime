@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import Header from "../components/Header";
+// eslint-disable-next-line import/no-named-as-default
 import Description from "../components/Description";
 import DescriptionTabs from "../components/DescriptionTabs";
 import Recommendations from "../components/Recommendations";

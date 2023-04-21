@@ -7,11 +7,98 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import React, { useState } from "react";
+import { styled, alpha } from "@mui/material/styles";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import AddToQueueIcon from "@mui/icons-material/AddToQueue";
+import LiveTvIcon from "@mui/icons-material/LiveTv";
+import AddTaskIcon from "@mui/icons-material/AddTask";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-import React from "react";
-
-function Description({ anime }) {
+const StyledMenu = styled((props) => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "right",
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "right",
+    }}
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    {...props}
+  />
+))(({ theme }) => ({
+  "& .MuiPaper-root": {
+    borderRadius: 6,
+    marginTop: theme.spacing(1),
+    minWidth: 180,
+    color:
+      theme.palette.mode === "light"
+        ? "rgb(55, 65, 81)"
+        : theme.palette.grey[300],
+    boxShadow:
+      "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
+    "& .MuiMenu-list": {
+      padding: "4px 0",
+    },
+    "& .MuiMenuItem-root": {
+      "& .MuiSvgIcon-root": {
+        fontSize: 18,
+        color: theme.palette.text.secondary,
+        marginRight: theme.spacing(1.5),
+      },
+      "&:active": {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity
+        ),
+      },
+    },
+  },
+}));
+export function Description({ anime }) {
   const rating = anime.rating / 20;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const [watching, setWatching] = useState(
+    localStorage.getItem("watchingList") || []
+  );
+  const [planning, setPlanning] = useState(
+    localStorage.getItem("planningList") || []
+  );
+  const [completed, setCompleted] = useState(
+    localStorage.getItem("completedList") || []
+  );
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleWatching = (itemId) => {
+    const updatedWatching = [...watching, itemId];
+    localStorage.setItem("watchingList", JSON.stringify(updatedWatching));
+    setWatching(updatedWatching);
+    setAnchorEl(null);
+  };
+
+  const handlePlanning = (itemId) => {
+    const updatedPlanning = [...planning, itemId];
+    localStorage.setItem("planningList", JSON.stringify(updatedPlanning));
+    setPlanning(updatedPlanning);
+    setAnchorEl(null);
+  };
+  const handleCompleted = (itemId) => {
+    const updatedCompleted = [...completed, itemId];
+    localStorage.setItem("completedList", JSON.stringify(updatedCompleted));
+    setCompleted(updatedCompleted);
+    setAnchorEl(null);
+  };
+
   return (
     <Box component="div" mt={1.5} backgroundColor="#FDFBE2">
       {anime.title ? (
@@ -121,18 +208,48 @@ function Description({ anime }) {
                 readOnly
               />
               <Button
+                id="demo-customized-button"
+                aria-controls={open ? "demo-customized-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
                 variant="contained"
-                color="primary"
-                sx={{
-                  height: 30,
-                  padding: 2,
-                  margin: "4%",
-                  borderRadius: 2,
-                  fontSize: "0.6rem",
-                }}
+                disableElevation
+                onClick={handleClick}
+                endIcon={<KeyboardArrowDownIcon />}
               >
-                + Add to list
+                + Add
               </Button>
+              <StyledMenu
+                id="demo-customized-menu"
+                MenuListProps={{
+                  "aria-labelledby": "demo-customized-button",
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem
+                  onClick={() => handleWatching(anime.id)}
+                  disableRipple
+                >
+                  <LiveTvIcon />
+                  Watching
+                </MenuItem>
+                <MenuItem
+                  onClick={() => handlePlanning(anime.id)}
+                  disableRipple
+                >
+                  <AddToQueueIcon />
+                  Planning
+                </MenuItem>
+                <MenuItem
+                  onClick={() => handleCompleted(anime.id)}
+                  disableRipple
+                >
+                  <AddTaskIcon />
+                  Completed
+                </MenuItem>
+              </StyledMenu>
             </Box>
             <Box
               sx={(theme) => ({
@@ -179,5 +296,4 @@ function Description({ anime }) {
     </Box>
   );
 }
-
 export default Description;
