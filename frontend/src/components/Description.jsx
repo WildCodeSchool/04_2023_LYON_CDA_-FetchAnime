@@ -61,10 +61,10 @@ export function Description({ anime }) {
   );
 
   const [planning, setPlanning] = useState(
-    localStorage.getItem("planningList") || []
+    JSON.parse(localStorage.getItem("planningList")) || []
   );
   const [completed, setCompleted] = useState(
-    localStorage.getItem("completedList") || []
+    JSON.parse(localStorage.getItem("completedList")) || []
   );
 
   const handleClose = () => {
@@ -80,14 +80,20 @@ export function Description({ anime }) {
     setAnchorEl(null);
   };
 
-  const handlePlanning = (itemId) => {
-    const updatedPlanning = [...planning, itemId];
+  const handlePlanning = (item) => {
+    const updatedPlanning = [
+      ...planning,
+      { id: item.id, image: item.image, title: anime.title },
+    ];
     localStorage.setItem("planningList", JSON.stringify(updatedPlanning));
     setPlanning(updatedPlanning);
     setAnchorEl(null);
   };
-  const handleCompleted = (itemId) => {
-    const updatedCompleted = [...completed, itemId];
+  const handleCompleted = (item) => {
+    const updatedCompleted = [
+      ...completed,
+      { id: item.id, image: item.image, title: anime.title },
+    ];
     localStorage.setItem("completedList", JSON.stringify(updatedCompleted));
     setCompleted(updatedCompleted);
     setAnchorEl(null);
@@ -210,7 +216,6 @@ export function Description({ anime }) {
                   width: "115px",
                   height: "25px",
                   backgroundColor: "#3db4f2",
-                  //  boxShadow: "0 0 29px rgba(49,54,68,.25)",
                 }}
                 id="demo-customized-button"
                 aria-controls={open ? "demo-customized-menu" : undefined}
@@ -235,17 +240,11 @@ export function Description({ anime }) {
                   <LiveTvIcon style={{ color: "#c90d56" }} />
                   Watching
                 </MenuItem>
-                <MenuItem
-                  onClick={() => handlePlanning(anime.id)}
-                  disableRipple
-                >
+                <MenuItem onClick={() => handlePlanning(anime)} disableRipple>
                   <AddToQueueIcon style={{ color: "#c90d56" }} />
                   Planning
                 </MenuItem>
-                <MenuItem
-                  onClick={() => handleCompleted(anime.id)}
-                  disableRipple
-                >
+                <MenuItem onClick={() => handleCompleted(anime)} disableRipple>
                   <AddTaskIcon style={{ color: "#c90d56" }} />
                   Completed
                 </MenuItem>

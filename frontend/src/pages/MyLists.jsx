@@ -4,7 +4,18 @@ import MylistCard from "../components/MylistCard";
 import Header from "../components/Header";
 
 function MyLists() {
-  const [myLists] = useState(JSON.parse(localStorage.getItem("watchingList")));
+  const [myWatchingList] = useState(
+    JSON.parse(localStorage.getItem("watchingList"))
+  );
+
+  const [myPlanningList] = useState(
+    JSON.parse(localStorage.getItem("planningList"))
+  );
+
+  const [myCompletedList] = useState(
+    JSON.parse(localStorage.getItem("completedList"))
+  );
+
   return (
     <>
       <Header />
@@ -18,7 +29,9 @@ function MyLists() {
           },
         })}
       >
-        <MylistCard title="Watching" anime={myLists} />
+        <MylistCard title="Watching" anime={myWatchingList} />
+        <MylistCard title="Planning" anime={myPlanningList} />
+        <MylistCard title="Completed" anime={myCompletedList} />
       </Box>
     </>
   );
