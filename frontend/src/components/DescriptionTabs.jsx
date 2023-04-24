@@ -4,6 +4,7 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import Characters from "./Characters";
 import Episodes from "./Episodes";
+import Casting from "./Casting";
 
 function DescriptionTabs({ anime }) {
   const [selectedTab, setSelectedTab] = useState("characters");
@@ -21,12 +22,12 @@ function DescriptionTabs({ anime }) {
         textColor="#C90D56"
       >
         <Tab label="Characters" value="characters" />
-        <Tab label="Watch" value="watch" />
+        <Tab label="Casting" value="casting" />
         <Tab label="Episodes" value="episodes" />
-        <Tab label="Staff" value="staff" />
       </Tabs>
       {selectedTab === "characters" && <Characters anime={anime} />}
       {selectedTab === "episodes" && <Episodes anime={anime} />}
+      {selectedTab === "casting" && <Casting anime={anime} />}
     </Box>
   );
 }
