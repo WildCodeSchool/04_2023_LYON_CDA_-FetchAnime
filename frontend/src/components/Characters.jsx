@@ -1,26 +1,49 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@mui/system/Unstable_Grid/Grid";
+import Pagination from "@mui/material/Pagination";
 
 function Characters({ anime }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+  const numPages = Math.ceil(anime.characters.length / itemsPerPage);
+
+  const handleChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const displayedCharacters = anime.characters.slice(startIndex, endIndex);
+
   return (
-    <Grid container spacing={2} sx={{ padding: "8px" }}>
-      {anime.characters?.map((item) => (
-        <Grid item xs={3} sm={4} md={6} key={item.name.id}>
-          <img
-            src={item.image}
-            alt={item.name.full}
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-              borderRadius: 5,
-              objectFit: "fill",
-            }}
-          />
-          <p style={{ textAlign: "center" }}>{item.name.userPreferred}</p>
-        </Grid>
-      ))}
-    </Grid>
+    <div>
+      <Grid container spacing={2} sx={{ padding: "8px" }}>
+        {displayedCharacters.map((item) => (
+          <Grid item xs={3} sm={4} md={6} key={item.name.id}>
+            <img
+              src={item.image}
+              alt={item.name.full}
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                borderRadius: 5,
+                objectFit: "fill",
+              }}
+            />
+            <p style={{ textAlign: "center" }}>{item.name.userPreferred}</p>
+          </Grid>
+        ))}
+      </Grid>
+      {numPages > 1 && (
+        <Pagination
+          count={numPages}
+          page={currentPage}
+          onChange={handleChange}
+          sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}
+        />
+      )}
+    </div>
   );
 }
 
