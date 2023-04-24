@@ -33,8 +33,8 @@ function CardItem({ item, handleClick }) {
       >
         {(() => {
           const title = item.title.english || item.title.romaji;
-          if (title.length > 30) {
-            return `${title.slice(0, 30)}...`;
+          if (title.length > 20) {
+            return `${title.slice(0, 20)}...`;
           }
           return title;
         })()}
