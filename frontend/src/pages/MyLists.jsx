@@ -1,9 +1,21 @@
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import MylistCard from "../components/MylistCard";
 import Header from "../components/Header";
 
 function MyLists() {
+  const [myWatchingList] = useState(
+    JSON.parse(localStorage.getItem("watchingList"))
+  );
+
+  const [myPlanningList] = useState(
+    JSON.parse(localStorage.getItem("planningList"))
+  );
+
+  const [myCompletedList] = useState(
+    JSON.parse(localStorage.getItem("completedList"))
+  );
+
   return (
     <>
       <Header />
@@ -17,9 +29,9 @@ function MyLists() {
           },
         })}
       >
-        <MylistCard title="Watching" />
-        <MylistCard title="Planning" />
-        <MylistCard title="Completed" />
+        <MylistCard title="Watching" anime={myWatchingList} />
+        <MylistCard title="Planning" anime={myPlanningList} />
+        <MylistCard title="Completed" anime={myCompletedList} />
       </Box>
     </>
   );

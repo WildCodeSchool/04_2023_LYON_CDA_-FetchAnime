@@ -4,7 +4,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-function MylistCard({ title }) {
+function MylistCard({ title, anime }) {
   return (
     <Box>
       <Box
@@ -35,33 +35,19 @@ function MylistCard({ title }) {
           marginTop: 2,
         }}
       >
-        <img
-          style={{
-            borderRadius: "5px",
-            boxShadow:
-              "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px",
-          }}
-          src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx128893-l0R0GFHplDKW.jpg"
-          alt=""
-        />
-        <img
-          style={{
-            borderRadius: "5px",
-            boxShadow:
-              "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px",
-          }}
-          src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx158871-FmWU8dacXDiA.jpg"
-          alt=""
-        />
-        <img
-          style={{
-            borderRadius: "5px",
-            boxShadow:
-              "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px",
-          }}
-          src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx153687-xB2x4toOz5MB.jpg"
-          alt=""
-        />
+        {anime
+          ? anime.map((item) => (
+              <img
+                style={{
+                  borderRadius: "5px",
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px",
+                }}
+                src={item.image}
+                alt=""
+              />
+            ))
+          : "null"}
       </Box>
     </Box>
   );

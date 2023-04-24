@@ -8,13 +8,12 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import AddTaskIcon from "@mui/icons-material/AddTask";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
@@ -37,15 +36,8 @@ const StyledMenu = styled((props) => (
     borderRadius: 6,
     marginTop: theme.spacing(1),
     minWidth: 180,
-    color:
-      theme.palette.mode === "light"
-        ? "rgb(55, 65, 81)"
-        : theme.palette.grey[300],
-    boxShadow:
-      "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
-    "& .MuiMenu-list": {
-      padding: "4px 0",
-    },
+    color: theme.palette.mode === "light" ? "#c90d56" : theme.palette.grey[300],
+
     "& .MuiMenuItem-root": {
       "& .MuiSvgIcon-root": {
         fontSize: 18,
@@ -53,10 +45,7 @@ const StyledMenu = styled((props) => (
         marginRight: theme.spacing(1.5),
       },
       "&:active": {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity
-        ),
+        backgroundColor: "red",
       },
     },
   },
@@ -69,34 +58,45 @@ export function Description({ anime }) {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const [watching, setWatching] = useState(
-    localStorage.getItem("watchingList") || []
+    JSON.parse(localStorage.getItem("watchingList")) || []
   );
+
   const [planning, setPlanning] = useState(
-    localStorage.getItem("planningList") || []
+    JSON.parse(localStorage.getItem("planningList")) || []
   );
   const [completed, setCompleted] = useState(
-    localStorage.getItem("completedList") || []
+    JSON.parse(localStorage.getItem("completedList")) || []
   );
 
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleWatching = (itemId) => {
-    const updatedWatching = [...watching, itemId];
+  const handleWatching = (item) => {
+    const updatedWatching = [
+      ...watching,
+      { id: item.id, image: item.image, title: anime.title },
+    ];
     localStorage.setItem("watchingList", JSON.stringify(updatedWatching));
     setWatching(updatedWatching);
     setAnchorEl(null);
   };
 
-  const handlePlanning = (itemId) => {
-    const updatedPlanning = [...planning, itemId];
+  const handlePlanning = (item) => {
+    const updatedPlanning = [
+      ...planning,
+      { id: item.id, image: item.image, title: anime.title },
+    ];
     localStorage.setItem("planningList", JSON.stringify(updatedPlanning));
     setPlanning(updatedPlanning);
     setAnchorEl(null);
   };
-  const handleCompleted = (itemId) => {
-    const updatedCompleted = [...completed, itemId];
+  const handleCompleted = (item) => {
+    const updatedCompleted = [
+      ...completed,
+      { id: item.id, image: item.image, title: anime.title },
+    ];
     localStorage.setItem("completedList", JSON.stringify(updatedCompleted));
     setCompleted(updatedCompleted);
     setAnchorEl(null);
@@ -107,6 +107,9 @@ export function Description({ anime }) {
       {anime.title ? (
         <Box component="div">
           <CardMedia
+            style={{
+              boxShadow: "0 0 29px rgba(49,54,68,.25)",
+            }}
             component="img"
             image={anime.cover}
             sx={(theme) => ({
@@ -186,6 +189,7 @@ export function Description({ anime }) {
           >
             <Box margin="2%" mt="4%" mb="10%">
               <CardMedia
+                style={{ boxShadow: "0 0 29px rgba(49,54,68,.25)" }}
                 component="img"
                 image={anime.image}
                 sx={(theme) => ({
@@ -211,6 +215,11 @@ export function Description({ anime }) {
                 readOnly
               />
               <Button
+                sx={{
+                  width: "115px",
+                  height: "25px",
+                  backgroundColor: "#3db4f2",
+                }}
                 id="demo-customized-button"
                 aria-controls={open ? "demo-customized-menu" : undefined}
                 aria-haspopup="true"
@@ -218,9 +227,8 @@ export function Description({ anime }) {
                 variant="contained"
                 disableElevation
                 onClick={handleClick}
-                endIcon={<KeyboardArrowDownIcon />}
               >
-                + Add
+                Add to List
               </Button>
               <StyledMenu
                 id="demo-customized-menu"
@@ -231,25 +239,16 @@ export function Description({ anime }) {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem
-                  onClick={() => handleWatching(anime.id)}
-                  disableRipple
-                >
-                  <LiveTvIcon />
+                <MenuItem onClick={() => handleWatching(anime)} disableRipple>
+                  <LiveTvIcon style={{ color: "#c90d56" }} />
                   Watching
                 </MenuItem>
-                <MenuItem
-                  onClick={() => handlePlanning(anime.id)}
-                  disableRipple
-                >
-                  <AddToQueueIcon />
+                <MenuItem onClick={() => handlePlanning(anime)} disableRipple>
+                  <AddToQueueIcon style={{ color: "#c90d56" }} />
                   Planning
                 </MenuItem>
-                <MenuItem
-                  onClick={() => handleCompleted(anime.id)}
-                  disableRipple
-                >
-                  <AddTaskIcon />
+                <MenuItem onClick={() => handleCompleted(anime)} disableRipple>
+                  <AddTaskIcon style={{ color: "#c90d56" }} />
                   Completed
                 </MenuItem>
               </StyledMenu>
