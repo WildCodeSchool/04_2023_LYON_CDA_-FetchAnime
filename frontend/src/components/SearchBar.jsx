@@ -35,8 +35,13 @@ export default function SearchBar({ search, setSearch, setPage }) {
         value={search}
         onChange={handleChange}
       />
-      <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-        {search === "" ? <SearchIcon /> : <CloseIcon onClick={handleClick} />}
+      <IconButton
+        type="button"
+        sx={{ p: "10px" }}
+        aria-label="search"
+        onClick={handleClick}
+      >
+        {search === "" ? <SearchIcon /> : <CloseIcon />}
       </IconButton>
     </Paper>
   );

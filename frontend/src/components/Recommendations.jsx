@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import SwipeableViews from "react-swipeable-views-react-18-fix";
-import { Step, Typography } from "@mui/material";
+
+import { Typography } from "@mui/material";
 
 import { Box } from "@mui/system";
 import CardItem from "./CardItem";
@@ -18,15 +18,15 @@ function Recommendations({ anime, setId }) {
           <Typography variant="h5" mb={2} sx={{ ml: 1.5 }}>
             Recommandations
           </Typography>
-          <SwipeableViews enableMouseEvents>
+          <Box className="slider-wrapper">
             {anime.recommendations
               ? anime.recommendations.map((item) => (
-                  <Step key={item.id} className="stepItem" sx={{ ml: 1.5 }}>
+                  <Box marginX={2} key={item.id}>
                     <CardItem item={item} handleClick={handleClick} />
-                  </Step>
+                  </Box>
                 ))
               : null}
-          </SwipeableViews>
+          </Box>
         </>
       )}
     </Box>
