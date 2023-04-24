@@ -22,9 +22,8 @@ function DescriptionTabs({ anime }) {
         textColor="#C90D56"
       >
         <Tab label="Characters" value="characters" />
-        <Tab label="Watch" value="watch" />
-        <Tab label="Episodes" value="episodes" />
         <Tab label="Casting" value="casting" />
+        <Tab label="Episodes" value="episodes" />
       </Tabs>
       {selectedTab === "characters" && <Characters anime={anime} />}
       {selectedTab === "episodes" && <Episodes anime={anime} />}
