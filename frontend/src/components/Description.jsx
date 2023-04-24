@@ -286,24 +286,24 @@ export function Description({ anime }) {
                     const { description } = anime;
                     if (description.length > 150) {
                       return ` ${
-                        showMore
-                          ? description.slice(0, 320)
-                          : description.slice(0, 1000)
+                        showMore ? description.slice(0, 320) : description
                       }...`;
                     }
                     return description;
                   })(),
                 }}
               />
-              <Button
-                sx={{
-                  m: 0,
-                  marginLeft: "78%",
-                }}
-                onClick={() => setShowMore(!showMore)}
-              >
-                {showMore ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-              </Button>
+              {anime.description.length > 150 ? (
+                <Button
+                  sx={{
+                    m: 0,
+                    marginLeft: "78%",
+                  }}
+                  onClick={() => setShowMore(!showMore)}
+                >
+                  {showMore ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+                </Button>
+              ) : null}
             </Box>
           </Box>
         </Box>
