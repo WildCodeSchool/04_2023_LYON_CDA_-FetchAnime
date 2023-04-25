@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import PlanningList from "@components/PlanningList";
-import CompletedList from "@components/CompletedList";
+import Header from "./components/Header";
+import PlanningList from "./components/PlanningList";
+import CompletedList from "./components/CompletedList";
 import BurgerMenu from "./components/BurgerMenu";
 import WatchingList from "./components/WatchingList";
 import Home from "./pages/Home";
@@ -29,6 +30,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <Header search={search} setSearch={setSearch} setPage={setPage} />
         <SearchBar search={search} setSearch={setSearch} setPage={setPage} />
         <BurgerMenu />
         <Routes>

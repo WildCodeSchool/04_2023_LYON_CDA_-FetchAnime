@@ -1,12 +1,15 @@
 import {
   AppBar,
-  alpha,
   InputBase,
   styled,
   Toolbar,
   CardMedia,
+  IconButton,
+  Paper,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
+
 import React from "react";
 
 const StyledToolbar = styled(Toolbar)({
@@ -17,52 +20,15 @@ const StyledToolbar = styled(Toolbar)({
   padding: "3px",
 });
 
-const Search = styled("div")(({ theme }) => ({
-  display: "none",
-  position: "relative",
-  border: "1px solid white",
-  borderRadius: "50px",
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  height: "40px",
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-    display: "flex",
-  },
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-function Header() {
+function Header({ search, setSearch, setPage }) {
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+    setPage(1);
+  };
+  const handleClick = () => {
+    setSearch("");
+    setPage(1);
+  };
   return (
     <div>
       <AppBar>
@@ -73,29 +39,50 @@ function Header() {
             sx={(theme) => ({
               [theme.breakpoints.down("md")]: {
                 height: "60px",
-                width: "85%",
-                margin: 0.42,
-                objectFit: "fill",
-                marginLeft: "7.5%",
+                width: "60%",
+                objectFit: "contain",
+                padding: 0.8,
               },
               [theme.breakpoints.up("md")]: {
-                height: "70px",
-                width: "35%",
-                margin: 1,
-
-                objectFit: "fill",
+                height: "60px",
+                width: "20%",
+                objectFit: "contain",
+                margin: 0.4,
               },
             })}
           />
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
+          <Paper
+            component="form"
+            sx={(theme) => ({
+              [theme.breakpoints.down("md")]: {
+                display: "none",
+              },
+              [theme.breakpoints.up("md")]: {
+                p: "2px 4px",
+                display: "flex",
+                alignItems: "center",
+                width: "40%",
+                backgroundColor: "#FDFBE2",
+                height: "40px",
+              },
+            })}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search anime"
+              inputProps={{ "aria-label": "search anime" }}
+              value={search}
+              onChange={handleChange}
             />
-          </Search>
+            <IconButton
+              type="button"
+              sx={{ p: "10px" }}
+              aria-label="search"
+              onClick={handleClick}
+            >
+              {search === "" ? <SearchIcon /> : <CloseIcon />}
+            </IconButton>
+          </Paper>
         </StyledToolbar>
       </AppBar>
     </div>

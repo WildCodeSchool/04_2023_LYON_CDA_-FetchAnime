@@ -2,7 +2,6 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "./Header";
 import CardItem from "./CardItem";
 
 function PlanningList() {
@@ -18,8 +17,6 @@ function PlanningList() {
 
   return (
     <>
-      <Header />
-
       <Box
         sx={(theme) => ({
           [theme.breakpoints.down("md")]: {

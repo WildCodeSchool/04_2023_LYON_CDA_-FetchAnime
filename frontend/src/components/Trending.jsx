@@ -4,7 +4,6 @@ import axios from "axios";
 import { Button, Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import CardItem from "./CardItem";
-import Header from "./Header";
 
 function Trending() {
   const [list, setList] = useState([]);
@@ -23,7 +22,6 @@ function Trending() {
 
   return (
     <>
-      <Header />
       <Typography variant="h3" textAlign="center" mt={2}>
         Trending
       </Typography>

@@ -19,7 +19,7 @@ function Characters({ anime }) {
     <div>
       <Grid container spacing={2} sx={{ padding: "8px" }}>
         {displayedCharacters.map((item) => (
-          <Grid item xs={3} sm={4} md={6} key={item.name.id}>
+          <Grid item xs={3} sm={4} md={2} key={item.name.id}>
             <img
               src={item.image}
               alt={item.name.full}
