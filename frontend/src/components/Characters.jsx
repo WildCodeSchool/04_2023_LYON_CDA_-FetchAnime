@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import Grid from "@mui/system/Unstable_Grid/Grid";
-import Pagination from "@mui/material/Pagination";
+import CustomPagination from "./Pagination";
 
 function Characters({ anime }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,33 +17,29 @@ function Characters({ anime }) {
 
   return (
     <div>
-      <Grid container margin={1}>
+      <Grid container spacing={2} sx={{ padding: "8px" }}>
         {displayedCharacters.map((item) => (
           <Grid item xs={3} sm={4} md={6} key={item.name.id}>
             <img
               src={item.image}
               alt={item.name.full}
               style={{
-                width: "85px",
-                height: "110px",
+                maxWidth: "100%",
+                height: "auto",
                 borderRadius: 5,
                 objectFit: "fill",
               }}
             />
-            <p style={{ textAlign: "left", marginBottom: 4 }}>
-              {item.name.userPreferred}
-            </p>
+            <p style={{ textAlign: "center" }}>{item.name.userPreferred}</p>
           </Grid>
         ))}
       </Grid>
-      {numPages > 1 && (
-        <Pagination
-          count={numPages}
-          page={currentPage}
-          onChange={handleChange}
-          sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}
-        />
-      )}
+      <CustomPagination
+        count={numPages}
+        page={currentPage}
+        onChange={handleChange}
+        sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}
+      />
     </div>
   );
 }
