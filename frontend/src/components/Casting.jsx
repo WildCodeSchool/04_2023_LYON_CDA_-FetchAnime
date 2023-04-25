@@ -22,6 +22,7 @@ function Casting({ anime }) {
     <>
       <Grid container margin={1}>
         {visibleItems?.map((item) =>
+          item.voiceActors[0] !== undefined &&
           item.voiceActors[0].language === "Japanese" ? (
             <Grid item xs={3} sm={4} md={6} key={item.name.id}>
               <img
