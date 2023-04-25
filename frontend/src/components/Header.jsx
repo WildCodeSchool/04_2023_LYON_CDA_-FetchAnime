@@ -73,17 +73,15 @@ function Header() {
             sx={(theme) => ({
               [theme.breakpoints.down("md")]: {
                 height: "60px",
-                width: "85%",
-                margin: 0.42,
-                objectFit: "fill",
-                marginLeft: "7.5%",
+                width: "60%",
+                objectFit: "contain",
+                padding: 0.8,
               },
               [theme.breakpoints.up("md")]: {
-                height: "70px",
-                width: "35%",
-                margin: 1,
-
-                objectFit: "fill",
+                height: "60px",
+                width: "20%",
+                objectFit: "contain",
+                margin: 0.4,
               },
             })}
           />
