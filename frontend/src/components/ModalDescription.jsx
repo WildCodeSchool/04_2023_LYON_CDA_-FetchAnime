@@ -44,12 +44,22 @@ export default function ModalDescription({ description, title }) {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">
-          {" "}
+        <DialogTitle
+          id="scroll-dialog-title"
+          sx={{
+            textAlign: "center",
+            backgroundColor: "#FDFBE2",
+            color: "#C90D56",
+          }}
+        >
           {title.english ? title.english : title.romaji}
         </DialogTitle>
-        <DialogContent dividers={scroll === "paper"}>
+        <DialogContent
+          dividers={scroll === "paper"}
+          sx={{ backgroundColor: "#FDFBE2" }}
+        >
           <DialogContentText
+            sx={{ textAlign: "justify" }}
             id="scroll-dialog-description"
             ref={descriptionElementRef}
             tabIndex={-1}
@@ -61,7 +71,12 @@ export default function ModalDescription({ description, title }) {
           />
         </DialogContent>
 
-        <Button onClick={handleClose}>Close</Button>
+        <Button
+          onClick={handleClose}
+          sx={{ backgroundColor: "#FDFBE2", color: "#C90D56" }}
+        >
+          Close
+        </Button>
       </Dialog>
     </>
   );
