@@ -5,7 +5,7 @@ import Pagination from "@mui/material/Pagination";
 
 function Casting({ anime }) {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 12;
   const numPages = Math.ceil(anime.characters.length / itemsPerPage);
 
   const handleChangePage = (event, value) => {
@@ -20,7 +20,8 @@ function Casting({ anime }) {
 
   return (
     <>
-      <Grid container spacing={2} sx={{ padding: "8px" }}>
+      <Grid container margin={1}>
+        {" "}
         {visibleItems?.map((item) => (
           <>
             {item.voiceActors[0].language === "Japanese" ? (
@@ -29,13 +30,13 @@ function Casting({ anime }) {
                   src={item.voiceActors[0].image}
                   alt={item.voiceActors[0].name.full}
                   style={{
-                    maxWidth: "100%",
-                    height: "auto",
+                    width: "85px",
+                    height: "110px",
                     borderRadius: 5,
                     objectFit: "fill",
                   }}
                 />
-                <p style={{ textAlign: "center" }}>
+                <p style={{ textAlign: "left", marginBottom: 4, fontSize: 14 }}>
                   {item.voiceActors[0].name.full}
                 </p>
               </Grid>

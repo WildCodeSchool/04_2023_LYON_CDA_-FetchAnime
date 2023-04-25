@@ -69,19 +69,21 @@ function Header() {
         <StyledToolbar>
           <CardMedia
             component="img"
-            image="src/assets/img/Frame.png"
+            image="src\assets\img\logo\Logo-Low-Res\logo-color-on-transparent-background.png"
             sx={(theme) => ({
               [theme.breakpoints.down("md")]: {
                 height: "60px",
-                width: "100%",
-                objectFit: "contain",
-                padding: 0.8,
+                width: "85%",
+                margin: 0.42,
+                objectFit: "fill",
+                marginLeft: "7.5%",
               },
               [theme.breakpoints.up("md")]: {
-                height: "350px",
-                width: "100%",
-                objectFit: "cover",
-                margin: "auto",
+                height: "70px",
+                width: "35%",
+                margin: 1,
+
+                objectFit: "fill",
               },
             })}
           />
