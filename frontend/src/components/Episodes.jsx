@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import Grid from "@mui/system/Unstable_Grid/Grid";
-import Pagination from "@mui/material/Pagination";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import CustomPagination from "./Pagination";
 
 function Episodes({ anime }) {
   const [page, setPage] = useState(1);
@@ -49,7 +49,7 @@ function Episodes({ anime }) {
         )}
       </Grid>
       {totalPages > 1 && (
-        <Pagination
+        <CustomPagination
           count={totalPages}
           page={page}
           onChange={handleChange}
