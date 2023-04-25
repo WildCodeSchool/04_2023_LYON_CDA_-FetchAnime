@@ -6,7 +6,7 @@ import CustomPagination from "./Pagination";
 
 function Episodes({ anime }) {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 9;
+  const itemsPerPage = 6;
   const totalPages = Math.ceil(anime.episodes.length / itemsPerPage);
 
   const handleChange = (event, value) => {
@@ -15,31 +15,34 @@ function Episodes({ anime }) {
 
   return (
     <>
-      <Grid container margin={1}>
+      <Grid container spacing={1} margin={1}>
         {anime.episodes.length > 0 ? (
           anime.episodes
             .slice((page - 1) * itemsPerPage, page * itemsPerPage)
             .map((item) => (
-              <Grid item xs={4} sm={4} md={6} key={item.id}>
+              <Grid item xs={6} sm={4} md={6} key={item.id}>
                 <img
                   src={item.image}
                   alt={item.title}
                   style={{
-                    width: "120px",
-                    height: "110px",
+                    width: "175px",
+                    height: "120px",
                     borderRadius: 5,
                     objectFit: "fill",
                   }}
                 />
-                <p
-                  style={{
+                <Typography
+                  sx={{
                     textAlign: "left",
                     fontSize: 12,
-                    marginBottom: 6,
+                    marginBottom: 2,
+                    marginLeft: 1,
                   }}
                 >
-                  {item.title}
-                </p>
+                  {item.title
+                    ? `${item.number} - ${item.title}`
+                    : `Episode ${item.number}`}
+                </Typography>
               </Grid>
             ))
         ) : (

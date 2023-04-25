@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Grid from "@mui/system/Unstable_Grid/Grid";
+import { Typography } from "@mui/material";
 import CustomPagination from "./Pagination";
 
 function Characters({ anime }) {
@@ -17,7 +18,7 @@ function Characters({ anime }) {
 
   return (
     <div>
-      <Grid container spacing={2} sx={{ padding: "8px" }}>
+      <Grid container spacing={1} margin={1}>
         {displayedCharacters.map((item) => (
           <Grid item xs={3} sm={4} md={2} key={item.name.id}>
             <img
@@ -25,12 +26,14 @@ function Characters({ anime }) {
               alt={item.name.full}
               style={{
                 maxWidth: "100%",
-                height: "auto",
+                height: "120px",
                 borderRadius: 5,
                 objectFit: "fill",
               }}
             />
-            <p style={{ textAlign: "center" }}>{item.name.userPreferred}</p>
+            <Typography sx={{ textAlign: "left", fontSize: 14 }}>
+              {item.name.userPreferred}
+            </Typography>
           </Grid>
         ))}
       </Grid>
