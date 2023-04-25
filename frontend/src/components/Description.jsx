@@ -13,8 +13,8 @@ import MenuItem from "@mui/material/MenuItem";
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import AddTaskIcon from "@mui/icons-material/AddTask";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+
+import ModalDescription from "./ModalDescription";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -52,7 +52,7 @@ const StyledMenu = styled((props) => (
 export function Description({ anime }) {
   const rating = anime.rating / 20;
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [showMore, setShowMore] = useState(true);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -283,26 +283,17 @@ export function Description({ anime }) {
                 dangerouslySetInnerHTML={{
                   __html: (() => {
                     const { description } = anime;
-                    if (description.length > 150) {
-                      return ` ${
-                        showMore ? description.slice(0, 320) : description
-                      }...`;
+                    if (description.length > 335) {
+                      return ` ${description.slice(0, 335)}...`;
                     }
                     return description;
                   })(),
                 }}
               />
-              {anime.description.length > 150 ? (
-                <Button
-                  sx={{
-                    m: 0,
-                    marginLeft: "78%",
-                  }}
-                  onClick={() => setShowMore(!showMore)}
-                >
-                  {showMore ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-                </Button>
-              ) : null}
+              <ModalDescription
+                description={anime.description}
+                title={anime.title}
+              />
             </Box>
           </Box>
         </Box>

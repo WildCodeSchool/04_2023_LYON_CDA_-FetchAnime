@@ -23,6 +23,7 @@ function Home({ setPage, page, search, setSearch }) {
           handleClick={handleClick}
         />
       )}
+
       <BurgerMenu />
     </>
   );
