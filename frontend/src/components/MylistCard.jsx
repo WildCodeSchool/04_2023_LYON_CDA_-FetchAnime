@@ -38,6 +38,7 @@ function MylistCard({ title, anime, seeAll }) {
         {anime
           ? anime.map((item) => (
               <img
+                key={item.id}
                 style={{
                   borderRadius: "5px",
                   boxShadow:

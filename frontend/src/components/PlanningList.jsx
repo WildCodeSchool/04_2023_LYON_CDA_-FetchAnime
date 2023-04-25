@@ -1,8 +1,8 @@
-import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
+/* eslint-disable react/no-array-index-key */
+import { CircularProgress, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Grid } from "semantic-ui-react";
+import { Box } from "@mui/system";
 import CardItem from "./CardItem";
 
 function PlanningList() {
@@ -18,36 +18,20 @@ function PlanningList() {
 
   return (
     <>
-      <Box
-        sx={(theme) => ({
-          [theme.breakpoints.down("md")]: {
-            marginTop: "30%",
-          },
-          [theme.breakpoints.up("md")]: {
-            marginTop: "7%",
-          },
-        })}
-      >
-        <Typography component="h2">Planning</Typography>
+      <Typography variant="h3" sx={{ textAlign: "center", margin: 2 }}>
+        Planning
+      </Typography>
+      <Box container sx={{ display: "flex", flexWrap: "wrap" }}>
+        {myPlanningList ? (
+          myPlanningList.map((item, index) => (
+            <Box key={index} fluid item sx={{ width: "45%", margin: "auto" }}>
+              <CardItem item={item} handleClick={handleClick} />
+            </Box>
+          ))
+        ) : (
+          <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
+        )}
       </Box>
-      <Grid
-        container
-        spacing={2}
-        sx={(theme) => ({
-          [theme.breakpoints.down("md")]: {
-            p: 1,
-          },
-          [theme.breakpoints.up("md")]: {
-            p: 15,
-          },
-        })}
-      >
-        {myPlanningList.map((item) => (
-          <Grid container item md={2} xs={6} height="100%" key={item.id}>
-            <CardItem item={item} handleClick={handleClick} />
-          </Grid>
-        ))}
-      </Grid>
     </>
   );
 }
