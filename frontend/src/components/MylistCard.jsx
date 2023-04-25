@@ -4,7 +4,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-function MylistCard({ title, anime }) {
+function MylistCard({ title, anime, seeAll }) {
   return (
     <Box>
       <Box
@@ -16,7 +16,7 @@ function MylistCard({ title, anime }) {
         }}
       >
         <Typography component="h2">{title}</Typography>
-        <NavLink to="/watchinglist">
+        <NavLink to={seeAll}>
           <Button
             sx={{
               color: "black",

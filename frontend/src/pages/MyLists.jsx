@@ -29,9 +29,21 @@ function MyLists() {
           },
         })}
       >
-        <MylistCard title="Watching" anime={myWatchingList} />
-        <MylistCard title="Planning" anime={myPlanningList} />
-        <MylistCard title="Completed" anime={myCompletedList} />
+        <MylistCard
+          title="Watching"
+          anime={myWatchingList}
+          seeAll="/watchinglist"
+        />
+        <MylistCard
+          title="Planning"
+          anime={myPlanningList}
+          seeAll="/planninglist"
+        />
+        <MylistCard
+          title="Completed"
+          anime={myCompletedList}
+          seeAll="/completedlist"
+        />
       </Box>
     </>
   );

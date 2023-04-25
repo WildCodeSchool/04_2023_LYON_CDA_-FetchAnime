@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import PlanningList from "@components/PlanningList";
+import CompletedList from "@components/CompletedList";
 import BurgerMenu from "./components/BurgerMenu";
 import WatchingList from "./components/WatchingList";
 import Home from "./pages/Home";
@@ -58,6 +60,8 @@ function App() {
           />
           <Route path="/mylists" element={<MyLists />} />
           <Route path="/watchinglist" element={<WatchingList />} />
+          <Route path="/planninglist" element={<PlanningList />} />
+          <Route path="/completedlist" element={<CompletedList />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

@@ -5,15 +5,17 @@ import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import CardItem from "./CardItem";
 
-function WatchingList() {
-  const [myWatchingList] = useState(
-    JSON.parse(localStorage.getItem("watchingList"))
+function PlanningList() {
+  const [myPlanningList] = useState(
+    JSON.parse(localStorage.getItem("planningList"))
   );
+
   const navigate = useNavigate();
   const handleClick = (itemId) => {
     localStorage.setItem("animeId", itemId);
     navigate("/description");
   };
+
   return (
     <>
       <Header />
@@ -28,14 +30,14 @@ function WatchingList() {
           },
         })}
       >
-        <Typography component="h2">Watching</Typography>
+        <Typography component="h2">Planning</Typography>
       </Box>
 
-      {myWatchingList.map((item) => (
+      {myPlanningList.map((item) => (
         <CardItem item={item} handleClick={handleClick} />
       ))}
     </>
   );
 }
 
-export default WatchingList;
+export default PlanningList;
