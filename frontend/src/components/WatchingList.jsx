@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { CircularProgress, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
