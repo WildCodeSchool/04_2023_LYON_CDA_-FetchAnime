@@ -17,16 +17,21 @@ export default function SearchBar({ search, setSearch, setPage }) {
   return (
     <Paper
       component="form"
-      sx={{
-        p: "2px 4px",
-        display: "flex",
-        alignItems: "center",
-        width: "95%",
-        margin: "auto",
-        mt: 9.5,
-        backgroundColor: "#FDFBE2",
-        height: "40px",
-      }}
+      sx={(theme) => ({
+        [theme.breakpoints.down("md")]: {
+          p: "2px 4px",
+          display: "flex",
+          alignItems: "center",
+          width: "95%",
+          margin: "auto",
+          mt: 9.5,
+          backgroundColor: "#FDFBE2",
+          height: "40px",
+        },
+        [theme.breakpoints.up("md")]: {
+          display: "none",
+        },
+      })}
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
