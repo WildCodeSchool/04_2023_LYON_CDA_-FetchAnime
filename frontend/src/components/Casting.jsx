@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState } from "react";
 import Grid from "@mui/system/Unstable_Grid/Grid";
+import { Typography } from "@mui/material";
 import CustomPagination from "./Pagination";
 
 function Casting({ anime }) {
@@ -20,24 +21,24 @@ function Casting({ anime }) {
 
   return (
     <>
-      <Grid container margin={1}>
+      <Grid container spacing={1} margin={1}>
         {visibleItems?.map((item) =>
           item.voiceActors[0] !== undefined &&
           item.voiceActors[0].language === "Japanese" ? (
-            <Grid item xs={3} sm={4} md={6} key={item.name.id}>
+            <Grid item xs={3} sm={4} md={2} key={item.name.id}>
               <img
                 src={item.voiceActors[0].image}
                 alt={item.voiceActors[0].name.full}
                 style={{
-                  width: "85px",
-                  height: "110px",
+                  maxWidth: "100%",
+                  height: "120px",
                   borderRadius: 5,
                   objectFit: "fill",
                 }}
               />
-              <p style={{ textAlign: "left", marginBottom: 4, fontSize: 14 }}>
+              <Typography sx={{ textAlign: "left", fontSize: 14 }}>
                 {item.voiceActors[0].name.full}
-              </p>
+              </Typography>
             </Grid>
           ) : null
         )}
