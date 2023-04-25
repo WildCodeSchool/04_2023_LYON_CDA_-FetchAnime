@@ -18,20 +18,22 @@ function Characters({ anime }) {
 
   return (
     <div>
-      <Grid container spacing={2} sx={{ padding: "8px" }}>
+      <Grid container margin={1}>
         {displayedCharacters.map((item) => (
           <Grid item xs={3} sm={4} md={6} key={item.name.id}>
             <img
               src={item.image}
               alt={item.name.full}
               style={{
-                maxWidth: "100%",
-                height: "auto",
+                width: "85px",
+                height: "110px",
                 borderRadius: 5,
                 objectFit: "fill",
               }}
             />
-            <p style={{ textAlign: "center" }}>{item.name.userPreferred}</p>
+            <p style={{ textAlign: "left", marginBottom: 4 }}>
+              {item.name.userPreferred}
+            </p>
           </Grid>
         ))}
       </Grid>
