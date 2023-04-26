@@ -19,7 +19,7 @@ function DescriptionTabs({ anime }) {
         variant="scrollable"
         scrollButtons={false}
         aria-label="scrollable prevent tabs example"
-        textColor="#C90D56"
+        indicatorColor="primary"
       >
         <Tab label="Characters" value="characters" />
         <Tab label="Casting" value="casting" />

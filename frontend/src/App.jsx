@@ -20,6 +20,16 @@ const theme = createTheme({
     ].join(","),
     color: "#C90D56",
   },
+  palette: {
+    mode: "light",
+    primary: {
+      main: "#C90D56",
+      dark: "#454545",
+    },
+    secondary: {
+      main: "#FDFBE2",
+    },
+  },
 });
 
 function App() {
