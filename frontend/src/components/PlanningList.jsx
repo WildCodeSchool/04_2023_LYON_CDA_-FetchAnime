@@ -1,7 +1,8 @@
-import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
+/* eslint-disable react/no-array-index-key */
+import { CircularProgress, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/system";
 import CardItem from "./CardItem";
 
 function PlanningList() {
@@ -17,22 +18,20 @@ function PlanningList() {
 
   return (
     <>
-      <Box
-        sx={(theme) => ({
-          [theme.breakpoints.down("md")]: {
-            marginTop: "30%",
-          },
-          [theme.breakpoints.up("md")]: {
-            marginTop: "7%",
-          },
-        })}
-      >
-        <Typography component="h2">Planning</Typography>
+      <Typography variant="h3" sx={{ textAlign: "center", margin: 2 }}>
+        Planning
+      </Typography>
+      <Box container sx={{ display: "flex", flexWrap: "wrap" }}>
+        {myPlanningList ? (
+          myPlanningList.map((item, index) => (
+            <Box key={index} fluid item sx={{ width: "45%", margin: "auto" }}>
+              <CardItem item={item} handleClick={handleClick} />
+            </Box>
+          ))
+        ) : (
+          <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
+        )}
       </Box>
-
-      {myPlanningList.map((item) => (
-        <CardItem item={item} handleClick={handleClick} />
-      ))}
     </>
   );
 }
