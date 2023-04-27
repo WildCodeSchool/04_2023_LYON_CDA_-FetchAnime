@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, CardMedia, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { NavLink } from "react-router-dom";
@@ -6,7 +6,14 @@ import { NavLink } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 function MylistCard({ title, anime, seeAll }) {
   return (
-    <Box>
+    <Box
+      sx={(theme) => ({
+        [theme.breakpoints.down("md")]: {},
+        [theme.breakpoints.up("md")]: {
+          paddingX: 75,
+        },
+      })}
+    >
       <Box
         sx={{
           display: "flex",
@@ -27,25 +34,42 @@ function MylistCard({ title, anime, seeAll }) {
         </NavLink>
       </Box>
       <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          width: "100%",
-          height: "160px",
-          marginTop: 2,
-        }}
+        sx={(theme) => ({
+          [theme.breakpoints.down("md")]: {
+            display: "flex",
+            justifyContent: "space-around",
+            width: "100%",
+            height: "160px",
+            marginTop: 2,
+          },
+          [theme.breakpoints.up("md")]: {
+            display: "flex",
+            justifyContent: "space-between",
+            minWidth: "100%",
+            minHeight: "260px",
+            marginTop: 2,
+          },
+        })}
       >
         {anime
           ? anime.slice(0, 3).map((item) => (
-              <img
-                key={item.id}
-                style={{
-                  borderRadius: "5px",
-                  boxShadow:
-                    "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px",
-                }}
-                src={item.image}
-                alt=""
+              <CardMedia
+                component="img"
+                image={item.image}
+                sx={(theme) => ({
+                  [theme.breakpoints.down("md")]: {
+                    height: "170px",
+                    width: "122px",
+                    borderRadius: 1,
+                    objectFit: "fill",
+                  },
+                  [theme.breakpoints.up("md")]: {
+                    height: "300px",
+                    objectFit: "fill",
+                    width: "210px",
+                    borderRadius: "5px",
+                  },
+                })}
               />
             ))
           : "null"}

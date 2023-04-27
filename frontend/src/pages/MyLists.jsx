@@ -1,5 +1,6 @@
 import { Box } from "@mui/system";
 import React, { useState } from "react";
+import { Typography } from "@mui/material";
 import MylistCard from "../components/MylistCard";
 
 function MyLists() {
@@ -20,10 +21,13 @@ function MyLists() {
       sx={(theme) => ({
         [theme.breakpoints.down("md")]: {},
         [theme.breakpoints.up("md")]: {
-          marginTop: "7%",
+          marginTop: "5%",
         },
       })}
     >
+      <Typography variant="h2" textAlign="center">
+        My lists
+      </Typography>
       <MylistCard
         title="Watching"
         anime={myWatchingList}

@@ -58,7 +58,9 @@ function AnimeDescription({
         </>
       ) : (
         <div>
-          <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
+          <CircularProgress
+            sx={{ position: "absolute", top: "50%", left: "50%" }}
+          />
         </div>
       )}
     </Box>

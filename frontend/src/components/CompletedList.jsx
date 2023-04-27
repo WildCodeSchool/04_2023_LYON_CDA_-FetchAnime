@@ -28,7 +28,9 @@ function CompletedList() {
             </Box>
           ))
         ) : (
-          <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
+          <CircularProgress
+            sx={{ position: "absolute", top: "50%", left: "50%" }}
+          />
         )}
       </Box>
     </>

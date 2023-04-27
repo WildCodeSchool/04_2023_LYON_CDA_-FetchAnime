@@ -88,7 +88,9 @@ function AnimeList({ search, page, setPage, handleClick, genres, setGenres }) {
               </Grid>
             ))
         ) : (
-          <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
+          <CircularProgress
+            sx={{ position: "absolute", top: "50%", left: "50%" }}
+          />
         )}
         <Box
           component="div"
