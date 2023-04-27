@@ -26,6 +26,7 @@ function App() {
   const [animeId, setAnimeId] = useState();
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const [genres, setGenres] = React.useState("");
 
   return (
     <ThemeProvider theme={theme}>
@@ -57,6 +58,8 @@ function App() {
                 page={page}
                 setPage={setPage}
                 setAnimeId={setAnimeId}
+                genres={genres}
+                setGenres={setGenres}
               />
             }
           />

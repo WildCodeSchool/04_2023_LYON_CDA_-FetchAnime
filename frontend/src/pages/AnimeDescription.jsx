@@ -9,7 +9,14 @@ import DescriptionTabs from "../components/DescriptionTabs";
 import Recommendations from "../components/Recommendations";
 import AnimeList from "../components/AnimeList";
 
-function AnimeDescription({ search, page, setPage, setSearch }) {
+function AnimeDescription({
+  search,
+  page,
+  setPage,
+  setSearch,
+  genres,
+  setGenres,
+}) {
   const [anime, setAnime] = useState([]);
   const [id, setId] = useState(localStorage.getItem("animeId"));
 
@@ -44,6 +51,8 @@ function AnimeDescription({ search, page, setPage, setSearch }) {
               search={search}
               page={page}
               setPage={setPage}
+              genres={genres}
+              setGenres={setGenres}
             />
           )}
         </>

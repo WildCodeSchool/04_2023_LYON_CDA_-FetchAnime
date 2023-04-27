@@ -36,7 +36,7 @@ function MylistCard({ title, anime, seeAll }) {
         }}
       >
         {anime
-          ? anime.map((item) => (
+          ? anime.slice(0, 3).map((item) => (
               <img
                 key={item.id}
                 style={{

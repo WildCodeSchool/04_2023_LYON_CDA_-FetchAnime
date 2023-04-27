@@ -18,9 +18,7 @@ function MyLists() {
   return (
     <Box
       sx={(theme) => ({
-        [theme.breakpoints.down("md")]: {
-          marginTop: "30%",
-        },
+        [theme.breakpoints.down("md")]: {},
         [theme.breakpoints.up("md")]: {
           marginTop: "7%",
         },
