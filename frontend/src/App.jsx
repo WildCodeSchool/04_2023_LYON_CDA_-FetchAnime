@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Error404 from "@pages/Error404";
+import Error404 from "./pages/Error404";
 import Header from "./components/Header";
 import PlanningList from "./components/PlanningList";
 import CompletedList from "./components/CompletedList";
