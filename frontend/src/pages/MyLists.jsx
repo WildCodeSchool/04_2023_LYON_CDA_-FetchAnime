@@ -2,8 +2,8 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { Typography } from "@mui/material";
 import { Navigate } from "react-router-dom";
-import MylistCard from "../components/MylistCard";
 import AnimeList from "@components/AnimeList";
+import MylistCard from "../components/MylistCard";
 
 function MyLists({
   setPage,
