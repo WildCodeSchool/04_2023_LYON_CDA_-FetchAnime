@@ -4,6 +4,7 @@ import { CardMedia, Typography } from "@mui/material";
 import React from "react";
 
 function CardItem({ item, handleClick }) {
+  const title = item.title.english || item.title.romaji;
   return (
     <>
       <CardMedia
@@ -32,7 +33,6 @@ function CardItem({ item, handleClick }) {
         sx={{ height: 55, mt: "5px" }}
       >
         {(() => {
-          const title = item.title.english || item.title.romaji;
           if (title.length > 20) {
             return `${title.slice(0, 20)}...`;
           }
