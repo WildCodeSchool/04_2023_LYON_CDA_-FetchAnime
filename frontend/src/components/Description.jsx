@@ -338,11 +338,7 @@ export function Description({ anime }) {
         </Box>
       ) : (
         <CircularProgress
-          sx={{
-            position: "absolute",
-            margin: "50%",
-            color: "primary",
-          }}
+          sx={{ position: "absolute", top: "50%", left: "50%" }}
         />
       )}
     </Box>

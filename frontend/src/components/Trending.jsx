@@ -12,8 +12,7 @@ function Trending() {
   useEffect(() => {
     axios
       .get(`https://api.consumet.org/meta/anilist/trending?page=${page}`)
-      .then((response) => response.data)
-      .then((data) => setList(data));
+      .then((response) => setList(response.data));
   }, [page]);
 
   const handleClick = (itemId) => {
@@ -46,7 +45,9 @@ function Trending() {
             </Grid>
           ))
         ) : (
-          <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
+          <CircularProgress
+            sx={{ position: "absolute", top: "50%", left: "50%" }}
+          />
         )}
         <Box
           component="div"
