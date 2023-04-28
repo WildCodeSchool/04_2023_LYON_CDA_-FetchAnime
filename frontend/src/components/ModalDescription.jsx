@@ -33,7 +33,7 @@ export default function ModalDescription({ description, title }) {
     <>
       {description.length > 335 ? (
         <Button onClick={handleClickOpen("paper")} sx={{ marginLeft: "80%" }}>
-          <OpenInFullIcon fontSize="1rem" />
+          <OpenInFullIcon fontSize="1rem" color="primary" />
         </Button>
       ) : null}
 
@@ -59,7 +59,7 @@ export default function ModalDescription({ description, title }) {
           sx={{ backgroundColor: "#FDFBE2" }}
         >
           <DialogContentText
-            sx={{ textAlign: "justify" }}
+            sx={{ textAlign: "justify", color: "#454545" }}
             id="scroll-dialog-description"
             ref={descriptionElementRef}
             tabIndex={-1}
