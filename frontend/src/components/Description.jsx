@@ -18,7 +18,7 @@ import ModalDescription from "./ModalDescription";
 
 const StyledMenu = styled((props) => (
   <Menu
-    elevation={0}
+    elevation={3}
     anchorOrigin={{
       vertical: "bottom",
       horizontal: "right",
@@ -36,6 +36,7 @@ const StyledMenu = styled((props) => (
     marginTop: theme.spacing(1),
     minWidth: 180,
     color: theme.palette.mode === "light" ? "#c90d56" : theme.palette.grey[300],
+    backgroundColor: "#FDFBE2",
 
     "& .MuiMenuItem-root": {
       "& .MuiSvgIcon-root": {
@@ -255,7 +256,7 @@ export function Description({ anime }) {
                 sx={{
                   width: "115px",
                   height: "25px",
-                  backgroundColor: "#3db4f2",
+                  backgroundColor: "#F0196C",
                 }}
                 id="demo-customized-button"
                 aria-controls={open ? "demo-customized-menu" : undefined}
@@ -308,7 +309,7 @@ export function Description({ anime }) {
                 sx={(theme) => ({
                   [theme.breakpoints.down("md")]: {
                     fontSize: "0.9rem",
-                    color: "#C90D56",
+                    color: "#454545",
                     textAlign: "justify",
                     width: "93%",
                   },
@@ -336,7 +337,13 @@ export function Description({ anime }) {
           </Box>
         </Box>
       ) : (
-        <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
+        <CircularProgress
+          sx={{
+            position: "absolute",
+            margin: "50%",
+            color: "primary",
+          }}
+        />
       )}
     </Box>
   );

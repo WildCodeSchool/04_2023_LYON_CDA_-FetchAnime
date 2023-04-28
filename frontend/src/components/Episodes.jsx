@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 import Typography from "@mui/material/Typography";
+import { CardMedia } from "@mui/material";
 import CustomPagination from "./Pagination";
 
 function Episodes({ anime }) {
@@ -46,9 +47,23 @@ function Episodes({ anime }) {
               </Grid>
             ))
         ) : (
-          <Typography sx={{ marginX: "23%", marginY: 5 }}>
-            Nothings episodes available
-          </Typography>
+          <>
+            <CardMedia
+              component="img"
+              image="src/assets/img/logo/Logo-Low-Res/Not-Found.png"
+              objectFit="fill"
+              sx={{
+                width: "150px",
+                height: "150px",
+                margin: "auto",
+                marginTop: 2,
+                borderRadius: 2,
+              }}
+            />
+            <Typography sx={{ marginX: "27%", marginY: 2 }}>
+              Sorry, nothing available...
+            </Typography>
+          </>
         )}
       </Grid>
       {totalPages > 1 && (
