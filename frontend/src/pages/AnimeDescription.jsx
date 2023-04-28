@@ -17,6 +17,8 @@ function AnimeDescription({
   setSearch,
   genres,
   setGenres,
+  date,
+  setDate,
 }) {
   const [anime, setAnime] = useState([]);
   const [id, setId] = useState(localStorage.getItem("animeId"));
@@ -30,6 +32,8 @@ function AnimeDescription({
   const handleClick = (itemId) => {
     localStorage.setItem("animeId", itemId);
     setId(localStorage.getItem("animeId"));
+    setDate("");
+    setGenres("");
     setSearch("");
     setPage(1);
   };
@@ -53,6 +57,8 @@ function AnimeDescription({
               setPage={setPage}
               genres={genres}
               setGenres={setGenres}
+              date={date}
+              setDate={setDate}
             />
           )}
         </>
