@@ -24,8 +24,7 @@ function AnimeDescription({
   useEffect(() => {
     axios
       .get(`https://api.consumet.org/meta/anilist/info/${id}`)
-      .then((response) => response.data)
-      .then((data) => setAnime(data));
+      .then((response) => setAnime(response.data));
   }, [id]);
 
   const handleClick = (itemId) => {

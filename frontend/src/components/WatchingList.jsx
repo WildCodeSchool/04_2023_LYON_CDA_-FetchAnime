@@ -31,7 +31,21 @@ function WatchingList() {
       >
         Watching
       </Typography>
-      <Box container sx={{ display: "flex", flexWrap: "wrap", marginX: "15%" }}>
+      <Box
+        container
+        sx={(theme) => ({
+          [theme.breakpoints.down("md")]: {
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+          },
+          [theme.breakpoints.up("md")]: {
+            display: "flex",
+            flexWrap: "wrap",
+            marginX: "15%",
+          },
+        })}
+      >
         {myWatchingList ? (
           myWatchingList.map((item, index) => (
             <Box

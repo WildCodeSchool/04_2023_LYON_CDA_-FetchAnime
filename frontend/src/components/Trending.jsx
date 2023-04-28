@@ -12,8 +12,7 @@ function Trending() {
   useEffect(() => {
     axios
       .get(`https://api.consumet.org/meta/anilist/trending?page=${page}`)
-      .then((response) => response.data)
-      .then((data) => setList(data));
+      .then((response) => setList(response.data));
   }, [page]);
 
   const handleClick = (itemId) => {
