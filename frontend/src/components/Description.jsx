@@ -72,33 +72,71 @@ export function Description({ anime }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const handleWatching = (item) => {
-    const updatedWatching = [
-      ...watching,
-      { id: item.id, image: item.image, title: anime.title },
-    ];
-    localStorage.setItem("watchingList", JSON.stringify(updatedWatching));
-    setWatching(updatedWatching);
-    setAnchorEl(null);
+    if (watching.length === 0) {
+      const updatedWatching = [
+        ...watching,
+        { id: item.id, image: item.image, title: anime.title },
+      ];
+      localStorage.setItem("watchingList", JSON.stringify(updatedWatching));
+      setWatching(updatedWatching);
+      setAnchorEl(null);
+    } else if (watching.length > 0) {
+      if (!watching.some((element) => element.id === item.id)) {
+        const updatedWatching = [
+          ...watching,
+          { id: item.id, image: item.image, title: anime.title },
+        ];
+        localStorage.setItem("watchingList", JSON.stringify(updatedWatching));
+        setWatching(updatedWatching);
+        setAnchorEl(null);
+      }
+    }
   };
 
   const handlePlanning = (item) => {
-    const updatedPlanning = [
-      ...planning,
-      { id: item.id, image: item.image, title: anime.title },
-    ];
-    localStorage.setItem("planningList", JSON.stringify(updatedPlanning));
-    setPlanning(updatedPlanning);
-    setAnchorEl(null);
+    if (planning.length === 0) {
+      const updatedPlanning = [
+        ...planning,
+        { id: item.id, image: item.image, title: anime.title },
+      ];
+      localStorage.setItem("planningList", JSON.stringify(updatedPlanning));
+      setPlanning(updatedPlanning);
+      setAnchorEl(null);
+    } else if (planning.length > 0) {
+      if (!planning.some((element) => element.id === item.id)) {
+        const updatedPlanning = [
+          ...planning,
+          { id: item.id, image: item.image, title: anime.title },
+        ];
+        localStorage.setItem("planningList", JSON.stringify(updatedPlanning));
+        setPlanning(updatedPlanning);
+        setAnchorEl(null);
+      }
+    }
   };
+
   const handleCompleted = (item) => {
-    const updatedCompleted = [
-      ...completed,
-      { id: item.id, image: item.image, title: anime.title },
-    ];
-    localStorage.setItem("completedList", JSON.stringify(updatedCompleted));
-    setCompleted(updatedCompleted);
-    setAnchorEl(null);
+    if (completed.length === 0) {
+      const updatedCompleted = [
+        ...completed,
+        { id: item.id, image: item.image, title: anime.title },
+      ];
+      localStorage.setItem("completedList", JSON.stringify(updatedCompleted));
+      setCompleted(updatedCompleted);
+      setAnchorEl(null);
+    } else if (completed.length > 0) {
+      if (!completed.some((element) => element.id === item.id)) {
+        const updatedCompleted = [
+          ...completed,
+          { id: item.id, image: item.image, title: anime.title },
+        ];
+        localStorage.setItem("completedList", JSON.stringify(updatedCompleted));
+        setCompleted(updatedCompleted);
+        setAnchorEl(null);
+      }
+    }
   };
 
   return (
