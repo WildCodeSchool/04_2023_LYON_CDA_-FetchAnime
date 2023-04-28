@@ -6,7 +6,15 @@ function CustomPagination({ count, page, onChange, sx }) {
     return null;
   }
 
-  return <Pagination count={count} page={page} onChange={onChange} sx={sx} />;
+  return (
+    <Pagination
+      count={count}
+      page={page}
+      onChange={onChange}
+      sx={sx}
+      color="primary"
+    />
+  );
 }
 
 export default CustomPagination;

@@ -57,7 +57,7 @@ function AnimeList({ search, page, setPage, handleClick }) {
             color="secondary"
             onClick={() => setPage(page - 1)}
           >
-            Precedent
+            Previous
           </Button>
         ) : null}
         {list.hasNextPage === true ? (
@@ -67,7 +67,7 @@ function AnimeList({ search, page, setPage, handleClick }) {
             color="secondary"
             onClick={() => setPage(page + 1)}
           >
-            Suivant
+            Next
           </Button>
         ) : (
           ""
