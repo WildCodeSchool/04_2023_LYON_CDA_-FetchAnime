@@ -60,7 +60,7 @@ function Episodes({ anime }) {
                 borderRadius: 2,
               }}
             />
-            <Typography sx={{ marginX: "27%", marginY: 2 }}>
+            <Typography sx={{ marginX: "25%", marginY: 2 }}>
               Sorry, nothing available...
             </Typography>
           </>

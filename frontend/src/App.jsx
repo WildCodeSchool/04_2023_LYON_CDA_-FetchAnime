@@ -38,12 +38,21 @@ function App() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [genres, setGenres] = React.useState("");
+  const [date, setDate] = useState("");
 
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header search={search} setSearch={setSearch} setPage={setPage} />
-        <SearchBar search={search} setSearch={setSearch} setPage={setPage} />
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+          setPage={setPage}
+          date={date}
+          setDate={setDate}
+          genres={genres}
+          setGenres={setGenres}
+        />
         <BurgerMenu />
         <Routes>
           <Route path="*" element={<Error404 />} />
@@ -56,6 +65,10 @@ function App() {
                 search={search}
                 page={page}
                 setPage={setPage}
+                genres={genres}
+                setGenres={setGenres}
+                date={date}
+                setDate={setDate}
               />
             }
           />
@@ -64,17 +77,33 @@ function App() {
             element={
               <AnimeDescription
                 animeId={animeId}
+                setAnimeId={setAnimeId}
                 search={search}
                 setSearch={setSearch}
                 page={page}
                 setPage={setPage}
-                setAnimeId={setAnimeId}
                 genres={genres}
                 setGenres={setGenres}
+                date={date}
+                setDate={setDate}
               />
             }
           />
-          <Route path="/mylists" element={<MyLists />} />
+          <Route
+            path="/mylists"
+            element={
+              <MyLists
+                search={search}
+                setSearch={setSearch}
+                page={page}
+                setPage={setPage}
+                genres={genres}
+                setGenres={setGenres}
+                date={date}
+                setDate={setDate}
+              />
+            }
+          />
           <Route path="/watchinglist" element={<WatchingList />} />
           <Route path="/planninglist" element={<PlanningList />} />
           <Route path="/completedlist" element={<CompletedList />} />

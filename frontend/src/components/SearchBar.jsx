@@ -5,8 +5,16 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 
-export default function SearchBar({ search, setSearch, setPage }) {
+export default function SearchBar({
+  search,
+  setSearch,
+  setPage,
+  setGenres,
+  setDate,
+}) {
   const handleChange = (e) => {
+    setGenres("");
+    setDate("");
     setSearch(e.target.value);
     setPage(1);
   };
