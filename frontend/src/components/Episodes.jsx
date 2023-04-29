@@ -23,8 +23,8 @@ function Episodes({ anime, setEpId, epId }) {
 
   const handleClick = (episode) => {
     localStorage.setItem("episodeId", episode);
-    setEpId(episode);
     navigate("/player");
+    setEpId(episode);
     if (!viewedEpisode.some((element) => element === episode)) {
       setTimeout(() => {
         localStorage.setItem(
