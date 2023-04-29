@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
 import CardItem from "./CardItem";
 
-function WatchingList() {
+function WatchingList({ setId }) {
   const [myWatchingList] = useState(
     JSON.parse(localStorage.getItem("watchingList"))
   );
   const navigate = useNavigate();
   const handleClick = (itemId) => {
     localStorage.setItem("animeId", itemId);
+    setId(localStorage.getItem("animeId"));
     navigate("/description");
   };
   return (

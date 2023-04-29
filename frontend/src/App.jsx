@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import VideoPlayer from "@pages/VideoPlayer";
+import axios from "axios";
+import VideoPlayer from "./pages/VideoPlayer";
 import Error404 from "./pages/Error404";
 import Header from "./components/Header";
 import PlanningList from "./components/PlanningList";
@@ -35,11 +36,28 @@ const theme = createTheme({
 });
 
 function App() {
+  const [anime, setAnime] = useState([]);
+  const [id, setId] = useState(localStorage.getItem("animeId"));
   const [animeId, setAnimeId] = useState();
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [genres, setGenres] = React.useState("");
   const [date, setDate] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`https://api.consumet.org/meta/anilist/info/${id}`)
+      .then((response) => setAnime(response.data));
+  }, [id]);
+
+  const handleClick = (itemId) => {
+    localStorage.setItem("animeId", itemId);
+    setId(localStorage.getItem("animeId"));
+    setDate("");
+    setGenres("");
+    setSearch("");
+    setPage(1);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -87,6 +105,10 @@ function App() {
                 setGenres={setGenres}
                 date={date}
                 setDate={setDate}
+                anime={anime}
+                id={id}
+                setId={setId}
+                handleClick={handleClick}
               />
             }
           />
@@ -105,8 +127,11 @@ function App() {
               />
             }
           />
-          <Route path="/player" element={<VideoPlayer />} />
-          <Route path="/watchinglist" element={<WatchingList />} />
+          <Route path="/player" element={<VideoPlayer anime={anime} />} />
+          <Route
+            path="/watchinglist"
+            element={<WatchingList setId={setId} />}
+          />
           <Route path="/planninglist" element={<PlanningList />} />
           <Route path="/completedlist" element={<CompletedList />} />
         </Routes>
