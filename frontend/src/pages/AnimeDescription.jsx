@@ -3,6 +3,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 // eslint-disable-next-line import/no-named-as-default
+import AnimeTitle from "@components/AnimeTitle";
+import Cover from "@components/Cover";
 import AnimeList from "../components/AnimeList";
 // eslint-disable-next-line import/no-named-as-default
 import Description from "../components/Description";
@@ -28,6 +30,8 @@ function AnimeDescription({
         <>
           {search === "" && anime.title ? (
             <>
+              <Cover anime={anime} />
+              <AnimeTitle anime={anime} />
               <Description anime={anime} />
               <DescriptionTabs anime={anime} />
               <Recommendations anime={anime} setId={setId} />

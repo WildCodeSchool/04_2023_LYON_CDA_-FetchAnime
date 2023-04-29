@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-unresolved */
 import { Typography } from "@mui/material";
@@ -7,6 +8,9 @@ import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import Recommendations from "@components/Recommendations";
 import Episodes from "@components/Episodes";
+
+import AnimeTitle from "@components/AnimeTitle";
+import Description from "../components/Description";
 
 function VideoPlayer({ anime }) {
   const [episode, setEpisode] = useState([]);
@@ -36,7 +40,10 @@ function VideoPlayer({ anime }) {
             playing
             width="100%"
             height="100%"
+            style={{ marginTop: 8 }}
           />
+
+          <AnimeTitle anime={anime} />
           <Typography variant="h5" mb={2} sx={{ ml: 1.5 }}>
             Episodes
           </Typography>
@@ -47,7 +54,7 @@ function VideoPlayer({ anime }) {
             epTimeoutId={epTimeoutId}
             setEpTimeoutId={setEpTimeoutId}
           />
-
+          <Description anime={anime} />
           <Recommendations anime={anime} />
         </>
       ) : null}

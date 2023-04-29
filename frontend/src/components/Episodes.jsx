@@ -80,7 +80,8 @@ function Episodes({ anime, setEpId, epId, setEpTimeoutId }) {
                         textAlign: "center",
                         width: "175px",
                         color: "white",
-                        backgroundColor: "black",
+                        backgroundColor: "rgba(0,0,0,0.7)",
+                        fontSize: "1.2rem",
                       }}
                     >
                       Currently
@@ -114,18 +115,39 @@ function Episodes({ anime, setEpId, epId, setEpTimeoutId }) {
                         }}
                       />
                     ) : (
-                      <Typography
-                        variant="h5"
-                        sx={{
-                          position: "absolute",
-                          textAlign: "center",
-                          width: "175px",
-                          color: "white",
-                          backgroundColor: "black",
-                        }}
-                      >
-                        viewed
-                      </Typography>
+                      <>
+                        <Typography
+                          variant="h5"
+                          sx={{
+                            position: "absolute",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            height: "120px",
+                            width: "175px",
+                            color: "white",
+                            backgroundColor: "rgba(0,0,0,0.6)",
+                            fontSize: "1.2rem",
+                            borderRadius: 2,
+                          }}
+                        >
+                          viewed
+                        </Typography>
+                        <Typography
+                          variant="span"
+                          sx={{
+                            position: "absolute",
+                            textAlign: "center",
+                            height: "5px",
+                            width: "175px",
+                            color: "white",
+                            backgroundColor: "rgb(29, 108, 218)",
+                            fontSize: "1.2rem",
+                            marginTop: 14.35,
+                            borderRadius: 2,
+                          }}
+                        />
+                      </>
                     )}
                   </Box>
                 )}
