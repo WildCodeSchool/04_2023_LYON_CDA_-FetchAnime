@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import VideoPlayer from "@pages/VideoPlayer";
 import Error404 from "./pages/Error404";
 import Header from "./components/Header";
 import PlanningList from "./components/PlanningList";
@@ -104,6 +105,7 @@ function App() {
               />
             }
           />
+          <Route path="/player" element={<VideoPlayer />} />
           <Route path="/watchinglist" element={<WatchingList />} />
           <Route path="/planninglist" element={<PlanningList />} />
           <Route path="/completedlist" element={<CompletedList />} />
