@@ -1,11 +1,12 @@
-import Episodes from "@components/Episodes";
-import Recommendations from "@components/Recommendations";
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-unresolved */
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import ReactPlayer from "react-player";
+import Recommendations from "@components/Recommendations";
+import Episodes from "@components/Episodes";
 
 function VideoPlayer({ anime }) {
   const [episode, setEpisode] = useState([]);
@@ -38,7 +39,8 @@ function VideoPlayer({ anime }) {
           <Typography variant="h5" mb={2} sx={{ ml: 1.5 }}>
             Episodes
           </Typography>
-          <Episodes anime={anime} setEpId={setEpId} />
+          <Episodes anime={anime} setEpId={setEpId} epId={epId} />
+
           <Recommendations anime={anime} />
         </>
       ) : null}

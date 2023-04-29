@@ -3,10 +3,15 @@ import Grid from "@mui/system/Unstable_Grid/Grid";
 import Typography from "@mui/material/Typography";
 import { CardMedia } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import { Box } from "@mui/system";
 import CustomPagination from "./Pagination";
 
-function Episodes({ anime, setEpId }) {
+function Episodes({ anime, setEpId, epId }) {
   const [page, setPage] = useState(1);
+  const [viewedEpisode, setViewedEpisode] = useState(
+    JSON.parse(localStorage.getItem("viewedEpisode")) || []
+  );
   const navigate = useNavigate();
 
   const itemsPerPage = 6;
@@ -18,8 +23,18 @@ function Episodes({ anime, setEpId }) {
 
   const handleClick = (episode) => {
     localStorage.setItem("episodeId", episode);
-    navigate("/player");
     setEpId(episode);
+    navigate("/player");
+    if (!viewedEpisode.some((element) => element === episode)) {
+      setTimeout(() => {
+        localStorage.setItem(
+          "viewedEpisode",
+          JSON.stringify([...viewedEpisode, episode])
+        );
+
+        setViewedEpisode([...viewedEpisode, episode]);
+      }, 9000);
+    }
   };
 
   return (
@@ -35,18 +50,68 @@ function Episodes({ anime, setEpId }) {
                 sm={4}
                 md={6}
                 key={item.id}
-                onClick={() => handleClick(item.id)} // Utiliser une fonction fléchée ici
+                onClick={() => handleClick(item.id)}
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  style={{
-                    width: "175px",
-                    height: "120px",
-                    borderRadius: 5,
-                    objectFit: "fill",
-                  }}
-                />
+                {item.id === epId ? (
+                  <Box
+                    sx={{
+                      display: "flex",
+
+                      alignItems: "center",
+                    }}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      style={{
+                        width: "175px",
+                        height: "120px",
+                        borderRadius: 5,
+                        objectFit: "fill",
+                      }}
+                    />
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        position: "absolute",
+                        textAlign: "center",
+                        width: "175px",
+                        color: "white",
+                        backgroundColor: "black",
+                      }}
+                    >
+                      Currently
+                    </Typography>
+                  </Box>
+                ) : (
+                  <Box
+                    sx={{
+                      display: "flex",
+
+                      alignItems: "center",
+                    }}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      style={{
+                        width: "175px",
+                        height: "120px",
+                        borderRadius: 5,
+                        objectFit: "fill",
+                      }}
+                    />
+                    <PlayCircleOutlineIcon
+                      sx={{
+                        position: "absolute",
+                        textAlign: "center",
+                        width: "175px",
+                        color: "white",
+                        fontSize: "2.5rem",
+                      }}
+                    />
+                  </Box>
+                )}
                 <Typography
                   sx={{
                     textAlign: "left",
