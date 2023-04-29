@@ -25,13 +25,15 @@ function Episodes({ anime, setEpId, epId }) {
     localStorage.setItem("episodeId", episode);
     navigate("/player");
     setEpId(episode);
-    if (!viewedEpisode.some((element) => element === episode)) {
+    if (
+      viewedEpisode === [] ||
+      !viewedEpisode.some((element) => element === episode)
+    ) {
       setTimeout(() => {
         localStorage.setItem(
           "viewedEpisode",
           JSON.stringify([...viewedEpisode, episode])
         );
-
         setViewedEpisode([...viewedEpisode, episode]);
       }, 9000);
     }
@@ -56,7 +58,6 @@ function Episodes({ anime, setEpId, epId }) {
                   <Box
                     sx={{
                       display: "flex",
-
                       alignItems: "center",
                     }}
                   >
@@ -87,7 +88,6 @@ function Episodes({ anime, setEpId, epId }) {
                   <Box
                     sx={{
                       display: "flex",
-
                       alignItems: "center",
                     }}
                   >
@@ -101,15 +101,30 @@ function Episodes({ anime, setEpId, epId }) {
                         objectFit: "fill",
                       }}
                     />
-                    <PlayCircleOutlineIcon
-                      sx={{
-                        position: "absolute",
-                        textAlign: "center",
-                        width: "175px",
-                        color: "white",
-                        fontSize: "2.5rem",
-                      }}
-                    />
+                    {!viewedEpisode.some((element) => element === item.id) ? (
+                      <PlayCircleOutlineIcon
+                        sx={{
+                          position: "absolute",
+                          textAlign: "center",
+                          width: "175px",
+                          color: "white",
+                          fontSize: "2.5rem",
+                        }}
+                      />
+                    ) : (
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          position: "absolute",
+                          textAlign: "center",
+                          width: "175px",
+                          color: "white",
+                          backgroundColor: "black",
+                        }}
+                      >
+                        viewed
+                      </Typography>
+                    )}
                   </Box>
                 )}
                 <Typography
