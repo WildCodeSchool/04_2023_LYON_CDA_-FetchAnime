@@ -127,7 +127,10 @@ function App() {
               />
             }
           />
-          <Route path="/player" element={<VideoPlayer anime={anime} />} />
+          <Route
+            path="/player"
+            element={<VideoPlayer anime={anime} setId={setId} />}
+          />
           <Route
             path="/watchinglist"
             element={<WatchingList setId={setId} />}

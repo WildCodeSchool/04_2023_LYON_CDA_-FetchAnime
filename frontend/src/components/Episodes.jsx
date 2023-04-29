@@ -7,7 +7,7 @@ import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import { Box } from "@mui/system";
 import CustomPagination from "./Pagination";
 
-function Episodes({ anime, setEpId, epId, setEpTimeoutId, cancelEpTimeout }) {
+function Episodes({ anime, setEpId, epId, cancelEpTimeout, setEpTimeoutId }) {
   const [page, setPage] = useState(1);
   const [viewedEpisode, setViewedEpisode] = useState(
     JSON.parse(localStorage.getItem("viewedEpisode")) || []
@@ -22,10 +22,13 @@ function Episodes({ anime, setEpId, epId, setEpTimeoutId, cancelEpTimeout }) {
   };
 
   const handleClick = (episode) => {
-    cancelEpTimeout();
+    if (cancelEpTimeout) {
+      cancelEpTimeout();
+    }
     localStorage.setItem("episodeId", episode);
     navigate("/player");
     setEpId(episode);
+
     if (
       viewedEpisode.length === 0 ||
       !viewedEpisode.some((element) => element === episode)

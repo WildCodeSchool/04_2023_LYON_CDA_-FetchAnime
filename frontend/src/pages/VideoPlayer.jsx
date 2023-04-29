@@ -12,11 +12,17 @@ import Episodes from "@components/Episodes";
 import AnimeTitle from "@components/AnimeTitle";
 import Description from "../components/Description";
 
-function VideoPlayer({ anime }) {
-  const [episode, setEpisode] = useState([]);
+function VideoPlayer({ anime, setId }) {
   const [epId, setEpId] = useState(localStorage.getItem("episodeId"));
+  const [episode, setEpisode] = useState([]);
   const [epTimeoutId, setEpTimeoutId] = useState(null);
 
+  const cancelEpTimeout = () => {
+    if (epTimeoutId) {
+      clearTimeout(epTimeoutId);
+      setEpTimeoutId(null);
+    }
+  };
   useEffect(() => {
     const storedEpisodeId = localStorage.getItem("episodeId");
     if (storedEpisodeId !== epId) {
@@ -30,12 +36,6 @@ function VideoPlayer({ anime }) {
       .then((response) => setEpisode(response.data));
   }, [epId]);
 
-  const cancelEpTimeout = () => {
-    if (epTimeoutId) {
-      clearTimeout(epTimeoutId);
-      setEpTimeoutId(null);
-    }
-  };
   return (
     <Box>
       {episode.sources && episode.sources[3] ? (
@@ -57,12 +57,11 @@ function VideoPlayer({ anime }) {
             anime={anime}
             setEpId={setEpId}
             epId={epId}
-            epTimeoutId={epTimeoutId}
             setEpTimeoutId={setEpTimeoutId}
             cancelEpTimeout={cancelEpTimeout}
           />
           <Description anime={anime} />
-          <Recommendations anime={anime} />
+          <Recommendations anime={anime} setId={setId} />
         </>
       ) : null}
     </Box>
