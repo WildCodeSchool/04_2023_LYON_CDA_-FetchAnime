@@ -30,6 +30,12 @@ function VideoPlayer({ anime }) {
       .then((response) => setEpisode(response.data));
   }, [epId]);
 
+  const cancelEpTimeout = () => {
+    if (epTimeoutId) {
+      clearTimeout(epTimeoutId);
+      setEpTimeoutId(null);
+    }
+  };
   return (
     <Box>
       {episode.sources && episode.sources[3] ? (
@@ -53,6 +59,7 @@ function VideoPlayer({ anime }) {
             epId={epId}
             epTimeoutId={epTimeoutId}
             setEpTimeoutId={setEpTimeoutId}
+            cancelEpTimeout={cancelEpTimeout}
           />
           <Description anime={anime} />
           <Recommendations anime={anime} />
