@@ -10,9 +10,21 @@ import Recommendations from "@components/Recommendations";
 import Episodes from "@components/Episodes";
 
 import AnimeTitle from "@components/AnimeTitle";
+import AnimeList from "@components/AnimeList";
 import Description from "../components/Description";
 
-function VideoPlayer({ anime, setId }) {
+function VideoPlayer({
+  anime,
+  search,
+  page,
+  setPage,
+  genres,
+  setGenres,
+  date,
+  setDate,
+  setId,
+  handleClick,
+}) {
   const [epId, setEpId] = useState(localStorage.getItem("episodeId"));
   const [episode, setEpisode] = useState([]);
   const [epTimeoutId, setEpTimeoutId] = useState(null);
@@ -38,32 +50,50 @@ function VideoPlayer({ anime, setId }) {
 
   return (
     <Box>
-      {episode.sources && episode.sources[3] ? (
-        <>
-          <ReactPlayer
-            url={episode.sources[3].url}
-            controls
-            playing
-            width="100%"
-            height="100%"
-            style={{ marginTop: 8 }}
-          />
+      {search !== "" ? (
+        <AnimeList
+          handleClick={handleClick}
+          search={search}
+          page={page}
+          setPage={setPage}
+          genres={genres}
+          setGenres={setGenres}
+          date={date}
+          setDate={setDate}
+        />
+      ) : (
+        <Box>
+          {episode.sources && episode.sources[3] ? (
+            <>
+              <Box component="div" className="player-wrapper">
+                <ReactPlayer
+                  className="player"
+                  url={episode.sources[3].url}
+                  controls
+                  playing
+                  width="100%"
+                  height="100%"
+                  style={{ marginTop: 8 }}
+                />
+              </Box>
 
-          <AnimeTitle anime={anime} />
-          <Typography variant="h5" mb={2} sx={{ ml: 1.5 }}>
-            Episodes
-          </Typography>
-          <Episodes
-            anime={anime}
-            setEpId={setEpId}
-            epId={epId}
-            setEpTimeoutId={setEpTimeoutId}
-            cancelEpTimeout={cancelEpTimeout}
-          />
-          <Description anime={anime} />
-          <Recommendations anime={anime} setId={setId} />
-        </>
-      ) : null}
+              <AnimeTitle anime={anime} />
+              <Typography variant="h5" mb={2} sx={{ ml: 1.5 }}>
+                Episodes
+              </Typography>
+              <Episodes
+                anime={anime}
+                setEpId={setEpId}
+                epId={epId}
+                setEpTimeoutId={setEpTimeoutId}
+                cancelEpTimeout={cancelEpTimeout}
+              />
+              <Description anime={anime} />
+              <Recommendations anime={anime} setId={setId} />
+            </>
+          ) : null}
+        </Box>
+      )}
     </Box>
   );
 }
