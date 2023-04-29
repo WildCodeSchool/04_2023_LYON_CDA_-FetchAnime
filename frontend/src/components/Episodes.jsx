@@ -5,7 +5,7 @@ import { CardMedia } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import CustomPagination from "./Pagination";
 
-function Episodes({ anime }) {
+function Episodes({ anime, setEpId }) {
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
@@ -18,7 +18,8 @@ function Episodes({ anime }) {
 
   const handleClick = (episode) => {
     localStorage.setItem("episodeId", episode);
-    navigate("/player"); // Redirection vers le composant Player
+    navigate("/player");
+    setEpId(episode);
   };
 
   return (
