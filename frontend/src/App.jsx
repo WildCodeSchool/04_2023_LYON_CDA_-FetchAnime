@@ -15,10 +15,7 @@ import MyLists from "./pages/MyLists";
 
 const theme = createTheme({
   typography: {
-    fontFamily: [
-      "Amaranth", // insérer le nom de la police souhaitée ici
-      "sans-serif",
-    ].join(","),
+    fontFamily: ["Amaranth", "sans-serif"].join(","),
     color: "#C90D56",
   },
   palette: {
