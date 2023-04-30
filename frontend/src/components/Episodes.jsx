@@ -7,7 +7,7 @@ import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import { Box } from "@mui/system";
 import CustomPagination from "./Pagination";
 
-function Episodes({ anime, setEpId, epId, cancelEpTimeout, setEpTimeoutId }) {
+function Episodes({ anime, setEpId, epId }) {
   const [page, setPage] = useState(1);
   const [viewedEpisode, setViewedEpisode] = useState(
     JSON.parse(localStorage.getItem("viewedEpisode")) || []
@@ -22,26 +22,20 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout, setEpTimeoutId }) {
   };
 
   const handleClick = (episode) => {
-    if (cancelEpTimeout) {
-      cancelEpTimeout();
-    }
     localStorage.setItem("episodeId", episode);
     navigate("/player");
     setEpId(episode);
-
     if (
-      viewedEpisode.length === 0 ||
+      viewedEpisode === [] ||
       !viewedEpisode.some((element) => element === episode)
     ) {
-      const timeoutId = setTimeout(() => {
+      setTimeout(() => {
         localStorage.setItem(
           "viewedEpisode",
           JSON.stringify([...viewedEpisode, episode])
         );
         setViewedEpisode([...viewedEpisode, episode]);
-      }, 90000);
-
-      setEpTimeoutId(timeoutId);
+      }, 9000);
     }
   };
 
@@ -81,15 +75,10 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout, setEpTimeoutId }) {
                       variant="h5"
                       sx={{
                         position: "absolute",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        height: "120px",
+                        textAlign: "center",
                         width: "175px",
                         color: "white",
-                        backgroundColor: "rgba(0,0,0,0.6)",
-                        fontSize: "1.2rem",
-                        borderRadius: 2,
+                        backgroundColor: "black",
                       }}
                     >
                       Currently
@@ -123,39 +112,18 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout, setEpTimeoutId }) {
                         }}
                       />
                     ) : (
-                      <>
-                        <Typography
-                          variant="h5"
-                          sx={{
-                            position: "absolute",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: "120px",
-                            width: "175px",
-                            color: "white",
-                            backgroundColor: "rgba(0,0,0,0.6)",
-                            fontSize: "1.2rem",
-                            borderRadius: 2,
-                          }}
-                        >
-                          viewed
-                        </Typography>
-                        <Typography
-                          variant="span"
-                          sx={{
-                            position: "absolute",
-                            textAlign: "center",
-                            height: "5px",
-                            width: "175px",
-                            color: "white",
-                            backgroundColor: "rgb(29, 108, 218)",
-                            fontSize: "1.2rem",
-                            marginTop: 14.35,
-                            borderRadius: 2,
-                          }}
-                        />
-                      </>
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          position: "absolute",
+                          textAlign: "center",
+                          width: "175px",
+                          color: "white",
+                          backgroundColor: "black",
+                        }}
+                      >
+                        viewed
+                      </Typography>
                     )}
                   </Box>
                 )}
