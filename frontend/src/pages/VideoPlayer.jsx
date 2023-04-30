@@ -11,6 +11,7 @@ import Episodes from "@components/Episodes";
 
 import AnimeTitle from "@components/AnimeTitle";
 import AnimeList from "@components/AnimeList";
+import { useNavigate } from "react-router-dom";
 import Description from "../components/Description";
 
 function VideoPlayer({
@@ -23,11 +24,21 @@ function VideoPlayer({
   date,
   setDate,
   setId,
-  handleClick,
+  setSearch,
 }) {
   const [epId, setEpId] = useState(localStorage.getItem("episodeId"));
   const [episode, setEpisode] = useState([]);
   const [epTimeoutId, setEpTimeoutId] = useState(null);
+  const navigate = useNavigate();
+  const handleClick = (itemId) => {
+    localStorage.setItem("animeId", itemId);
+    setId(localStorage.getItem("animeId"));
+    setDate("");
+    setGenres("");
+    setSearch("");
+    setPage(1);
+    navigate("/description");
+  };
 
   const cancelEpTimeout = () => {
     if (epTimeoutId) {

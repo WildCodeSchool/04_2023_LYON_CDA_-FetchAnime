@@ -50,15 +50,6 @@ function App() {
       .then((response) => setAnime(response.data));
   }, [id]);
 
-  const handleClick = (itemId) => {
-    localStorage.setItem("animeId", itemId);
-    setId(localStorage.getItem("animeId"));
-    setDate("");
-    setGenres("");
-    setSearch("");
-    setPage(1);
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -88,6 +79,7 @@ function App() {
                 setGenres={setGenres}
                 date={date}
                 setDate={setDate}
+                setId={setId}
               />
             }
           />
@@ -108,7 +100,6 @@ function App() {
                 anime={anime}
                 id={id}
                 setId={setId}
-                handleClick={handleClick}
               />
             }
           />
@@ -142,7 +133,6 @@ function App() {
                 date={date}
                 setDate={setDate}
                 id={id}
-                handleClick={handleClick}
               />
             }
           />
