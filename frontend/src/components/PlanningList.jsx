@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
 import CardItem from "./CardItem";
 
-function PlanningList() {
+function PlanningList({ setId }) {
   const [myPlanningList] = useState(
     JSON.parse(localStorage.getItem("planningList"))
   );
@@ -13,6 +13,7 @@ function PlanningList() {
   const navigate = useNavigate();
   const handleClick = (itemId) => {
     localStorage.setItem("animeId", itemId);
+    setId(localStorage.getItem("animeId"));
     navigate("/description");
   };
 

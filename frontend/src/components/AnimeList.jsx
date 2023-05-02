@@ -4,6 +4,7 @@ import axios from "axios";
 import { Button, Box, Grid, CardMedia, Typography } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import CardItem from "./CardItem";
@@ -12,11 +13,12 @@ function AnimeList({
   search,
   page,
   setPage,
-  handleClick,
   genres,
   setGenres,
   date,
   setDate,
+  setId,
+  setSearch,
 }) {
   const [list, setList] = useState([]);
 
@@ -35,6 +37,16 @@ function AnimeList({
   };
   const handleChangeDate = (event) => {
     setDate(event.target.value);
+  };
+  const navigate = useNavigate();
+  const handleClick = (itemId) => {
+    localStorage.setItem("animeId", itemId);
+    setId(localStorage.getItem("animeId"));
+    setDate("");
+    setGenres("");
+    setSearch("");
+    setPage(1);
+    navigate("/description");
   };
 
   const filteredList = list.results

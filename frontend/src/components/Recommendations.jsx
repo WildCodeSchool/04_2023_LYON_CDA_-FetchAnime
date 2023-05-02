@@ -4,12 +4,15 @@ import React from "react";
 import { Typography } from "@mui/material";
 
 import { Box } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 import CardItem from "./CardItem";
 
 function Recommendations({ anime, setId }) {
+  const navigate = useNavigate();
   const handleClick = (animeId) => {
     localStorage.setItem("animeId", animeId);
     setId(localStorage.getItem("animeId"));
+    navigate("/description");
   };
   return (
     <Box>

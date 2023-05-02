@@ -13,27 +13,29 @@ function Home({
   setGenres,
   date,
   setDate,
+  setId,
 }) {
   const navigate = useNavigate();
-  const handleClick = (itemId) => {
-    localStorage.setItem("animeId", itemId);
+  const handleClick = (animeId) => {
+    localStorage.setItem("animeId", animeId);
+    setId(localStorage.getItem("animeId"));
     navigate("/description");
   };
   return (
     <>
       {search === "" ? (
-        <Trending />
+        <Trending handleClick={handleClick} />
       ) : (
         <AnimeList
           setPage={setPage}
           page={page}
           search={search}
           setSearch={setSearch}
-          handleClick={handleClick}
           genres={genres}
           setGenres={setGenres}
           date={date}
           setDate={setDate}
+          setId={setId}
         />
       )}
 

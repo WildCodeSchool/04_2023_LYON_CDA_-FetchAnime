@@ -31,6 +31,21 @@ a:visited {
   padding-bottom: 30px;
   padding-left: 5px;
 }
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+
+.player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .mui-item {
   background-color: #c90d56;
+}
+.lol {
+  color: blue;
 }

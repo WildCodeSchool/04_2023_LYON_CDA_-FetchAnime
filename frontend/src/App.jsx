@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import axios from "axios";
+import VideoPlayer from "./pages/VideoPlayer";
 import Error404 from "./pages/Error404";
 import Header from "./components/Header";
 import PlanningList from "./components/PlanningList";
@@ -33,11 +35,19 @@ const theme = createTheme({
 });
 
 function App() {
+  const [anime, setAnime] = useState([]);
+  const [id, setId] = useState(localStorage.getItem("animeId"));
   const [animeId, setAnimeId] = useState();
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [genres, setGenres] = React.useState("");
   const [date, setDate] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`https://api.consumet.org/meta/anilist/info/${id}`)
+      .then((response) => setAnime(response.data));
+  }, [id]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -68,6 +78,8 @@ function App() {
                 setGenres={setGenres}
                 date={date}
                 setDate={setDate}
+                setId={setId}
+                setSearch={setSearch}
               />
             }
           />
@@ -85,6 +97,9 @@ function App() {
                 setGenres={setGenres}
                 date={date}
                 setDate={setDate}
+                anime={anime}
+                id={id}
+                setId={setId}
               />
             }
           />
@@ -100,12 +115,40 @@ function App() {
                 setGenres={setGenres}
                 date={date}
                 setDate={setDate}
+                setId={setId}
               />
             }
           />
-          <Route path="/watchinglist" element={<WatchingList />} />
-          <Route path="/planninglist" element={<PlanningList />} />
-          <Route path="/completedlist" element={<CompletedList />} />
+          <Route
+            path="/player"
+            element={
+              <VideoPlayer
+                anime={anime}
+                setId={setId}
+                search={search}
+                setSearch={setSearch}
+                page={page}
+                setPage={setPage}
+                genres={genres}
+                setGenres={setGenres}
+                date={date}
+                setDate={setDate}
+                id={id}
+              />
+            }
+          />
+          <Route
+            path="/watchinglist"
+            element={<WatchingList setId={setId} />}
+          />
+          <Route
+            path="/planninglist"
+            element={<PlanningList setId={setId} />}
+          />
+          <Route
+            path="/completedlist"
+            element={<CompletedList setId={setId} />}
+          />
           <Route path="/popular" element={<Popular />} />
           <Route path="/trending" element={<Trending />} />
         </Routes>
