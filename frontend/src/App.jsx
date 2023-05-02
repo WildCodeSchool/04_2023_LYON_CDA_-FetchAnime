@@ -14,13 +14,12 @@ import Home from "./pages/Home";
 import AnimeDescription from "./pages/AnimeDescription";
 import SearchBar from "./components/SearchBar";
 import MyLists from "./pages/MyLists";
+import Trending from "./components/Trending";
+import Popular from "./components/Popular";
 
 const theme = createTheme({
   typography: {
-    fontFamily: [
-      "Amaranth", // insérer le nom de la police souhaitée ici
-      "sans-serif",
-    ].join(","),
+    fontFamily: ["Amaranth", "sans-serif"].join(","),
     color: "#C90D56",
   },
   palette: {
@@ -142,6 +141,8 @@ function App() {
           />
           <Route path="/planninglist" element={<PlanningList />} />
           <Route path="/completedlist" element={<CompletedList />} />
+          <Route path="/popular" element={<Popular />} />
+          <Route path="/trending" element={<Trending />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

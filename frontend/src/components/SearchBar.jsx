@@ -33,7 +33,7 @@ export default function SearchBar({
           width: "95%",
           margin: "auto",
           mt: 9.5,
-          backgroundColor: "#FDFBE2",
+          backgroundColor: "secondary.main",
           height: "40px",
         },
         [theme.breakpoints.up("md")]: {
