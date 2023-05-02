@@ -3,7 +3,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 // eslint-disable-next-line import/no-named-as-default
-import { useNavigate } from "react-router-dom";
 import AnimeTitle from "../components/AnimeTitle";
 import Cover from "../components/Cover";
 import AnimeList from "../components/AnimeList";
@@ -25,16 +24,6 @@ function AnimeDescription({
   setId,
   setSearch,
 }) {
-  const navigate = useNavigate();
-  const handleClick = (itemId) => {
-    localStorage.setItem("animeId", itemId);
-    setId(localStorage.getItem("animeId"));
-    setDate("");
-    setGenres("");
-    setSearch("");
-    setPage(1);
-    navigate("/description");
-  };
   return (
     <Box>
       {anime.id === id ? (
@@ -50,7 +39,7 @@ function AnimeDescription({
           ) : null}
           {search !== "" && (
             <AnimeList
-              handleClick={handleClick}
+              setId={setId}
               search={search}
               page={page}
               setPage={setPage}
@@ -58,6 +47,7 @@ function AnimeDescription({
               setGenres={setGenres}
               date={date}
               setDate={setDate}
+              setSearch={setSearch}
             />
           )}
         </>

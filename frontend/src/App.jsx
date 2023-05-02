@@ -79,6 +79,7 @@ function App() {
                 date={date}
                 setDate={setDate}
                 setId={setId}
+                setSearch={setSearch}
               />
             }
           />
@@ -114,6 +115,7 @@ function App() {
                 setGenres={setGenres}
                 date={date}
                 setDate={setDate}
+                setId={setId}
               />
             }
           />
@@ -139,8 +141,14 @@ function App() {
             path="/watchinglist"
             element={<WatchingList setId={setId} />}
           />
-          <Route path="/planninglist" element={<PlanningList />} />
-          <Route path="/completedlist" element={<CompletedList />} />
+          <Route
+            path="/planninglist"
+            element={<PlanningList setId={setId} />}
+          />
+          <Route
+            path="/completedlist"
+            element={<CompletedList setId={setId} />}
+          />
           <Route path="/popular" element={<Popular />} />
           <Route path="/trending" element={<Trending />} />
         </Routes>

@@ -1,7 +1,6 @@
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { Typography } from "@mui/material";
-import { Navigate } from "react-router-dom";
 import AnimeList from "../components/AnimeList";
 import MylistCard from "../components/MylistCard";
 
@@ -14,6 +13,7 @@ function MyLists({
   setGenres,
   date,
   setDate,
+  setId,
 }) {
   const [myWatchingList] = useState(
     JSON.parse(localStorage.getItem("watchingList"))
@@ -26,10 +26,6 @@ function MyLists({
   const [myCompletedList] = useState(
     JSON.parse(localStorage.getItem("completedList"))
   );
-  const handleClick = (itemId) => {
-    localStorage.setItem("animeId", itemId);
-    Navigate("/description");
-  };
 
   return (
     <Box>
@@ -68,11 +64,11 @@ function MyLists({
           page={page}
           search={search}
           setSearch={setSearch}
-          handleClick={handleClick}
           genres={genres}
           setGenres={setGenres}
           date={date}
           setDate={setDate}
+          setId={setId}
         />
       )}
     </Box>
