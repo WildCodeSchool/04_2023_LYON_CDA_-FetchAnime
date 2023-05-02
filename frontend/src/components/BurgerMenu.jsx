@@ -8,6 +8,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { NavLink } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 const actions = [
   {
@@ -28,11 +29,19 @@ const actions = [
   },
   {
     icon: (
-      <NavLink to="/">
+      <NavLink to="/trending">
         <WhatshotIcon />
       </NavLink>
     ),
     name: "Trending",
+  },
+  {
+    icon: (
+      <NavLink to="/popular">
+        <ThumbUpIcon />
+      </NavLink>
+    ),
+    name: "Popular",
   },
 ];
 
@@ -54,6 +63,7 @@ export default function BurgerMenu() {
     >
       <SpeedDial
         ariaLabel="FetchAnime SpeedDial"
+        direction="left"
         icon={<MenuIcon sx={{ color: "secondary.main" }} />}
         onClose={handleClose}
         onClick={handleOpen}
