@@ -15,11 +15,7 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
   const navigate = useNavigate();
 
   const itemsPerPage = 6;
-  const totalPages = () => {
-    if (anime.episodes) {
-      Math.ceil(anime.episodes.length / itemsPerPage);
-    }
-  };
+  const totalPages = Math.ceil(anime.episodes.length / itemsPerPage);
 
   const handleChange = (event, value) => {
     setPage(value);
