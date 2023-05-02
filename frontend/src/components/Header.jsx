@@ -38,6 +38,7 @@ function Header({ search, setSearch, setPage }) {
             image="src\assets\img\logo\Logo-Low-Res\logo-color-on-transparent-background.png"
             sx={(theme) => ({
               [theme.breakpoints.down("md")]: {
+                marginLeft: "5rem",
                 height: "60px",
                 width: "60%",
                 objectFit: "contain",

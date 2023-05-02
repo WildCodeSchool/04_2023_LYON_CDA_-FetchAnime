@@ -72,14 +72,14 @@ function AnimeList({
           </MenuItem>
           <MenuItem value="Comedy">Comedy</MenuItem>
           <MenuItem value="Drama">Drama</MenuItem>
-          <MenuItem value="Fantasy">Comedy</MenuItem>
+          <MenuItem value="Fantasy">Fantasy</MenuItem>
           <MenuItem value="Horror">Horror</MenuItem>
           <MenuItem value="Mecha">Mecha</MenuItem>
           <MenuItem value="Music">Music</MenuItem>
           <MenuItem value="Mystery">Mystery</MenuItem>
           <MenuItem value="Psychological">Psychological</MenuItem>
           <MenuItem value="Romance">Romance</MenuItem>
-          <MenuItem value="Sci-Fi">sci-Fi</MenuItem>
+          <MenuItem value="Sci-Fi">Sci-Fi</MenuItem>
           <MenuItem value="Sports">Sports</MenuItem>
           <MenuItem value="Supernatural">Supernatural</MenuItem>
         </Select>
@@ -87,7 +87,7 @@ function AnimeList({
 
       <FormControl sx={{ m: 1, minWidth: 110, height: 30 }} size="small">
         <InputLabel id="demo-select-small-label" sx={{ fontSize: 14 }}>
-          Dates
+          Year
         </InputLabel>
         <Select
           labelId="demo-select-small-label"
@@ -162,7 +162,7 @@ function AnimeList({
                 color="secondary"
                 onClick={() => setPage(page - 1)}
               >
-                Precedent
+                Previous
               </Button>
             ) : null}
             {list.hasNextPage === true ? (
@@ -172,7 +172,7 @@ function AnimeList({
                 color="secondary"
                 onClick={() => setPage(page + 1)}
               >
-                Suivant
+                Next
               </Button>
             ) : (
               ""
