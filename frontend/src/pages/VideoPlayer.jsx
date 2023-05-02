@@ -87,7 +87,31 @@ function VideoPlayer({
                   style={{ marginTop: 8 }}
                 />
               </Box>
-
+              <Box
+                sx={{
+                  maxWidth: "65%",
+                  display: "flex",
+                  marginY: 2,
+                  justifyContent: "space-around",
+                }}
+              >
+                {anime.genres?.slice(0, 4).map((genre) => (
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      backgroundColor: "rgb(216,0,0)",
+                      paddingX: 1,
+                      paddingY: 0.2,
+                      borderRadius: 1,
+                      color: "#FDFBE2",
+                      fontSize: ".7rem",
+                    }}
+                    color="black"
+                  >
+                    {genre}
+                  </Typography>
+                ))}
+              </Box>
               <AnimeTitle anime={anime} />
               <Typography variant="h5" mb={2} sx={{ ml: 1.5 }}>
                 Episodes

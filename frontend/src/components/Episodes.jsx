@@ -15,7 +15,11 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
   const navigate = useNavigate();
 
   const itemsPerPage = 6;
-  const totalPages = Math.ceil(anime.episodes.length / itemsPerPage);
+  const totalPages = () => {
+    if (anime.episodes) {
+      Math.ceil(anime.episodes.length / itemsPerPage);
+    }
+  };
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -45,7 +49,7 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
   return (
     <>
       <Grid container spacing={1} margin={1}>
-        {anime.episodes.length > 0 ? (
+        {anime.episodes ? (
           anime.episodes
             .slice((page - 1) * itemsPerPage, page * itemsPerPage)
             .map((item) => (
