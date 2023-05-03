@@ -90,16 +90,18 @@ function VideoPlayer({
               <Box
                 sx={(theme) => ({
                   [theme.breakpoints.down("md")]: {
-                    maxWidth: "55%",
+                    maxWidth: "50%",
                     display: "flex",
-                    marginY: 2,
+                    mt: 0.5,
+                    mb: 4,
                     justifyContent: "space-around",
                   },
                   [theme.breakpoints.up("md")]: {
                     maxWidth: "17%",
                     display: "flex",
-                    marginY: 3,
-                    ml: 10.4,
+                    mt: 3,
+                    mb: 6,
+                    ml: 11,
                     justifyContent: "space-around",
                   },
                 })}
@@ -136,11 +138,11 @@ function VideoPlayer({
                 sx={(theme) => ({
                   [theme.breakpoints.down("md")]: {
                     ml: 1.5,
-                    mb: 2,
+                    mb: 0,
                   },
                   [theme.breakpoints.up("md")]: {
-                    ml: 12,
-                    fontSize: "3rem",
+                    ml: 11,
+                    fontSize: "2.5rem",
                     my: 4,
                   },
                 })}
@@ -154,6 +156,21 @@ function VideoPlayer({
                 setEpTimeoutId={setEpTimeoutId}
                 cancelEpTimeout={cancelEpTimeout}
               />
+              <Typography
+                variant="h5"
+                sx={(theme) => ({
+                  [theme.breakpoints.down("md")]: {
+                    ml: 1.5,
+                  },
+                  [theme.breakpoints.up("md")]: {
+                    ml: 11,
+                    fontSize: "2.5rem",
+                    mt: 8,
+                  },
+                })}
+              >
+                Description
+              </Typography>
               <Description anime={anime} />
               <Recommendations anime={anime} setId={setId} />
             </>
