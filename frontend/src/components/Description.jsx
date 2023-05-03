@@ -178,7 +178,7 @@ export function Description({ anime }) {
                     borderRadius: "5px",
                   },
                   [theme.breakpoints.up("md")]: {
-                    height: "300px",
+                    height: "380px",
                     objectFit: "fit",
                     width: "100%",
                     borderRadius: "5px",

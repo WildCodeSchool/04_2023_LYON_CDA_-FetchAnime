@@ -5,7 +5,7 @@ import CustomPagination from "./Pagination";
 
 function Characters({ anime }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const itemsPerPage = 16;
   const numPages = Math.ceil(anime.characters.length / itemsPerPage);
 
   const handleChange = (event, value) => {
@@ -17,7 +17,7 @@ function Characters({ anime }) {
   const displayedCharacters = anime.characters.slice(startIndex, endIndex);
 
   return (
-    <div>
+    <>
       <Grid
         container
         spacing={2}
@@ -32,7 +32,7 @@ function Characters({ anime }) {
         })}
       >
         {displayedCharacters.map((item) => (
-          <Grid item xs={3} sm={4} md={2} key={item.name.id}>
+          <Grid item xs={3} sm={4} md={1.5} key={item.name.id}>
             <CardMedia
               component="img"
               image={item.image}
@@ -44,7 +44,7 @@ function Characters({ anime }) {
                   objectFit: "fit",
                 },
                 [theme.breakpoints.up("md")]: {
-                  maxWidth: "70%",
+                  maxWidth: "80%",
                   height: "240px",
                   borderRadius: 2,
                   margin: "auto",
@@ -78,7 +78,7 @@ function Characters({ anime }) {
         onChange={handleChange}
         sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}
       />
-    </div>
+    </>
   );
 }
 

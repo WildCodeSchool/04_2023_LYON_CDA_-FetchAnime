@@ -53,7 +53,7 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
                 item
                 xs={6}
                 sm={4}
-                md={6}
+                md={4}
                 key={item.id}
                 onClick={() => handleClick(item.id)}
               >
@@ -64,30 +64,56 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
                       alignItems: "center",
                     }}
                   >
-                    <img
-                      src={item.image}
+                    <CardMedia
+                      component="img"
+                      image={item.image}
                       alt={item.title}
-                      style={{
-                        width: "175px",
-                        height: "120px",
-                        borderRadius: 5,
-                        objectFit: "fill",
-                      }}
+                      sx={(theme) => ({
+                        [theme.breakpoints.down("md")]: {
+                          width: "175px",
+                          height: "120px",
+                          borderRadius: 5,
+                          objectFit: "fill",
+                        },
+                        [theme.breakpoints.up("md")]: {
+                          maxWidth: "90%",
+                          height: "300px",
+                          width: "460px",
+                          borderRadius: 2,
+                          margin: "auto",
+                          objectFit: "fill",
+                        },
+                      })}
                     />
                     <Typography
                       variant="h5"
-                      sx={{
-                        position: "absolute",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        width: "175px",
-                        height: "120px",
-                        color: "white",
-                        backgroundColor: "rgba(0,0,0,0.7)",
-                        fontSize: "1.6rem",
-                        borderRadius: 2,
-                      }}
+                      sx={(theme) => ({
+                        [theme.breakpoints.down("md")]: {
+                          position: "absolute",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "120px",
+                          width: "175px",
+                          color: "white",
+                          backgroundColor: "rgba(0,0,0,0.6)",
+                          fontSize: "1.8rem",
+                          borderRadius: 2,
+                        },
+                        [theme.breakpoints.up("md")]: {
+                          position: "absolute",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "300px",
+                          width: "460px",
+                          marginLeft: "79px",
+                          color: "white",
+                          backgroundColor: "rgba(0,0,0,0.6)",
+                          fontSize: "1.8rem",
+                          borderRadius: 2,
+                        },
+                      })}
                     >
                       Currently
                     </Typography>
@@ -99,70 +125,126 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
                       alignItems: "center",
                     }}
                   >
-                    <img
-                      src={item.image}
+                    <CardMedia
+                      component="img"
+                      image={item.image}
                       alt={item.title}
-                      style={{
-                        width: "175px",
-                        height: "120px",
-                        borderRadius: 5,
-                        objectFit: "fill",
-                      }}
+                      sx={(theme) => ({
+                        [theme.breakpoints.down("md")]: {
+                          width: "175px",
+                          height: "120px",
+                          borderRadius: 5,
+                          objectFit: "fill",
+                        },
+                        [theme.breakpoints.up("md")]: {
+                          maxWidth: "90%",
+                          height: "300px",
+                          width: "460px",
+                          borderRadius: 2,
+                          margin: "auto",
+                          objectFit: "fill",
+                        },
+                      })}
                     />
                     {!viewedEpisode.some((element) => element === item.id) ? (
                       <PlayCircleOutlineIcon
-                        sx={{
-                          position: "absolute",
-                          textAlign: "center",
-                          width: "175px",
-                          color: "white",
-                          fontSize: "2.9rem",
-                        }}
+                        sx={(theme) => ({
+                          [theme.breakpoints.down("md")]: {
+                            position: "absolute",
+                            textAlign: "center",
+                            width: "175px",
+                            color: "white",
+                            fontSize: "2.9rem",
+                          },
+                          [theme.breakpoints.up("md")]: {
+                            position: "absolute",
+                            width: "420px",
+                            ml: 12,
+                            color: "white",
+                            fontSize: "8rem",
+                          },
+                        })}
                       />
                     ) : (
                       <>
                         <Typography
                           variant="h5"
-                          sx={{
-                            position: "absolute",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: "120px",
-                            width: "175px",
-                            color: "white",
-                            backgroundColor: "rgba(0,0,0,0.6)",
-                            fontSize: "1.8rem",
-                            borderRadius: 2,
-                          }}
+                          sx={(theme) => ({
+                            [theme.breakpoints.down("md")]: {
+                              position: "absolute",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              height: "120px",
+                              width: "175px",
+                              color: "white",
+                              backgroundColor: "rgba(0,0,0,0.6)",
+                              fontSize: "1.8rem",
+                              borderRadius: 2,
+                            },
+                            [theme.breakpoints.up("md")]: {
+                              position: "absolute",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              height: "300px",
+                              width: "460px",
+                              marginLeft: "79px",
+                              color: "white",
+                              backgroundColor: "rgba(0,0,0,0.6)",
+                              fontSize: "1.8rem",
+                              borderRadius: 2,
+                            },
+                          })}
                         >
                           viewed
                         </Typography>
                         <Typography
                           variant="span"
-                          sx={{
-                            position: "absolute",
-                            textAlign: "center",
-                            height: "5px",
-                            width: "175px",
-                            color: "white",
-                            backgroundColor: "rgb(29, 108, 218)",
-
-                            marginTop: 14.35,
-                            borderRadius: 2,
-                          }}
+                          sx={(theme) => ({
+                            [theme.breakpoints.down("md")]: {
+                              position: "absolute",
+                              textAlign: "center",
+                              height: "5px",
+                              width: "175px",
+                              color: "white",
+                              backgroundColor: "rgb(29, 108, 218)",
+                              marginTop: 14.35,
+                              borderRadius: 2,
+                            },
+                            [theme.breakpoints.up("md")]: {
+                              position: "absolute",
+                              textAlign: "center",
+                              height: "10px",
+                              width: "460px",
+                              marginLeft: "79px",
+                              color: "white",
+                              backgroundColor: "rgb(29, 108, 218)",
+                              marginTop: 36.55,
+                              borderRadius: 2,
+                            },
+                          })}
                         />
                       </>
                     )}
                   </Box>
                 )}
                 <Typography
-                  sx={{
-                    textAlign: "left",
-                    fontSize: 12,
-                    marginBottom: 2,
-                    marginLeft: 1,
-                  }}
+                  sx={(theme) => ({
+                    [theme.breakpoints.down("md")]: {
+                      textAlign: "left",
+                      fontSize: 12,
+                      marginBottom: 2,
+                      marginLeft: 1,
+                    },
+                    [theme.breakpoints.up("md")]: {
+                      textAlign: "left",
+                      fontSize: 30,
+                      width: "460px",
+                      marginBottom: 2,
+                      marginLeft: 11,
+                    },
+                  })}
                 >
                   {item.title
                     ? `${item.number} - ${item.title}`

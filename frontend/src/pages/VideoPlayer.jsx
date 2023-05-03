@@ -88,32 +88,62 @@ function VideoPlayer({
                 />
               </Box>
               <Box
-                sx={{
-                  maxWidth: "65%",
-                  display: "flex",
-                  marginY: 2,
-                  justifyContent: "space-around",
-                }}
+                sx={(theme) => ({
+                  [theme.breakpoints.down("md")]: {
+                    maxWidth: "55%",
+                    display: "flex",
+                    marginY: 2,
+                    justifyContent: "space-around",
+                  },
+                  [theme.breakpoints.up("md")]: {
+                    maxWidth: "17%",
+                    display: "flex",
+                    marginY: 3,
+                    justifyContent: "space-around",
+                  },
+                })}
               >
-                {anime.genres?.slice(0, 4).map((genre) => (
+                {anime.genres?.slice(0, 3).map((genre) => (
                   <Typography
                     variant="h5"
-                    sx={{
-                      backgroundColor: "rgb(216,0,0)",
-                      paddingX: 1,
-                      paddingY: 0.2,
-                      borderRadius: 1,
-                      color: "#FDFBE2",
-                      fontSize: ".7rem",
-                    }}
-                    color="black"
+                    sx={(theme) => ({
+                      [theme.breakpoints.down("md")]: {
+                        backgroundColor: "rgb(216,0,0)",
+                        paddingX: 1,
+                        paddingY: 0.2,
+                        borderRadius: 1,
+                        color: "#FDFBE2",
+                        fontSize: ".7rem",
+                      },
+                      [theme.breakpoints.up("md")]: {
+                        backgroundColor: "rgb(216,0,0)",
+                        paddingX: 1,
+                        paddingY: 0.2,
+                        borderRadius: 1,
+                        color: "#FDFBE2",
+                        fontSize: "1.2rem",
+                      },
+                    })}
                   >
                     {genre}
                   </Typography>
                 ))}
               </Box>
               <AnimeTitle anime={anime} />
-              <Typography variant="h5" mb={2} sx={{ ml: 1.5 }}>
+              <Typography
+                variant="h5"
+                sx={(theme) => ({
+                  [theme.breakpoints.down("md")]: {
+                    ml: 1.5,
+                    mb: 2,
+                  },
+                  [theme.breakpoints.up("md")]: {
+                    ml: 12,
+                    fontSize: "3rem",
+                    my: 4,
+                  },
+                })}
+              >
                 Episodes
               </Typography>
               <Episodes
