@@ -32,7 +32,7 @@ function Characters({ anime }) {
         })}
       >
         {displayedCharacters.map((item) => (
-          <Grid item xs={3} sm={4} md={1.5} key={item.name.id}>
+          <Grid item xs={3} sm={4} md={1.5} key={item.id}>
             <CardMedia
               component="img"
               image={item.image}
@@ -41,14 +41,14 @@ function Characters({ anime }) {
                   maxWidth: "100%",
                   height: "120px",
                   borderRadius: 1,
-                  objectFit: "fit",
+                  objectFit: "cover",
                 },
                 [theme.breakpoints.up("md")]: {
                   maxWidth: "80%",
                   height: "240px",
                   borderRadius: 2,
                   margin: "auto",
-                  objectFit: "fill",
+                  objectFit: "cover",
                 },
               })}
             />

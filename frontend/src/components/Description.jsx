@@ -272,9 +272,9 @@ export function Description({ anime }) {
                     marginLeft: "5%",
                   },
                   [theme.breakpoints.up("md")]: {
-                    marginX: "5%",
-                    fontSize: "1.4rem",
-                    width: "100%",
+                    width: "93%",
+                    marginLeft: "3%",
+                    fontSize: "1.3rem",
                   },
                 })}
                 dangerouslySetInnerHTML={{

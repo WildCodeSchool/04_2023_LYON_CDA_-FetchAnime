@@ -21,11 +21,32 @@ function Casting({ anime }) {
 
   return (
     <>
-      <Grid container spacing={1} margin={1}>
+      <Grid
+        container
+        spacing={2}
+        sx={(theme) => ({
+          [theme.breakpoints.down("md")]: {
+            margin: 1,
+          },
+          [theme.breakpoints.up("md")]: {
+            margin: 5,
+            mx: 0,
+          },
+        })}
+      >
+        {(theme) => ({
+          [theme.breakpoints.down("md")]: {
+            margin: 1,
+          },
+          [theme.breakpoints.up("md")]: {
+            margin: 5,
+            mx: 0,
+          },
+        })}
         {visibleItems?.map((item) =>
           item.voiceActors[0] !== undefined &&
           item.voiceActors[0].language === "Japanese" ? (
-            <Grid item xs={3} sm={4} md={2} key={item.name.id}>
+            <Grid item xs={3} sm={4} md={1.5} key={item.name.id}>
               <CardMedia
                 component="img"
                 image={item.voiceActors[0].image}
@@ -38,7 +59,7 @@ function Casting({ anime }) {
                     objectFit: "fit",
                   },
                   [theme.breakpoints.up("md")]: {
-                    maxWidth: "70%",
+                    maxWidth: "80%",
                     height: "240px",
                     borderRadius: 2,
                     margin: "auto",

@@ -99,6 +99,7 @@ function VideoPlayer({
                     maxWidth: "17%",
                     display: "flex",
                     marginY: 3,
+                    ml: 10.4,
                     justifyContent: "space-around",
                   },
                 })}

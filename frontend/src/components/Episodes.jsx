@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import { Box } from "@mui/system";
 import CustomPagination from "./Pagination";
+import NothingAviable from "./NothingAviable";
 
 function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
   const [page, setPage] = useState(1);
@@ -45,7 +46,7 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
   return (
     <>
       <Grid container spacing={1} margin={1}>
-        {anime.episodes ? (
+        {anime.episodes.length > 0 ? (
           anime.episodes
             .slice((page - 1) * itemsPerPage, page * itemsPerPage)
             .map((item) => (
@@ -253,23 +254,7 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
               </Grid>
             ))
         ) : (
-          <>
-            <CardMedia
-              component="img"
-              image="src/assets/img/logo/Logo-Low-Res/Not-Found.png"
-              objectFit="fill"
-              sx={{
-                width: "150px",
-                height: "150px",
-                margin: "auto",
-                marginTop: 2,
-                borderRadius: 2,
-              }}
-            />
-            <Typography sx={{ marginX: "25%", marginY: 2 }}>
-              Sorry, nothing available...
-            </Typography>
-          </>
+          <NothingAviable position="relative" />
         )}
       </Grid>
       {totalPages > 1 && (
