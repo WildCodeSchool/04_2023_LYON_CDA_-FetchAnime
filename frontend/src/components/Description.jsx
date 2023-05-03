@@ -152,7 +152,20 @@ export function Description({ anime }) {
             justifyContent="space-between"
             marginTop="4%"
           >
-            <Box margin="2%" mt="4%" mb="10%">
+            <Box
+              sx={(theme) => ({
+                [theme.breakpoints.down("md")]: {
+                  margin: "2%",
+                  mt: "4%",
+                  mb: "10%",
+                },
+                [theme.breakpoints.up("md")]: {
+                  m: "auto",
+                  mt: "0%",
+                  mb: "0%",
+                },
+              })}
+            >
               <CardMedia
                 style={{ boxShadow: "0 0 29px rgba(49,54,68,.25)" }}
                 component="img"
@@ -166,7 +179,7 @@ export function Description({ anime }) {
                   },
                   [theme.breakpoints.up("md")]: {
                     height: "300px",
-                    objectFit: "cover",
+                    objectFit: "fit",
                     width: "100%",
                     borderRadius: "5px",
                   },
@@ -176,15 +189,33 @@ export function Description({ anime }) {
                 name="size-small"
                 defaultValue={rating}
                 size="small"
-                sx={{ margin: "7.5%" }}
+                sx={(theme) => ({
+                  [theme.breakpoints.down("md")]: {
+                    margin: "7.5%",
+                  },
+                  [theme.breakpoints.up("md")]: {
+                    width: "100%",
+                    justifyContent: "center",
+                    my: "8%",
+                    fontSize: "2rem",
+                  },
+                })}
                 readOnly
               />
               <Button
-                sx={{
-                  width: "115px",
-                  height: "25px",
-                  backgroundColor: "#F0196C",
-                }}
+                sx={(theme) => ({
+                  [theme.breakpoints.down("md")]: {
+                    width: "115px",
+                    height: "25px",
+                    backgroundColor: "#F0196C",
+                  },
+                  [theme.breakpoints.up("md")]: {
+                    width: "90%",
+                    mb: "8%",
+                    mx: "8%",
+                    fontSize: "1rem",
+                  },
+                })}
                 id="demo-customized-button"
                 aria-controls={open ? "demo-customized-menu" : undefined}
                 aria-haspopup="true"
@@ -224,26 +255,26 @@ export function Description({ anime }) {
                   width: "100%",
                 },
                 [theme.breakpoints.up("md")]: {
-                  width: "75%",
+                  width: "65%",
                 },
               })}
             >
               <Typography
                 variant="body1"
                 color="initial"
-                marginTop="5%"
-                marginLeft="5%"
                 sx={(theme) => ({
                   [theme.breakpoints.down("md")]: {
                     fontSize: "0.9rem",
                     color: "#454545",
                     textAlign: "justify",
                     width: "93%",
+                    marginTop: "5%",
+                    marginLeft: "5%",
                   },
                   [theme.breakpoints.up("md")]: {
-                    fontSize: "1.7rem",
-                    width: "90%",
-                    margin: 3.8,
+                    marginX: "5%",
+                    fontSize: "1.4rem",
+                    width: "100%",
                   },
                 })}
                 dangerouslySetInnerHTML={{

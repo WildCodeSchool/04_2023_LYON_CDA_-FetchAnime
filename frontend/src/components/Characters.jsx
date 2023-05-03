@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Grid from "@mui/system/Unstable_Grid/Grid";
-import { Typography } from "@mui/material";
+import { CardMedia, Typography } from "@mui/material";
 import CustomPagination from "./Pagination";
 
 function Characters({ anime }) {
@@ -18,20 +18,55 @@ function Characters({ anime }) {
 
   return (
     <div>
-      <Grid container spacing={1} margin={1}>
+      <Grid
+        container
+        spacing={2}
+        sx={(theme) => ({
+          [theme.breakpoints.down("md")]: {
+            margin: 1,
+          },
+          [theme.breakpoints.up("md")]: {
+            margin: 5,
+            mx: 0,
+          },
+        })}
+      >
         {displayedCharacters.map((item) => (
           <Grid item xs={3} sm={4} md={2} key={item.name.id}>
-            <img
-              src={item.image}
-              alt={item.name.full}
-              style={{
-                maxWidth: "100%",
-                height: "120px",
-                borderRadius: 5,
-                objectFit: "fill",
-              }}
+            <CardMedia
+              component="img"
+              image={item.image}
+              sx={(theme) => ({
+                [theme.breakpoints.down("md")]: {
+                  maxWidth: "100%",
+                  height: "120px",
+                  borderRadius: 1,
+                  objectFit: "fit",
+                },
+                [theme.breakpoints.up("md")]: {
+                  maxWidth: "70%",
+                  height: "240px",
+                  borderRadius: 2,
+                  margin: "auto",
+                  objectFit: "fill",
+                },
+              })}
             />
-            <Typography sx={{ textAlign: "left", fontSize: 14 }}>
+            <Typography
+              sx={(theme) => ({
+                [theme.breakpoints.down("md")]: {
+                  textAlign: "left",
+                  fontSize: 14,
+                },
+                [theme.breakpoints.up("md")]: {
+                  maxWidth: "60%",
+                  margin: "auto",
+                  textAlign: "left",
+                  my: 1,
+                  pl: 0.2,
+                },
+              })}
+            >
               {item.name.userPreferred}
             </Typography>
           </Grid>
