@@ -53,7 +53,7 @@ function Header({ search, setSearch, setPage }) {
     <Box
       sx={(theme) => ({
         [theme.breakpoints.up("md")]: {
-          mb: 16,
+          mb: 12,
         },
       })}
     >
