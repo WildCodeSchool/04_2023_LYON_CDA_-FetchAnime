@@ -76,7 +76,7 @@ export function Description({ anime }) {
     setAnchorEl(null);
   };
   const notify = () =>
-    toast.success("Add to list !", {
+    toast.success("Added to your list !", {
       position: "top-center",
       autoClose: 2000,
       hideProgressBar: false,
@@ -87,7 +87,7 @@ export function Description({ anime }) {
       theme: "colored",
     });
   const notifys = () =>
-    toast.info("already on the list !", {
+    toast.info("Already on your list !", {
       position: "top-center",
       autoClose: 2000,
       hideProgressBar: false,

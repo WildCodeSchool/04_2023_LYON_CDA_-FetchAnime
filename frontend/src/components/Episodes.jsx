@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import { Box } from "@mui/system";
 import CustomPagination from "./Pagination";
-import NothingAviable from "./NothingAviable";
+import NothingAvailable from "./NothingAvailable";
 
 function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
   const [page, setPage] = useState(1);
@@ -254,7 +254,7 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
               </Grid>
             ))
         ) : (
-          <NothingAviable position="relative" />
+          <NothingAvailable position="relative" />
         )}
       </Grid>
       {totalPages > 1 && (
