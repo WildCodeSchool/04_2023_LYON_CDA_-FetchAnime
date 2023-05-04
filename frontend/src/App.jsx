@@ -40,8 +40,12 @@ function App() {
   const [animeId, setAnimeId] = useState();
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const [tendingPage, setTrendingPage] = useState(1);
   const [genres, setGenres] = React.useState("");
   const [date, setDate] = useState("");
+  const [trending, setTrending] = useState([]);
+  const [popularList, setPopularList] = useState([]);
+  const [popularPage, setPopularPage] = useState(1);
   const [error500, setError500] = useState(false);
 
   useEffect(() => {
@@ -54,6 +58,21 @@ function App() {
         }
       });
   }, [id]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.consumet.org/meta/anilist/popular?page=${page}&perPage=12`
+      )
+      .then((response) => setPopularList(response.data));
+  }, [page]);
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.consumet.org/meta/anilist/trending?page=${tendingPage}&perPage=12`
+      )
+      .then((response) => setTrending(response.data));
+  }, [tendingPage]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -86,6 +105,12 @@ function App() {
                 setDate={setDate}
                 setId={setId}
                 setSearch={setSearch}
+                trending={trending}
+                setTrendingPage={setTrendingPage}
+                tendingPage={tendingPage}
+                popularList={popularList}
+                setPopularPage={setPopularPage}
+                popularPage={popularPage}
               />
             }
           />
@@ -156,8 +181,28 @@ function App() {
             path="/completedlist"
             element={<CompletedList setId={setId} />}
           />
-          <Route path="/popular" element={<Popular />} />
-          <Route path="/trending" element={<Trending />} />
+          <Route
+            path="/popular"
+            element={
+              <Popular
+                popularList={popularList}
+                setPopularPage={setPopularPage}
+                popularPage={popularPage}
+                setId={setId}
+              />
+            }
+          />
+          <Route
+            path="/trending"
+            element={
+              <Trending
+                trending={trending}
+                setTrendingPage={setTrendingPage}
+                tendingPage={tendingPage}
+                setId={setId}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
