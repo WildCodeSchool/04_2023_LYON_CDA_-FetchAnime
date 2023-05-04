@@ -1,23 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Box, CircularProgress, Grid, Typography } from "@mui/material";
 import CardItem from "./CardItem";
 
-function Popular() {
-  const [popularList, setPopularList] = useState([]);
-  const [page, setPage] = useState(1);
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.consumet.org/meta/anilist/popular?page=${page}&perPage=12`
-      )
-      .then((response) => setPopularList(response.data));
-  }, [page]);
-
-  const handleClick = (itemId) => {
-    localStorage.setItem("animeId", itemId);
+function Popular({ setId, popularList, popularPage, setPopularPage }) {
+  const navigate = useNavigate();
+  const handleClick = (animeId) => {
+    localStorage.setItem("animeId", animeId);
+    setId(localStorage.getItem("animeId"));
+    navigate("/description");
   };
 
   return (
@@ -59,12 +51,12 @@ function Popular() {
             bottom: "0",
           }}
         >
-          {page !== 1 ? (
+          {popularPage !== 1 ? (
             <Button
               size="md"
               variant="solid"
               color="secondary"
-              onClick={() => setPage(page - 1)}
+              onClick={() => setPopularPage(popularPage - 1)}
             >
               Previous
             </Button>
@@ -74,7 +66,7 @@ function Popular() {
               size="md"
               variant="solid"
               color="secondary"
-              onClick={() => setPage(page + 1)}
+              onClick={() => setPopularPage(popularPage + 1)}
             >
               Next
             </Button>

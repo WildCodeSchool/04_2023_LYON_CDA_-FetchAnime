@@ -3,11 +3,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Box, CircularProgress, Grid, Typography } from "@mui/material";
 
+import { useNavigate } from "react-router-dom";
 import CardItem from "./CardItem";
 
-function Trending({ handleClick }) {
+function Trending({ setId }) {
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
+  const handleClick = (animeId) => {
+    localStorage.setItem("animeId", animeId);
+    setId(localStorage.getItem("animeId"));
+    navigate("/description");
+  };
 
   useEffect(() => {
     axios
