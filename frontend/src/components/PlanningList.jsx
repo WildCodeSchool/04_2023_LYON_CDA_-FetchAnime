@@ -19,13 +19,53 @@ function PlanningList({ setId }) {
 
   return (
     <>
-      <Typography variant="h3" sx={{ textAlign: "center", margin: 2 }}>
+      <Typography
+        variant="h2"
+        sx={(theme) => ({
+          [theme.breakpoints.down("md")]: {
+            margin: 2,
+            textAlign: "center",
+          },
+          [theme.breakpoints.up("md")]: {
+            margin: 10,
+            textAlign: "center",
+          },
+        })}
+      >
         Planning
       </Typography>
-      <Box container sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Box
+        container
+        sx={(theme) => ({
+          [theme.breakpoints.down("md")]: {
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+          },
+          [theme.breakpoints.up("md")]: {
+            display: "flex",
+            flexWrap: "wrap",
+            marginLeft: "5%",
+          },
+        })}
+      >
         {myPlanningList ? (
           myPlanningList.map((item, index) => (
-            <Box key={index} fluid item sx={{ width: "45%", margin: "auto" }}>
+            <Box
+              key={index}
+              fluid
+              item
+              sx={(theme) => ({
+                [theme.breakpoints.down("md")]: {
+                  width: "45%",
+                },
+                [theme.breakpoints.up("md")]: {
+                  width: "16.66%",
+                  justifyContent: "center",
+                  margin: "auto",
+                },
+              })}
+            >
               <CardItem item={item} handleClick={handleClick} />
             </Box>
           ))

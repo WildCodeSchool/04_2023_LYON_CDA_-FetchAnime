@@ -11,7 +11,9 @@ function Trending({ handleClick }) {
 
   useEffect(() => {
     axios
-      .get(`https://api.consumet.org/meta/anilist/trending?page=${page}`)
+      .get(
+        `https://api.consumet.org/meta/anilist/trending?page=${page}&perPage=12`
+      )
       .then((response) => setList(response.data));
   }, [page]);
 
@@ -28,7 +30,8 @@ function Trending({ handleClick }) {
             p: 1,
           },
           [theme.breakpoints.up("md")]: {
-            p: 15,
+            p: 5,
+            marginLeft: "1%",
           },
         })}
       >
