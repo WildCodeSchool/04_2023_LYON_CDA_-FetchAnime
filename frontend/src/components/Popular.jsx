@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Box, CircularProgress, Grid, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
 import CardItem from "./CardItem";
 
 function Popular() {
@@ -11,7 +10,9 @@ function Popular() {
 
   useEffect(() => {
     axios
-      .get(`https://api.consumet.org/meta/anilist/popular?page=${page}`)
+      .get(
+        `https://api.consumet.org/meta/anilist/popular?page=${page}&perPage=12`
+      )
       .then((response) => setPopularList(response.data));
   }, [page]);
 
@@ -32,16 +33,15 @@ function Popular() {
             p: 1,
           },
           [theme.breakpoints.up("md")]: {
-            p: 15,
+            p: 5,
+            marginLeft: "1%",
           },
         })}
       >
         {popularList.results ? (
           popularList.results.map((item) => (
             <Grid container item md={2} xs={6} height="100%" key={item.id}>
-              <NavLink to="description">
-                <CardItem item={item} handleClick={handleClick} />
-              </NavLink>
+              <CardItem item={item} handleClick={handleClick} />
             </Grid>
           ))
         ) : (

@@ -42,21 +42,29 @@ function MyLists({
           <Typography variant="h2" textAlign="center">
             My lists
           </Typography>
-          <MylistCard
-            title="Watching"
-            anime={myWatchingList}
-            seeAll="/watchinglist"
-          />
-          <MylistCard
-            title="Planning"
-            anime={myPlanningList}
-            seeAll="/planninglist"
-          />
-          <MylistCard
-            title="Completed"
-            anime={myCompletedList}
-            seeAll="/completedlist"
-          />
+          {myWatchingList ? (
+            <MylistCard
+              title="Watching"
+              anime={myWatchingList}
+              seeAll="/watchinglist"
+            />
+          ) : null}
+
+          {myPlanningList ? (
+            <MylistCard
+              title="Planning"
+              anime={myPlanningList}
+              seeAll="/planninglist"
+            />
+          ) : null}
+
+          {myCompletedList ? (
+            <MylistCard
+              title="Completed"
+              anime={myCompletedList}
+              seeAll="/completedlist"
+            />
+          ) : null}
         </Box>
       ) : (
         <AnimeList

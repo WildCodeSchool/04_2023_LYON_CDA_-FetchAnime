@@ -52,14 +52,19 @@ export default function BurgerMenu() {
 
   return (
     <Box
-      sx={{
-        transform: "translateZ(0px)",
-        flexGrow: 1,
-        position: "fixed",
-        right: 16,
-        bottom: 16,
-        zIndex: 10,
-      }}
+      sx={(theme) => ({
+        [theme.breakpoints.down("md")]: {
+          transform: "translateZ(0px)",
+          flexGrow: 1,
+          position: "fixed",
+          right: 16,
+          bottom: 16,
+          zIndex: 10,
+        },
+        [theme.breakpoints.up("md")]: {
+          display: "none",
+        },
+      })}
     >
       <SpeedDial
         ariaLabel="FetchAnime SpeedDial"

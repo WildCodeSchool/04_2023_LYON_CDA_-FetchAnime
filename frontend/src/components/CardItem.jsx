@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/prop-types */
-import { CardMedia, Typography } from "@mui/material";
+import { CardMedia, Typography, Box } from "@mui/material";
 import React from "react";
 
 function CardItem({ item, handleClick }) {
   const title = item.title.english || item.title.romaji;
   return (
-    <>
+    <Box>
       <CardMedia
         onClick={() => handleClick(item.id)}
         component="img"
@@ -39,7 +39,7 @@ function CardItem({ item, handleClick }) {
           return title;
         })()}
       </Typography>
-    </>
+    </Box>
   );
 }
 

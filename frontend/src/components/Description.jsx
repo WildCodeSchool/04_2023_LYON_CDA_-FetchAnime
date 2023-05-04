@@ -13,6 +13,8 @@ import MenuItem from "@mui/material/MenuItem";
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import AddTaskIcon from "@mui/icons-material/AddTask";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import ModalDescription from "./ModalDescription";
 
@@ -73,6 +75,17 @@ export function Description({ anime }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const notify = () =>
+    toast.success("Add to list !", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   const handleWatching = (item) => {
     if (watching.length === 0) {
@@ -92,6 +105,7 @@ export function Description({ anime }) {
         localStorage.setItem("watchingList", JSON.stringify(updatedWatching));
         setWatching(updatedWatching);
         setAnchorEl(null);
+        notify();
       }
     }
   };
@@ -114,6 +128,7 @@ export function Description({ anime }) {
         localStorage.setItem("planningList", JSON.stringify(updatedPlanning));
         setPlanning(updatedPlanning);
         setAnchorEl(null);
+        notify();
       }
     }
   };
@@ -136,6 +151,7 @@ export function Description({ anime }) {
         localStorage.setItem("completedList", JSON.stringify(updatedCompleted));
         setCompleted(updatedCompleted);
         setAnchorEl(null);
+        notify();
       }
     }
   };
@@ -217,6 +233,18 @@ export function Description({ anime }) {
                   Completed
                 </MenuItem>
               </StyledMenu>
+              <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+              />
             </Box>
             <Box
               sx={(theme) => ({

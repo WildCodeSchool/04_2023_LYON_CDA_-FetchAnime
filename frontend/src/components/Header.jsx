@@ -1,16 +1,22 @@
 import {
   AppBar,
   InputBase,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
   styled,
   Toolbar,
   CardMedia,
   IconButton,
   Paper,
 } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 
 import React from "react";
+import { Box } from "@mui/system";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -29,8 +35,28 @@ function Header({ search, setSearch, setPage }) {
     setSearch("");
     setPage(1);
   };
+  const navItems = [
+    <NavLink to="/" style={{ color: "#c90d56" }}>
+      Home
+    </NavLink>,
+    <NavLink to="/mylists" style={{ color: "#c90d56" }}>
+      My Lists
+    </NavLink>,
+    <NavLink to="/trending" style={{ color: "#c90d56" }}>
+      Trending
+    </NavLink>,
+    <NavLink to="/popular" style={{ color: "#c90d56" }}>
+      Popular
+    </NavLink>,
+  ];
   return (
-    <div>
+    <Box
+      sx={(theme) => ({
+        [theme.breakpoints.up("md")]: {
+          mb: 12,
+        },
+      })}
+    >
       <AppBar>
         <StyledToolbar>
           <CardMedia
@@ -52,6 +78,30 @@ function Header({ search, setSearch, setPage }) {
               },
             })}
           />
+          <List
+            sx={(theme) => ({
+              [theme.breakpoints.down("md")]: {
+                display: "none",
+              },
+              [theme.breakpoints.up("md")]: {
+                display: "flex",
+                flexDirection: "row",
+              },
+            })}
+          >
+            {navItems.map((item) => (
+              <ListItem key={item} disablePadding>
+                <ListItemButton
+                  sx={{
+                    textAlign: "center",
+                    width: "8rem",
+                  }}
+                >
+                  <ListItemText primary={item} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
           <Paper
             component="form"
             sx={(theme) => ({
@@ -86,7 +136,7 @@ function Header({ search, setSearch, setPage }) {
           </Paper>
         </StyledToolbar>
       </AppBar>
-    </div>
+    </Box>
   );
 }
 

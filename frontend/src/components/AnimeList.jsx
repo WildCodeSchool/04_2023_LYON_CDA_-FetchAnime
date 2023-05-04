@@ -1,13 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Button, Box, Grid, CardMedia, Typography } from "@mui/material";
+import { Button, Box, Grid } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import CardItem from "./CardItem";
+import NothingAviable from "./NothingAviable";
 
 function AnimeList({
   search,
@@ -138,23 +139,7 @@ function AnimeList({
             </Grid>
           ))
         ) : (
-          <Box sx={{ position: "absolute", top: "40%", left: "25%" }}>
-            <CardMedia
-              component="img"
-              image="src/assets/img/logo/Logo-Low-Res/Not-Found.png"
-              objectFit="fill"
-              sx={{
-                width: "150px",
-                height: "150px",
-                margin: "auto",
-                marginTop: 2,
-                borderRadius: 2,
-              }}
-            />
-            <Typography sx={{ marginY: 2 }}>
-              Sorry, nothing available...
-            </Typography>
-          </Box>
+          <NothingAviable />
         )}
         {filteredList.length === 15 ? (
           <Box

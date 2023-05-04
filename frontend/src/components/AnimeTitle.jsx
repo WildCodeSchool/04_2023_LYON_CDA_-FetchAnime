@@ -16,7 +16,7 @@ function AnimeTitle({ anime }) {
                 fontSize: "1.6rem",
               },
               [theme.breakpoints.up("md")]: {
-                fontSize: "3.5rem",
+                fontSize: "3rem",
               },
             })}
           >
@@ -40,7 +40,7 @@ function AnimeTitle({ anime }) {
               : ""}
           </Typography>
           <Typography
-            component="span"
+            component="h5"
             sx={(theme) => ({
               [theme.breakpoints.down("md")]: {
                 fontSize: 12,
@@ -52,6 +52,7 @@ function AnimeTitle({ anime }) {
               },
               [theme.breakpoints.up("md")]: {
                 fontSize: "0.rem",
+                textAlign: "center",
               },
             })}
           >
