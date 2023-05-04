@@ -13,6 +13,8 @@ import MenuItem from "@mui/material/MenuItem";
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import AddTaskIcon from "@mui/icons-material/AddTask";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import ModalDescription from "./ModalDescription";
 
@@ -73,6 +75,28 @@ export function Description({ anime }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const notify = () =>
+    toast.success("Add to list !", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  const notifys = () =>
+    toast.info("already on the list !", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   const handleWatching = (item) => {
     if (watching.length === 0) {
@@ -92,6 +116,9 @@ export function Description({ anime }) {
         localStorage.setItem("watchingList", JSON.stringify(updatedWatching));
         setWatching(updatedWatching);
         setAnchorEl(null);
+        notify();
+      } else if (watching.some((element) => element.id === item.id)) {
+        notifys();
       }
     }
   };
@@ -114,6 +141,9 @@ export function Description({ anime }) {
         localStorage.setItem("planningList", JSON.stringify(updatedPlanning));
         setPlanning(updatedPlanning);
         setAnchorEl(null);
+        notify();
+      } else if (watching.some((element) => element.id === item.id)) {
+        notifys();
       }
     }
   };
@@ -136,6 +166,9 @@ export function Description({ anime }) {
         localStorage.setItem("completedList", JSON.stringify(updatedCompleted));
         setCompleted(updatedCompleted);
         setAnchorEl(null);
+        notify();
+      } else if (watching.some((element) => element.id === item.id)) {
+        notifys();
       }
     }
   };
@@ -152,20 +185,7 @@ export function Description({ anime }) {
             justifyContent="space-between"
             marginTop="4%"
           >
-            <Box
-              sx={(theme) => ({
-                [theme.breakpoints.down("md")]: {
-                  margin: "2%",
-                  mt: "4%",
-                  mb: "10%",
-                },
-                [theme.breakpoints.up("md")]: {
-                  m: "auto",
-                  mt: "0%",
-                  mb: "0%",
-                },
-              })}
-            >
+            <Box margin="2%" mt="4%" mb="10%">
               <CardMedia
                 style={{ boxShadow: "0 0 29px rgba(49,54,68,.25)" }}
                 component="img"
@@ -178,8 +198,8 @@ export function Description({ anime }) {
                     borderRadius: "5px",
                   },
                   [theme.breakpoints.up("md")]: {
-                    height: "380px",
-                    objectFit: "fit",
+                    height: "300px",
+                    objectFit: "cover",
                     width: "100%",
                     borderRadius: "5px",
                   },
@@ -189,33 +209,15 @@ export function Description({ anime }) {
                 name="size-small"
                 defaultValue={rating}
                 size="small"
-                sx={(theme) => ({
-                  [theme.breakpoints.down("md")]: {
-                    margin: "7.5%",
-                  },
-                  [theme.breakpoints.up("md")]: {
-                    width: "100%",
-                    justifyContent: "center",
-                    my: "8%",
-                    fontSize: "2rem",
-                  },
-                })}
+                sx={{ margin: "7.5%" }}
                 readOnly
               />
               <Button
-                sx={(theme) => ({
-                  [theme.breakpoints.down("md")]: {
-                    width: "115px",
-                    height: "25px",
-                    backgroundColor: "#F0196C",
-                  },
-                  [theme.breakpoints.up("md")]: {
-                    width: "90%",
-                    mb: "8%",
-                    mx: "8%",
-                    fontSize: "1rem",
-                  },
-                })}
+                sx={{
+                  width: "115px",
+                  height: "25px",
+                  backgroundColor: "#F0196C",
+                }}
                 id="demo-customized-button"
                 aria-controls={open ? "demo-customized-menu" : undefined}
                 aria-haspopup="true"
@@ -248,6 +250,18 @@ export function Description({ anime }) {
                   Completed
                 </MenuItem>
               </StyledMenu>
+              <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+              />
             </Box>
             <Box
               sx={(theme) => ({
@@ -255,26 +269,26 @@ export function Description({ anime }) {
                   width: "100%",
                 },
                 [theme.breakpoints.up("md")]: {
-                  width: "65%",
+                  width: "75%",
                 },
               })}
             >
               <Typography
                 variant="body1"
                 color="initial"
+                marginTop="5%"
+                marginLeft="5%"
                 sx={(theme) => ({
                   [theme.breakpoints.down("md")]: {
                     fontSize: "0.9rem",
                     color: "#454545",
                     textAlign: "justify",
                     width: "93%",
-                    marginTop: "5%",
-                    marginLeft: "5%",
                   },
                   [theme.breakpoints.up("md")]: {
-                    width: "93%",
-                    marginLeft: 11,
-                    fontSize: "1.3rem",
+                    fontSize: "1.7rem",
+                    width: "90%",
+                    margin: 3.8,
                   },
                 })}
                 dangerouslySetInnerHTML={{
