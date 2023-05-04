@@ -31,20 +31,29 @@ function Trending({ setId }) {
       </Typography>
       <Grid
         container
-        spacing={2}
         sx={(theme) => ({
           [theme.breakpoints.down("md")]: {
             p: 1,
           },
           [theme.breakpoints.up("md")]: {
             p: 5,
-            marginLeft: "1%",
           },
         })}
       >
         {list.results ? (
           list.results.map((item) => (
-            <Grid container item md={2} xs={6} height="100%" key={item.id}>
+            <Grid
+              container
+              item
+              md={2}
+              xs={6}
+              key={item.id}
+              sx={(theme) => ({
+                [theme.breakpoints.up("md")]: {
+                  justifyContent: "center",
+                },
+              })}
+            >
               <CardItem item={item} handleClick={handleClick} />
             </Grid>
           ))

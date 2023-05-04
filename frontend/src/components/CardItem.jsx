@@ -54,7 +54,9 @@ function CardItem({ item, handleClick, disposition }) {
               },
           [theme.breakpoints.up("md")]: {
             width: 210,
-            fontSize: 17,
+            fontSize: 20,
+            mb: 3,
+            ml: 0.4,
           },
         })}
       >

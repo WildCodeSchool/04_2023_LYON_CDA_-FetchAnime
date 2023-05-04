@@ -38,6 +38,7 @@ function HomeSection({
             justifyContent: "space-between",
           },
           [theme.breakpoints.up("md")]: {
+            mt: 4,
             width: "95%",
             display: "flex",
             justifyContent: "space-between",
@@ -52,8 +53,8 @@ function HomeSection({
               p: 1,
             },
             [theme.breakpoints.up("md")]: {
-              ml: 10,
-              mb: 2,
+              ml: 7,
+              mb: 3,
             },
           })}
         >
@@ -73,22 +74,32 @@ function HomeSection({
             [theme.breakpoints.up("md")]: {
               ml: 10,
               mb: 2,
+              p: 1,
+              fontSize: "1.2rem",
+              justifyContent: "center",
+              alignSelf: "center",
+              color: "#454545",
+              cursor: "pointer",
             },
           })}
         >
           See all
         </Typography>
       </Box>
-      <Grid
-        container
-        sx={(theme) => ({
-          [theme.breakpoints.down("md")]: {},
-          [theme.breakpoints.up("md")]: {},
-        })}
-      >
+      <Grid container>
         {results ? (
           results.map((item) => (
-            <Grid container item md={2} xs={3.9} key={item.id}>
+            <Grid
+              container
+              item
+              md={2}
+              xs={3.9}
+              key={item.id}
+              sx={(theme) => ({
+                [theme.breakpoints.down("md")]: {},
+                [theme.breakpoints.up("md")]: { justifyContent: "center" },
+              })}
+            >
               <CardItem
                 item={item}
                 handleClick={handleClick}
