@@ -11,6 +11,7 @@ function DescriptionTabs({ anime }) {
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
+
   return (
     <Box>
       <Tabs
@@ -20,10 +21,45 @@ function DescriptionTabs({ anime }) {
         scrollButtons={false}
         aria-label="scrollable prevent tabs example"
         indicatorColor="primary"
+        sx={(theme) => ({
+          [theme.breakpoints.up("md")]: {
+            marginX: 8,
+          },
+        })}
       >
-        <Tab label="Characters" value="characters" />
-        <Tab label="Casting" value="casting" />
-        <Tab label="Episodes" value="episodes" />
+        <Tab
+          label="Characters"
+          value="characters"
+          sx={(theme) => ({
+            [theme.breakpoints.up("md")]: {
+              width: 130,
+              textAlign: "left",
+              pl: 0,
+            },
+          })}
+        />
+        <Tab
+          label="Casting"
+          value="casting"
+          sx={(theme) => ({
+            [theme.breakpoints.up("md")]: {
+              width: 130,
+              textAlign: "left",
+              pl: 0,
+            },
+          })}
+        />
+        <Tab
+          label="Episodes"
+          value="episodes"
+          sx={(theme) => ({
+            [theme.breakpoints.up("md")]: {
+              width: 130,
+              textAlign: "left",
+              pl: 0,
+            },
+          })}
+        />
       </Tabs>
       {selectedTab === "characters" && <Characters anime={anime} />}
       {selectedTab === "episodes" && <Episodes anime={anime} />}

@@ -19,9 +19,10 @@ function Cover({ anime }) {
           border: "0.1px solid white",
         },
         [theme.breakpoints.up("md")]: {
-          height: "350px",
-          width: "100%",
-          objectFit: "cover",
+          width: "90%",
+          objectFit: "fit",
+          height: "380px",
+          borderRadius: 4,
           margin: "auto",
         },
       })}
