@@ -78,7 +78,18 @@ export function Description({ anime }) {
   const notify = () =>
     toast.success("Add to list !", {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  const notifys = () =>
+    toast.info("already on the list !", {
+      position: "top-center",
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -106,6 +117,8 @@ export function Description({ anime }) {
         setWatching(updatedWatching);
         setAnchorEl(null);
         notify();
+      } else if (watching.some((element) => element.id === item.id)) {
+        notifys();
       }
     }
   };
@@ -129,6 +142,8 @@ export function Description({ anime }) {
         setPlanning(updatedPlanning);
         setAnchorEl(null);
         notify();
+      } else if (watching.some((element) => element.id === item.id)) {
+        notifys();
       }
     }
   };
@@ -152,6 +167,8 @@ export function Description({ anime }) {
         setCompleted(updatedCompleted);
         setAnchorEl(null);
         notify();
+      } else if (watching.some((element) => element.id === item.id)) {
+        notifys();
       }
     }
   };
