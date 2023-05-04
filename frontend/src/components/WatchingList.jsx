@@ -43,7 +43,7 @@ function WatchingList({ setId }) {
           [theme.breakpoints.up("md")]: {
             display: "flex",
             flexWrap: "wrap",
-            marginX: "15%",
+            marginLeft: "5%",
           },
         })}
       >
@@ -58,8 +58,9 @@ function WatchingList({ setId }) {
                   width: "45%",
                 },
                 [theme.breakpoints.up("md")]: {
-                  width: "25%",
+                  width: "16.66%",
                   justifyContent: "center",
+                  margin: "auto",
                 },
               })}
             >
