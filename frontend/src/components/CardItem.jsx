@@ -33,7 +33,7 @@ function CardItem({ item, handleClick }) {
         sx={{ height: 55, mt: "5px" }}
       >
         {(() => {
-          if (title.length > 20) {
+          if (title && title.length > 20) {
             return `${title.slice(0, 20)}...`;
           }
           return title;

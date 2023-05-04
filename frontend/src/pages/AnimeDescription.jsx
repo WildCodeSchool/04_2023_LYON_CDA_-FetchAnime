@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { CircularProgress } from "@mui/material";
@@ -10,6 +11,7 @@ import AnimeList from "../components/AnimeList";
 import Description from "../components/Description";
 import DescriptionTabs from "../components/DescriptionTabs";
 import Recommendations from "../components/Recommendations";
+import Error500 from "./Error500";
 
 function AnimeDescription({
   search,
@@ -23,6 +25,7 @@ function AnimeDescription({
   id,
   setId,
   setSearch,
+  error500,
 }) {
   return (
     <Box>
@@ -51,12 +54,14 @@ function AnimeDescription({
             />
           )}
         </>
-      ) : (
+      ) : error500 !== true ? (
         <div>
           <CircularProgress
             sx={{ position: "absolute", top: "50%", left: "50%" }}
           />
         </div>
+      ) : (
+        <Error500 />
       )}
     </Box>
   );

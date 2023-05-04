@@ -42,11 +42,17 @@ function App() {
   const [page, setPage] = useState(1);
   const [genres, setGenres] = React.useState("");
   const [date, setDate] = useState("");
+  const [error500, setError500] = useState(false);
 
   useEffect(() => {
     axios
       .get(`https://api.consumet.org/meta/anilist/info/${id}`)
-      .then((response) => setAnime(response.data));
+      .then((response) => setAnime(response.data))
+      .catch((error) => {
+        if (error.response && error.response.status === 500) {
+          setError500(!error500);
+        }
+      });
   }, [id]);
 
   return (
@@ -100,6 +106,7 @@ function App() {
                 anime={anime}
                 id={id}
                 setId={setId}
+                error500={error500}
               />
             }
           />
