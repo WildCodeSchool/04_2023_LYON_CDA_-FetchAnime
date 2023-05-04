@@ -2,7 +2,7 @@ import { CardMedia, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
-function NothingAviable({ position }) {
+function NothingAvailable({ position }) {
   return (
     <Box
       sx={(theme) => ({
@@ -59,4 +59,4 @@ function NothingAviable({ position }) {
   );
 }
 
-export default NothingAviable;
+export default NothingAvailable;

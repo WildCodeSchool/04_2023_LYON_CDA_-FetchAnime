@@ -61,7 +61,7 @@ function CardItem({ item, handleClick, disposition }) {
         })}
       >
         {(() => {
-          if (title.length > 20) {
+          if (title && title.length > 20) {
             return `${title.slice(0, 20)}...`;
           }
           return title;

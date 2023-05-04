@@ -46,11 +46,17 @@ function App() {
   const [trending, setTrending] = useState([]);
   const [popularList, setPopularList] = useState([]);
   const [popularPage, setPopularPage] = useState(1);
+  const [error500, setError500] = useState(false);
 
   useEffect(() => {
     axios
       .get(`https://api.consumet.org/meta/anilist/info/${id}`)
-      .then((response) => setAnime(response.data));
+      .then((response) => setAnime(response.data))
+      .catch((error) => {
+        if (error.response && error.response.status === 500) {
+          setError500(!error500);
+        }
+      });
   }, [id]);
 
   useEffect(() => {
@@ -125,6 +131,7 @@ function App() {
                 anime={anime}
                 id={id}
                 setId={setId}
+                error500={error500}
               />
             }
           />

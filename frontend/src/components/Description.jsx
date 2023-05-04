@@ -76,8 +76,8 @@ export function Description({ anime }) {
     setAnchorEl(null);
   };
   const notify = () =>
-    toast.success("Add to list !", {
-      position: "top-right",
+    toast.success("Added to your list !", {
+      position: "top-center",
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -87,8 +87,8 @@ export function Description({ anime }) {
       theme: "colored",
     });
   const notifys = () =>
-    toast.info("already on the list !", {
-      position: "top-right",
+    toast.info("Already on your list !", {
+      position: "top-center",
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -142,7 +142,7 @@ export function Description({ anime }) {
         setPlanning(updatedPlanning);
         setAnchorEl(null);
         notify();
-      } else if (watching.some((element) => element.id === item.id)) {
+      } else if (planning.some((element) => element.id === item.id)) {
         notifys();
       }
     }
@@ -167,7 +167,7 @@ export function Description({ anime }) {
         setCompleted(updatedCompleted);
         setAnchorEl(null);
         notify();
-      } else if (watching.some((element) => element.id === item.id)) {
+      } else if (completed.some((element) => element.id === item.id)) {
         notifys();
       }
     }
@@ -294,7 +294,7 @@ export function Description({ anime }) {
                 dangerouslySetInnerHTML={{
                   __html: (() => {
                     const { description } = anime;
-                    if (description.length > 335) {
+                    if (description && description.length > 335) {
                       return ` ${description.slice(0, 335)}...`;
                     }
                     return description;
