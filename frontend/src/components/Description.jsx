@@ -77,7 +77,7 @@ export function Description({ anime }) {
   };
   const notify = () =>
     toast.success("Add to list !", {
-      position: "top-center",
+      position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -88,7 +88,7 @@ export function Description({ anime }) {
     });
   const notifys = () =>
     toast.info("already on the list !", {
-      position: "top-center",
+      position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
