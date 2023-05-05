@@ -40,7 +40,7 @@ function App() {
   const [animeId, setAnimeId] = useState();
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const [tendingPage, setTrendingPage] = useState(1);
+  const [trendingPage, setTrendingPage] = useState(1);
   const [genres, setGenres] = React.useState("");
   const [date, setDate] = useState("");
   const [trending, setTrending] = useState([]);
@@ -62,17 +62,17 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        `https://api.consumet.org/meta/anilist/popular?page=${page}&perPage=12`
+        `https://api.consumet.org/meta/anilist/popular?page=${popularPage}&perPage=12`
       )
       .then((response) => setPopularList(response.data));
-  }, [page]);
+  }, [popularPage]);
   useEffect(() => {
     axios
       .get(
-        `https://api.consumet.org/meta/anilist/trending?page=${tendingPage}&perPage=12`
+        `https://api.consumet.org/meta/anilist/trending?page=${trendingPage}&perPage=12`
       )
       .then((response) => setTrending(response.data));
-  }, [tendingPage]);
+  }, [trendingPage]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -107,7 +107,7 @@ function App() {
                 setSearch={setSearch}
                 trending={trending}
                 setTrendingPage={setTrendingPage}
-                tendingPage={tendingPage}
+                tendingPage={trendingPage}
                 popularList={popularList}
                 setPopularPage={setPopularPage}
                 popularPage={popularPage}
@@ -198,7 +198,7 @@ function App() {
               <Trending
                 trending={trending}
                 setTrendingPage={setTrendingPage}
-                tendingPage={tendingPage}
+                trendingPage={trendingPage}
                 setId={setId}
               />
             }
