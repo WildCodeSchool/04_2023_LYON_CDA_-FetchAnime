@@ -3,10 +3,11 @@ import { CircularProgress, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
+import ClearIcon from "@mui/icons-material/Clear";
 import CardItem from "./CardItem";
 
 function CompletedList({ setId }) {
-  const [myCompletedList] = useState(
+  const [myCompletedList, setMyCompletedList] = useState(
     JSON.parse(localStorage.getItem("completedList"))
   );
 
@@ -15,6 +16,17 @@ function CompletedList({ setId }) {
     localStorage.setItem("animeId", itemId);
     setId(localStorage.getItem("animeId"));
     navigate("/description");
+  };
+
+  const [animeList, setAnimeList] = useState(
+    JSON.parse(localStorage.getItem("completedList")) || []
+  );
+
+  const handleDelete = (animeId) => {
+    const updatedList = animeList.filter((anime) => anime.id !== animeId);
+    localStorage.setItem("completedList", JSON.stringify([...updatedList]));
+    setAnimeList(JSON.parse(localStorage.getItem("completedList")));
+    setMyCompletedList(JSON.parse(localStorage.getItem("completedList")));
   };
   return (
     <>
@@ -66,6 +78,7 @@ function CompletedList({ setId }) {
               })}
             >
               <CardItem item={item} handleClick={handleClick} />
+              <ClearIcon onClick={() => handleDelete(item.id)} />
             </Box>
           ))
         ) : (

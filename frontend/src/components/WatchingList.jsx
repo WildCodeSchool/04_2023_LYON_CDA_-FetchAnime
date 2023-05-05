@@ -3,18 +3,32 @@ import { CircularProgress, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
+import ClearIcon from "@mui/icons-material/Clear";
 import CardItem from "./CardItem";
 
 function WatchingList({ setId }) {
-  const [myWatchingList] = useState(
+  const [myWatchingList, setMyWatchingList] = useState(
     JSON.parse(localStorage.getItem("watchingList"))
   );
+
   const navigate = useNavigate();
   const handleClick = (itemId) => {
     localStorage.setItem("animeId", itemId);
     setId(localStorage.getItem("animeId"));
     navigate("/description");
   };
+
+  const [animeList, setAnimeList] = useState(
+    JSON.parse(localStorage.getItem("watchingList")) || []
+  );
+
+  const handleDelete = (animeId) => {
+    const updatedList = animeList.filter((anime) => anime.id !== animeId);
+    localStorage.setItem("watchingList", JSON.stringify([...updatedList]));
+    setAnimeList(JSON.parse(localStorage.getItem("watchingList")));
+    setMyWatchingList(JSON.parse(localStorage.getItem("watchingList")));
+  };
+
   return (
     <>
       <Typography
@@ -65,6 +79,8 @@ function WatchingList({ setId }) {
               })}
             >
               <CardItem item={item} handleClick={handleClick} />
+
+              <ClearIcon onClick={() => handleDelete(item.id)} />
             </Box>
           ))
         ) : (

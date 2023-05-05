@@ -84,7 +84,7 @@ export function Description({ anime }) {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "colored",
+      theme: "light",
     });
   const notifys = () =>
     toast.info("Already on your list !", {
@@ -95,7 +95,7 @@ export function Description({ anime }) {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "colored",
+      theme: "light",
     });
 
   const handleWatching = (item) => {
@@ -256,11 +256,12 @@ export function Description({ anime }) {
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
+                limit={1}
                 rtl={false}
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                theme="colored"
+                theme="light"
               />
             </Box>
             <Box
