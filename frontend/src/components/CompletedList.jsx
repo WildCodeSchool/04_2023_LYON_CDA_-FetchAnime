@@ -51,7 +51,9 @@ function CompletedList({ setId }) {
           [theme.breakpoints.down("md")]: {
             display: "flex",
             flexWrap: "wrap",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
+            marginLeft: "1rem",
+            marginRight: "2rem",
           },
           [theme.breakpoints.up("md")]: {
             display: "flex",
@@ -73,7 +75,6 @@ function CompletedList({ setId }) {
                 [theme.breakpoints.up("md")]: {
                   width: "16.66%",
                   justifyContent: "center",
-                  margin: "auto",
                 },
               })}
             >
