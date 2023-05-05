@@ -9,7 +9,7 @@ function HomeSection({
   trending,
   setTrendingPage,
   setId,
-  tendingPage,
+  trendingPage,
   slice,
   navigation,
   title,
@@ -112,7 +112,7 @@ function HomeSection({
             sx={{ position: "absolute", top: "50%", left: "50%" }}
           />
         )}
-        {tendingPage !== null ? (
+        {trendingPage !== null ? (
           <Box
             component="div"
             sx={{
@@ -123,12 +123,12 @@ function HomeSection({
               bottom: "0",
             }}
           >
-            {tendingPage !== 1 ? (
+            {trendingPage !== 1 ? (
               <Button
                 size="md"
                 variant="solid"
                 color="secondary"
-                onClick={() => setTrendingPage(tendingPage - 1)}
+                onClick={() => setTrendingPage(trendingPage - 1)}
               >
                 Previous
               </Button>
@@ -138,7 +138,7 @@ function HomeSection({
                 size="md"
                 variant="solid"
                 color="secondary"
-                onClick={() => setTrendingPage(tendingPage + 1)}
+                onClick={() => setTrendingPage(trendingPage + 1)}
               >
                 Next
               </Button>

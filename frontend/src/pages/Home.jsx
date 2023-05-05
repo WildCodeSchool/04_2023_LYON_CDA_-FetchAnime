@@ -26,7 +26,7 @@ function Home({
             title="Trending"
             trending={trending}
             setTrendingPage={setTrendingPage}
-            tendingPage={null}
+            trendingPage={null}
             setId={setId}
             slice="true"
             navigation="/trending"
@@ -35,7 +35,7 @@ function Home({
             title="Popular"
             trending={popularList}
             setTrendingPage={setPopularPage}
-            tendingPage={null}
+            trendingPage={null}
             setId={setId}
             slice="true"
             navigation="/popular"
