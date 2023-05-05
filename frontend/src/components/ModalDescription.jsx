@@ -31,7 +31,7 @@ export default function ModalDescription({ description, title }) {
 
   return (
     <>
-      {description.length > 335 ? (
+      {description && description.length > 335 ? (
         <Button onClick={handleClickOpen("paper")} sx={{ marginLeft: "80%" }}>
           <OpenInFullIcon fontSize="1rem" color="primary" />
         </Button>

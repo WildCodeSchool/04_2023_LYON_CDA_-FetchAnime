@@ -142,7 +142,7 @@ export function Description({ anime }) {
         setPlanning(updatedPlanning);
         setAnchorEl(null);
         notify();
-      } else if (watching.some((element) => element.id === item.id)) {
+      } else if (planning.some((element) => element.id === item.id)) {
         notifys();
       }
     }
@@ -167,7 +167,7 @@ export function Description({ anime }) {
         setCompleted(updatedCompleted);
         setAnchorEl(null);
         notify();
-      } else if (watching.some((element) => element.id === item.id)) {
+      } else if (completed.some((element) => element.id === item.id)) {
         notifys();
       }
     }
@@ -295,7 +295,7 @@ export function Description({ anime }) {
                 dangerouslySetInnerHTML={{
                   __html: (() => {
                     const { description } = anime;
-                    if (description.length > 335) {
+                    if (description && description.length > 335) {
                       return ` ${description.slice(0, 335)}...`;
                     }
                     return description;

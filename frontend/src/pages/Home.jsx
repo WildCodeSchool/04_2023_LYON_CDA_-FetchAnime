@@ -1,8 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import Trending from "../components/Trending";
 import BurgerMenu from "../components/BurgerMenu";
 import AnimeList from "../components/AnimeList";
+import HomeSection from "../components/HomeSection";
 
 function Home({
   setPage,
@@ -14,17 +13,34 @@ function Home({
   date,
   setDate,
   setId,
+  trending,
+  setTrendingPage,
+  popularList,
+  setPopularPage,
 }) {
-  const navigate = useNavigate();
-  const handleClick = (animeId) => {
-    localStorage.setItem("animeId", animeId);
-    setId(localStorage.getItem("animeId"));
-    navigate("/description");
-  };
   return (
     <>
       {search === "" ? (
-        <Trending handleClick={handleClick} />
+        <>
+          <HomeSection
+            title="Trending"
+            trending={trending}
+            setTrendingPage={setTrendingPage}
+            trendingPage={null}
+            setId={setId}
+            slice="true"
+            navigation="/trending"
+          />
+          <HomeSection
+            title="Popular"
+            trending={popularList}
+            setTrendingPage={setPopularPage}
+            trendingPage={null}
+            setId={setId}
+            slice="true"
+            navigation="/popular"
+          />
+        </>
       ) : (
         <AnimeList
           setPage={setPage}
