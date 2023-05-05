@@ -63,7 +63,10 @@ function AnimeList({
   return (
     <>
       <FormControl sx={{ m: 1, minWidth: 110, height: 30 }} size="small">
-        <InputLabel id="demo-select-small-label" sx={{ fontSize: 14 }}>
+        <InputLabel
+          id="demo-select-small-label"
+          sx={{ fontSize: 14, color: "primary.main" }}
+        >
           Genres
         </InputLabel>
         <Select
@@ -72,7 +75,7 @@ function AnimeList({
           value={genres}
           label="genres"
           onChange={handleChangeFilter}
-          sx={{ height: 30 }}
+          sx={{ height: 30, color: "primary.main" }}
         >
           <MenuItem value="">
             <em>None</em>
@@ -99,7 +102,10 @@ function AnimeList({
       </FormControl>
 
       <FormControl sx={{ m: 1, minWidth: 110, height: 30 }} size="small">
-        <InputLabel id="demo-select-small-label" sx={{ fontSize: 14 }}>
+        <InputLabel
+          id="demo-select-small-label"
+          sx={{ fontSize: 14, color: "primary.main" }}
+        >
           Year
         </InputLabel>
         <Select
@@ -113,7 +119,16 @@ function AnimeList({
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-
+          <MenuItem value="2010">2010</MenuItem>
+          <MenuItem value="2011">2011</MenuItem>
+          <MenuItem value="2012">2012</MenuItem>
+          <MenuItem value="2013">2013</MenuItem>
+          <MenuItem value="2014">2014</MenuItem>
+          <MenuItem value="2015">2015</MenuItem>
+          <MenuItem value="2016">2016</MenuItem>
+          <MenuItem value="2017">2017</MenuItem>
+          <MenuItem value="2018">2018</MenuItem>
+          <MenuItem value="2019">2019</MenuItem>
           <MenuItem value="2020">2020</MenuItem>
           <MenuItem value="2021">2021</MenuItem>
           <MenuItem value="2022">2022</MenuItem>
