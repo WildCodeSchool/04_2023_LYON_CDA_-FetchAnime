@@ -78,9 +78,22 @@ function WatchingList({ setId }) {
                 },
               })}
             >
+              <ClearIcon
+                onClick={() => handleDelete(item.id)}
+                sx={(theme) => ({
+                  [theme.breakpoints.down("md")]: {
+                    mb: 0.2,
+                    mt: 0.9,
+                    ml: 19,
+                  },
+                  [theme.breakpoints.up("md")]: {
+                    mb: 0.2,
+                    mt: 0.9,
+                    ml: 23,
+                  },
+                })}
+              />
               <CardItem item={item} handleClick={handleClick} />
-
-              <ClearIcon onClick={() => handleDelete(item.id)} />
             </Box>
           ))
         ) : (

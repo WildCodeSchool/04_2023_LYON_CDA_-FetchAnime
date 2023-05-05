@@ -73,7 +73,7 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
                         [theme.breakpoints.down("md")]: {
                           width: "175px",
                           height: "120px",
-                          borderRadius: 5,
+                          borderRadius: 2,
                           objectFit: "fill",
                         },
                         [theme.breakpoints.up("md")]: {
@@ -134,7 +134,7 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
                         [theme.breakpoints.down("md")]: {
                           width: "175px",
                           height: "120px",
-                          borderRadius: 5,
+                          borderRadius: 2,
                           objectFit: "fill",
                         },
                         [theme.breakpoints.up("md")]: {
