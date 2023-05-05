@@ -3,10 +3,11 @@ import { CircularProgress, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
+import ClearIcon from "@mui/icons-material/Clear";
 import CardItem from "./CardItem";
 
 function PlanningList({ setId }) {
-  const [myPlanningList] = useState(
+  const [myPlanningList, setMyPlanningList] = useState(
     JSON.parse(localStorage.getItem("planningList"))
   );
 
@@ -15,6 +16,17 @@ function PlanningList({ setId }) {
     localStorage.setItem("animeId", itemId);
     setId(localStorage.getItem("animeId"));
     navigate("/description");
+  };
+
+  const [animeList, setAnimeList] = useState(
+    JSON.parse(localStorage.getItem("planningList")) || []
+  );
+
+  const handleDelete = (animeId) => {
+    const updatedList = animeList.filter((anime) => anime.id !== animeId);
+    localStorage.setItem("planningList", JSON.stringify([...updatedList]));
+    setAnimeList(JSON.parse(localStorage.getItem("planningList")));
+    setMyPlanningList(JSON.parse(localStorage.getItem("planningList")));
   };
 
   return (
@@ -67,6 +79,7 @@ function PlanningList({ setId }) {
               })}
             >
               <CardItem item={item} handleClick={handleClick} />
+              <ClearIcon onClick={() => handleDelete(item.id)} />
             </Box>
           ))
         ) : (

@@ -3,13 +3,14 @@ import { CircularProgress, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
-import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+import ClearIcon from "@mui/icons-material/Clear";
 import CardItem from "./CardItem";
 
 function WatchingList({ setId }) {
   const [myWatchingList, setMyWatchingList] = useState(
     JSON.parse(localStorage.getItem("watchingList"))
   );
+
   const navigate = useNavigate();
   const handleClick = (itemId) => {
     localStorage.setItem("animeId", itemId);
@@ -79,7 +80,7 @@ function WatchingList({ setId }) {
             >
               <CardItem item={item} handleClick={handleClick} />
 
-              <DeleteForeverRoundedIcon onClick={() => handleDelete(item.id)} />
+              <ClearIcon onClick={() => handleDelete(item.id)} />
             </Box>
           ))
         ) : (
