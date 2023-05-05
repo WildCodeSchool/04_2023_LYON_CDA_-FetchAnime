@@ -73,7 +73,6 @@ function CompletedList({ setId }) {
                 [theme.breakpoints.up("md")]: {
                   width: "16.66%",
                   justifyContent: "center",
-                  margin: "auto",
                 },
               })}
             >
