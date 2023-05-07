@@ -4,7 +4,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
 import ClearIcon from "@mui/icons-material/Clear";
+import { ToastContainer, toast } from "react-toastify";
 import CardItem from "./CardItem";
+import "react-toastify/dist/ReactToastify.css";
 
 function WatchingList({ setId }) {
   const [myWatchingList, setMyWatchingList] = useState(
@@ -21,12 +23,23 @@ function WatchingList({ setId }) {
   const [animeList, setAnimeList] = useState(
     JSON.parse(localStorage.getItem("watchingList")) || []
   );
-
+  const notify = () =>
+    toast.success("Removed your list !", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   const handleDelete = (animeId) => {
     const updatedList = animeList.filter((anime) => anime.id !== animeId);
     localStorage.setItem("watchingList", JSON.stringify([...updatedList]));
     setAnimeList(JSON.parse(localStorage.getItem("watchingList")));
     setMyWatchingList(JSON.parse(localStorage.getItem("watchingList")));
+    notify();
   };
 
   return (
@@ -93,6 +106,19 @@ function WatchingList({ setId }) {
                     ml: 23,
                   },
                 })}
+              />
+              <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                limit={1}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
               />
               <CardItem item={item} handleClick={handleClick} />
             </Box>
