@@ -39,6 +39,9 @@ function Header({ search, setSearch, setPage }) {
     <NavLink to="/" style={{ color: "#c90d56" }}>
       Home
     </NavLink>,
+    <NavLink to="/news" style={{ color: "#c90d56" }}>
+      News
+    </NavLink>,
     <NavLink to="/mylists" style={{ color: "#c90d56" }}>
       My Lists
     </NavLink>,

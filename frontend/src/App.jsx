@@ -16,6 +16,7 @@ import SearchBar from "./components/SearchBar";
 import MyLists from "./pages/MyLists";
 import Trending from "./components/Trending";
 import Popular from "./components/Popular";
+import News from "./pages/News";
 
 const theme = createTheme({
   typography: {
@@ -252,6 +253,22 @@ function App() {
                 page={page}
                 genres={genres}
                 setGenres={setGenres}
+              />
+            }
+          />
+          <Route
+            path="/news"
+            element={
+              <News
+                setId={setId}
+                setSearch={setSearch}
+                setPage={setPage}
+                date={date}
+                setDate={setDate}
+                page={page}
+                genres={genres}
+                setGenres={setGenres}
+                search={search}
               />
             }
           />
