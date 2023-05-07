@@ -185,7 +185,18 @@ export function Description({ anime }) {
             justifyContent="space-between"
             marginTop="4%"
           >
-            <Box margin="2%" mt="4%" mb="10%">
+            <Box
+              sx={(theme) => ({
+                [theme.breakpoints.down("md")]: {
+                  margin: "2%",
+                  mt: "4%",
+                  mb: "10%",
+                },
+                [theme.breakpoints.up("md")]: {
+                  margin: "auto",
+                },
+              })}
+            >
               <CardMedia
                 style={{ boxShadow: "0 0 29px rgba(49,54,68,.25)" }}
                 component="img"
@@ -290,6 +301,7 @@ export function Description({ anime }) {
                     fontSize: "1.7rem",
                     width: "90%",
                     margin: 3.8,
+                    ml: 11,
                   },
                 })}
                 dangerouslySetInnerHTML={{

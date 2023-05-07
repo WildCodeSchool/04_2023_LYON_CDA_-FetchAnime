@@ -5,8 +5,19 @@ import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
 import ClearIcon from "@mui/icons-material/Clear";
 import CardItem from "./CardItem";
+import AnimeList from "./AnimeList";
 
-function CompletedList({ setId }) {
+function CompletedList({
+  setId,
+  setPage,
+  page,
+  search,
+  setSearch,
+  genres,
+  setGenres,
+  date,
+  setDate,
+}) {
   const [myCompletedList, setMyCompletedList] = useState(
     JSON.parse(localStorage.getItem("completedList"))
   );
@@ -29,80 +40,96 @@ function CompletedList({ setId }) {
     setMyCompletedList(JSON.parse(localStorage.getItem("completedList")));
   };
   return (
-    <>
-      <Typography
-        variant="h2"
-        sx={(theme) => ({
-          [theme.breakpoints.down("md")]: {
-            margin: 2,
-            textAlign: "center",
-          },
-          [theme.breakpoints.up("md")]: {
-            margin: 10,
-            textAlign: "center",
-          },
-        })}
-      >
-        Completed
-      </Typography>
-      <Box
-        container
-        sx={(theme) => ({
-          [theme.breakpoints.down("md")]: {
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            marginLeft: "1rem",
-            marginRight: "2rem",
-          },
-          [theme.breakpoints.up("md")]: {
-            display: "flex",
-            flexWrap: "wrap",
-            marginLeft: "5%",
-          },
-        })}
-      >
-        {myCompletedList ? (
-          myCompletedList.map((item, index) => (
-            <Box
-              key={index}
-              fluid
-              item
-              sx={(theme) => ({
-                [theme.breakpoints.down("md")]: {
-                  width: "45%",
-                },
-                [theme.breakpoints.up("md")]: {
-                  width: "16.66%",
-                  justifyContent: "center",
-                },
-              })}
-            >
-              <ClearIcon
-                onClick={() => handleDelete(item.id)}
-                sx={(theme) => ({
-                  [theme.breakpoints.down("md")]: {
-                    mb: 0.2,
-                    mt: 0.9,
-                    ml: 19,
-                  },
-                  [theme.breakpoints.up("md")]: {
-                    mb: 0.2,
-                    mt: 0.9,
-                    ml: 23,
-                  },
-                })}
+    <Box>
+      {search === "" ? (
+        <>
+          <Typography
+            variant="h2"
+            sx={(theme) => ({
+              [theme.breakpoints.down("md")]: {
+                margin: 2,
+                textAlign: "center",
+              },
+              [theme.breakpoints.up("md")]: {
+                margin: 10,
+                textAlign: "center",
+              },
+            })}
+          >
+            Completed
+          </Typography>
+          <Box
+            container
+            sx={(theme) => ({
+              [theme.breakpoints.down("md")]: {
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+                marginLeft: "1rem",
+                marginRight: "2rem",
+              },
+              [theme.breakpoints.up("md")]: {
+                display: "flex",
+                flexWrap: "wrap",
+                marginLeft: "5%",
+              },
+            })}
+          >
+            {myCompletedList ? (
+              myCompletedList.map((item, index) => (
+                <Box
+                  key={index}
+                  fluid
+                  item
+                  sx={(theme) => ({
+                    [theme.breakpoints.down("md")]: {
+                      width: "45%",
+                    },
+                    [theme.breakpoints.up("md")]: {
+                      width: "16.66%",
+                      justifyContent: "center",
+                    },
+                  })}
+                >
+                  <ClearIcon
+                    onClick={() => handleDelete(item.id)}
+                    sx={(theme) => ({
+                      [theme.breakpoints.down("md")]: {
+                        mb: 0.2,
+                        mt: 0.9,
+                        ml: 19,
+                      },
+                      [theme.breakpoints.up("md")]: {
+                        mb: 0.2,
+                        mt: 0.9,
+                        ml: 23,
+                      },
+                    })}
+                  />
+                  <CardItem item={item} handleClick={handleClick} />
+                </Box>
+              ))
+            ) : (
+              <CircularProgress
+                sx={{ position: "absolute", top: "50%", left: "50%" }}
               />
-              <CardItem item={item} handleClick={handleClick} />
-            </Box>
-          ))
-        ) : (
-          <CircularProgress
-            sx={{ position: "absolute", top: "50%", left: "50%" }}
-          />
-        )}
-      </Box>
-    </>
+            )}
+          </Box>
+        </>
+      ) : (
+        <AnimeList
+          setPage={setPage}
+          page={page}
+          search={search}
+          setSearch={setSearch}
+          genres={genres}
+          setGenres={setGenres}
+          date={date}
+          setDate={setDate}
+          setId={setId}
+        />
+      )}
+    </Box>
   );
 }
 

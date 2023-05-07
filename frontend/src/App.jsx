@@ -171,15 +171,51 @@ function App() {
           />
           <Route
             path="/watchinglist"
-            element={<WatchingList setId={setId} />}
+            element={
+              <WatchingList
+                setId={setId}
+                search={search}
+                setSearch={setSearch}
+                setPage={setPage}
+                date={date}
+                setDate={setDate}
+                page={page}
+                genres={genres}
+                setGenres={setGenres}
+              />
+            }
           />
           <Route
             path="/planninglist"
-            element={<PlanningList setId={setId} />}
+            element={
+              <PlanningList
+                setId={setId}
+                search={search}
+                setSearch={setSearch}
+                setPage={setPage}
+                date={date}
+                setDate={setDate}
+                page={page}
+                genres={genres}
+                setGenres={setGenres}
+              />
+            }
           />
           <Route
             path="/completedlist"
-            element={<CompletedList setId={setId} />}
+            element={
+              <CompletedList
+                setId={setId}
+                search={search}
+                setSearch={setSearch}
+                setPage={setPage}
+                date={date}
+                setDate={setDate}
+                page={page}
+                genres={genres}
+                setGenres={setGenres}
+              />
+            }
           />
           <Route
             path="/popular"
@@ -189,6 +225,14 @@ function App() {
                 setPopularPage={setPopularPage}
                 popularPage={popularPage}
                 setId={setId}
+                search={search}
+                setSearch={setSearch}
+                setPage={setPage}
+                date={date}
+                setDate={setDate}
+                page={page}
+                genres={genres}
+                setGenres={setGenres}
               />
             }
           />
@@ -200,6 +244,14 @@ function App() {
                 setTrendingPage={setTrendingPage}
                 trendingPage={trendingPage}
                 setId={setId}
+                search={search}
+                setSearch={setSearch}
+                setPage={setPage}
+                date={date}
+                setDate={setDate}
+                page={page}
+                genres={genres}
+                setGenres={setGenres}
               />
             }
           />
