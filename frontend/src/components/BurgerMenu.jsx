@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import FeedIcon from "@mui/icons-material/Feed";
 
 const actions = [
   {
@@ -18,6 +19,14 @@ const actions = [
       </NavLink>
     ),
     name: "Home",
+  },
+  {
+    icon: (
+      <NavLink to="/news">
+        <FeedIcon />
+      </NavLink>
+    ),
+    name: "News",
   },
   {
     icon: (
