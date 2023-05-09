@@ -38,7 +38,7 @@ function CompletedList({
     JSON.parse(localStorage.getItem("completedList")) || []
   );
   const notify = () =>
-    toast.success("Removed your list !", {
+    toast.success("Removed from your list !", {
       position: "top-center",
       autoClose: 2000,
       hideProgressBar: false,
@@ -191,10 +191,10 @@ function CompletedList({
                           className="confirm"
                           onClick={() => handleDelete(item.id)}
                         >
-                          CONFIRM
+                          Confirm
                         </Button>
                         <Button className="confirm" onClick={handleCancel}>
-                          CANCEL
+                          Cancel
                         </Button>
                       </Box>
                     </Box>

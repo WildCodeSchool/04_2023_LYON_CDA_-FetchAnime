@@ -98,7 +98,7 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
                           width: "175px",
                           color: "white",
                           backgroundColor: "rgba(0,0,0,0.6)",
-                          fontSize: "1.8rem",
+                          fontSize: "1.6rem",
                           borderRadius: 2,
                         },
                         [theme.breakpoints.up("md")]: {
@@ -111,12 +111,12 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
                           marginLeft: "79px",
                           color: "white",
                           backgroundColor: "rgba(0,0,0,0.6)",
-                          fontSize: "1.8rem",
+                          fontSize: "3rem",
                           borderRadius: 2,
                         },
                       })}
                     >
-                      Currently
+                      Watching
                     </Typography>
                   </Box>
                 ) : (
@@ -193,12 +193,12 @@ function Episodes({ anime, setEpId, epId, cancelEpTimeout }) {
                               marginLeft: "79px",
                               color: "white",
                               backgroundColor: "rgba(0,0,0,0.6)",
-                              fontSize: "1.8rem",
+                              fontSize: "3rem",
                               borderRadius: 2,
                             },
                           })}
                         >
-                          viewed
+                          Watched
                         </Typography>
                         <Typography
                           variant="span"

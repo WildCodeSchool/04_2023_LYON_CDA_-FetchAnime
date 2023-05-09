@@ -36,7 +36,7 @@ function WatchingList({
     JSON.parse(localStorage.getItem("watchingList")) || []
   );
   const notify = () =>
-    toast.success("Removed your list !", {
+    toast.success("Successfully removed your list !", {
       position: "top-center",
       autoClose: 2000,
       hideProgressBar: false,
@@ -198,7 +198,7 @@ function WatchingList({
                           }}
                           onClick={() => handleDelete(item.id)}
                         >
-                          CONFIRM
+                          Confirm
                         </Button>
                         <Button
                           sx={{
@@ -210,7 +210,7 @@ function WatchingList({
                           color="primary"
                           onClick={handleCancel}
                         >
-                          cancel
+                          Cancel
                         </Button>
                       </Box>
                     </Box>
