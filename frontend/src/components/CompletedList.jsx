@@ -125,7 +125,7 @@ function CompletedList({
                     hideProgressBar={false}
                     newestOnTop={false}
                     closeOnClick
-                    limit={1}
+                    limit={2}
                     rtl={false}
                     pauseOnFocusLoss
                     draggable
