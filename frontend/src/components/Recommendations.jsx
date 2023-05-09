@@ -19,7 +19,7 @@ function Recommendations({ anime, setId }) {
       {anime.recommendations !== null && (
         <>
           <Typography variant="h5" mb={2} sx={{ ml: 1.5 }}>
-            Recommandations
+            Recommendations
           </Typography>
           <Box className="slider-wrapper">
             {anime.recommendations

@@ -76,7 +76,7 @@ export function Description({ anime }) {
     setAnchorEl(null);
   };
   const notify = () =>
-    toast.success("Added to your list !", {
+    toast.success("Successfully added to your list !", {
       position: "top-center",
       autoClose: 2000,
       hideProgressBar: false,

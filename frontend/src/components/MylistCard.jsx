@@ -29,7 +29,7 @@ function MylistCard({ title, anime, seeAll }) {
               color: "black",
             }}
           >
-            See All
+            See all
           </Button>
         </NavLink>
       </Box>

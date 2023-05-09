@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import CardItem from "./CardItem";
-import NothingAviable from "./NothingAvailable";
+import NothingAvailable from "./NothingAvailable";
 
 function AnimeList({
   search,
@@ -154,7 +154,7 @@ function AnimeList({
             </Grid>
           ))
         ) : (
-          <NothingAviable />
+          <NothingAvailable />
         )}
         {filteredList.length === 15 ? (
           <Box

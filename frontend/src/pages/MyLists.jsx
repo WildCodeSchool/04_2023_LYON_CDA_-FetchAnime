@@ -40,7 +40,7 @@ function MyLists({
           })}
         >
           <Typography variant="h2" textAlign="center">
-            My lists
+            My Lists
           </Typography>
           {myWatchingList ? (
             <MylistCard
