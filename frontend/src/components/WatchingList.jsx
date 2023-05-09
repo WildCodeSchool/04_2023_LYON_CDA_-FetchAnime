@@ -6,9 +6,20 @@ import { Box } from "@mui/system";
 import ClearIcon from "@mui/icons-material/Clear";
 import { ToastContainer, toast } from "react-toastify";
 import CardItem from "./CardItem";
+import AnimeList from "./AnimeList";
 import "react-toastify/dist/ReactToastify.css";
 
-function WatchingList({ setId }) {
+function WatchingList({
+  setId,
+  setPage,
+  page,
+  search,
+  setSearch,
+  genres,
+  setGenres,
+  date,
+  setDate,
+}) {
   const [myWatchingList, setMyWatchingList] = useState(
     JSON.parse(localStorage.getItem("watchingList"))
   );
@@ -43,91 +54,107 @@ function WatchingList({ setId }) {
   };
 
   return (
-    <>
-      <Typography
-        variant="h2"
-        sx={(theme) => ({
-          [theme.breakpoints.down("md")]: {
-            margin: 2,
-            textAlign: "center",
-          },
-          [theme.breakpoints.up("md")]: {
-            margin: 10,
-            textAlign: "center",
-          },
-        })}
-      >
-        Watching
-      </Typography>
-      <Box
-        container
-        sx={(theme) => ({
-          [theme.breakpoints.down("md")]: {
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            marginLeft: "1rem",
-            marginRight: "2rem",
-          },
-          [theme.breakpoints.up("md")]: {
-            display: "flex",
-            flexWrap: "wrap",
-            marginLeft: "5%",
-          },
-        })}
-      >
-        {myWatchingList ? (
-          myWatchingList.map((item, index) => (
-            <Box
-              key={index}
-              fluid
-              item
-              sx={(theme) => ({
-                [theme.breakpoints.down("md")]: {
-                  width: "45%",
-                },
-                [theme.breakpoints.up("md")]: {
-                  width: "16.66%",
-                  justifyContent: "center",
-                },
-              })}
-            >
-              <ClearIcon
-                onClick={() => handleDelete(item.id)}
-                sx={(theme) => ({
-                  [theme.breakpoints.down("md")]: {
-                    mb: 0.2,
-                    mt: 0.9,
-                    ml: 19,
-                  },
-                  [theme.breakpoints.up("md")]: {
-                    mb: 0.2,
-                    mt: 0.9,
-                    ml: 23,
-                  },
-                })}
-              />
-              <ToastContainer
-                position="top-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                limit={1}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-              />
-              <CardItem item={item} handleClick={handleClick} />
-            </Box>
-          ))
-        ) : (
-          <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
-        )}
-      </Box>
-    </>
+    <Box>
+      {search === "" ? (
+        <>
+          <Typography
+            variant="h2"
+            sx={(theme) => ({
+              [theme.breakpoints.down("md")]: {
+                margin: 2,
+                textAlign: "center",
+              },
+              [theme.breakpoints.up("md")]: {
+                margin: 10,
+                textAlign: "center",
+              },
+            })}
+          >
+            Watching
+          </Typography>
+          <Box
+            container
+            sx={(theme) => ({
+              [theme.breakpoints.down("md")]: {
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+                marginLeft: "1rem",
+                marginRight: "2rem",
+              },
+              [theme.breakpoints.up("md")]: {
+                display: "flex",
+                flexWrap: "wrap",
+                marginLeft: "5%",
+              },
+            })}
+          >
+            {myWatchingList ? (
+              myWatchingList.map((item, index) => (
+                <Box
+                  key={index}
+                  fluid
+                  item
+                  sx={(theme) => ({
+                    [theme.breakpoints.down("md")]: {
+                      width: "45%",
+                    },
+                    [theme.breakpoints.up("md")]: {
+                      width: "16.66%",
+                      justifyContent: "center",
+                    },
+                  })}
+                >
+                  <ClearIcon
+                    onClick={() => handleDelete(item.id)}
+                    sx={(theme) => ({
+                      [theme.breakpoints.down("md")]: {
+                        mb: 0.2,
+                        mt: 0.9,
+                        ml: 19,
+                      },
+                      [theme.breakpoints.up("md")]: {
+                        mb: 0.2,
+                        mt: 0.9,
+                        ml: 23,
+                      },
+                    })}
+                  />
+                  <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    limit={1}
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                  />
+                  <CardItem item={item} handleClick={handleClick} />
+                </Box>
+              ))
+            ) : (
+              <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
+            )}
+          </Box>
+        </>
+      ) : (
+        <AnimeList
+          setPage={setPage}
+          page={page}
+          search={search}
+          setSearch={setSearch}
+          genres={genres}
+          setGenres={setGenres}
+          date={date}
+          setDate={setDate}
+          setId={setId}
+        />
+      )}
+    </Box>
   );
 }
 
