@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { CircularProgress, Typography } from "@mui/material";
+import { CircularProgress, Typography, Button } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
@@ -23,6 +23,7 @@ function WatchingList({
   const [myWatchingList, setMyWatchingList] = useState(
     JSON.parse(localStorage.getItem("watchingList"))
   );
+  const [modal, setModal] = useState(false);
 
   const navigate = useNavigate();
   const handleClick = (itemId) => {
@@ -45,18 +46,26 @@ function WatchingList({
       progress: undefined,
       theme: "light",
     });
+  const handleConfirm = () => {
+    setModal(true);
+  };
+  const handleCancel = () => {
+    setModal(false);
+  };
   const handleDelete = (animeId) => {
     const updatedList = animeList.filter((anime) => anime.id !== animeId);
     localStorage.setItem("watchingList", JSON.stringify([...updatedList]));
     setAnimeList(JSON.parse(localStorage.getItem("watchingList")));
     setMyWatchingList(JSON.parse(localStorage.getItem("watchingList")));
     notify();
+
+    setModal(false);
   };
 
   return (
     <Box>
       {search === "" ? (
-        <>
+        <Box>
           <Typography
             variant="h2"
             sx={(theme) => ({
@@ -106,7 +115,7 @@ function WatchingList({
                   })}
                 >
                   <ClearIcon
-                    onClick={() => handleDelete(item.id)}
+                    onClick={handleConfirm}
                     sx={(theme) => ({
                       [theme.breakpoints.down("md")]: {
                         mb: 0.2,
@@ -134,13 +143,68 @@ function WatchingList({
                     theme="light"
                   />
                   <CardItem item={item} handleClick={handleClick} />
+                  {modal ? (
+                    <Box
+                      sx={(theme) => ({
+                        [theme.breakpoints.down("md")]: {
+                          height: "100%",
+                          width: "100%",
+                          position: "fixed",
+                          left: "0%",
+                          bottom: "0%",
+                          display: "flex",
+                          justifyContent: "space-around",
+                          backdropFilter: "blur(10px)",
+                          backgroundColor: "rgba(0,0,30,0.2)",
+                          overflowX: "hidden",
+                        },
+                        [theme.breakpoints.up("md")]: {
+                          height: "10%",
+                          width: "20%",
+                          position: "absolute",
+                          left: "38%",
+                          bottom: "72.5%",
+                          display: "flex",
+                          justifyContent: "space-around",
+                          backdropFilter: "blur(10px)",
+                          backgroundColor: "rgba(0,0,30,0.2)",
+                          borderRadius: 2,
+                        },
+                      })}
+                    >
+                      <Button
+                        variant="text"
+                        color="primary"
+                        sx={{
+                          height: "25px",
+                          alignSelf: "center",
+                          backgroundColor: "#FDFBE2",
+                        }}
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        confirm
+                      </Button>
+                      <Button
+                        sx={{
+                          height: "25px",
+                          alignSelf: "center",
+                          backgroundColor: "#FDFBE2",
+                        }}
+                        variant="text"
+                        color="primary"
+                        onClick={handleCancel}
+                      >
+                        cancel
+                      </Button>
+                    </Box>
+                  ) : null}
                 </Box>
               ))
             ) : (
               <CircularProgress sx={{ position: "absolute", margin: "50%" }} />
             )}
           </Box>
-        </>
+        </Box>
       ) : (
         <AnimeList
           setPage={setPage}

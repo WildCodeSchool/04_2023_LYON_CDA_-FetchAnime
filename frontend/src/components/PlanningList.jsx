@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
 import ClearIcon from "@mui/icons-material/Clear";
 import { ToastContainer, toast } from "react-toastify";
+import { Button } from "semantic-ui-react";
 import CardItem from "./CardItem";
 import AnimeList from "./AnimeList";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,6 +24,7 @@ function PlanningList({
   const [myPlanningList, setMyPlanningList] = useState(
     JSON.parse(localStorage.getItem("planningList"))
   );
+  const [modal, setModal] = useState(false);
 
   const navigate = useNavigate();
   const handleClick = (itemId) => {
@@ -45,18 +47,25 @@ function PlanningList({
       progress: undefined,
       theme: "light",
     });
+  const handleConfirm = () => {
+    setModal(true);
+  };
+  const handleCancel = () => {
+    setModal(false);
+  };
   const handleDelete = (animeId) => {
     const updatedList = animeList.filter((anime) => anime.id !== animeId);
     localStorage.setItem("planningList", JSON.stringify([...updatedList]));
     setAnimeList(JSON.parse(localStorage.getItem("planningList")));
     setMyPlanningList(JSON.parse(localStorage.getItem("planningList")));
     notify();
-  };
 
+    setModal(false);
+  };
   return (
     <Box>
       {search === "" ? (
-        <>
+        <Box>
           <Typography
             variant="h2"
             sx={(theme) => ({
@@ -106,7 +115,7 @@ function PlanningList({
                   })}
                 >
                   <ClearIcon
-                    onClick={() => handleDelete(item.id)}
+                    onClick={handleConfirm}
                     sx={(theme) => ({
                       [theme.breakpoints.down("md")]: {
                         mb: 0.2,
@@ -134,6 +143,50 @@ function PlanningList({
                     theme="light"
                   />
                   <CardItem item={item} handleClick={handleClick} />
+                  {modal ? (
+                    <Box
+                      sx={(theme) => ({
+                        [theme.breakpoints.down("md")]: {
+                          height: "100%",
+                          width: "100%",
+                          position: "fixed",
+                          left: "0%",
+                          bottom: "0%",
+                          display: "flex",
+                          justifyContent: "space-around",
+                          backdropFilter: "blur(10px)",
+                          backgroundColor: "rgba(0,0,30,0.2)",
+                        },
+                        [theme.breakpoints.up("md")]: {
+                          height: "10%",
+                          width: "20%",
+                          position: "absolute",
+                          left: "38%",
+                          bottom: "72.5%",
+                          display: "flex",
+                          justifyContent: "space-around",
+                          backdropFilter: "blur(10px)",
+                          backgroundColor: "rgba(0,0,30,0.2)",
+                          borderRadius: 2,
+                        },
+                      })}
+                    >
+                      <Button
+                        className="confirm"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        CONFIRM
+                      </Button>
+                      <Button
+                        className="confirm"
+                        variant="text"
+                        color="primary"
+                        onClick={handleCancel}
+                      >
+                        CANCEL
+                      </Button>
+                    </Box>
+                  ) : null}
                 </Box>
               ))
             ) : (
@@ -142,7 +195,7 @@ function PlanningList({
               />
             )}
           </Box>
-        </>
+        </Box>
       ) : (
         <AnimeList
           setPage={setPage}
