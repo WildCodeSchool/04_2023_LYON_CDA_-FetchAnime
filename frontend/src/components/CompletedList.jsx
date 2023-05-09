@@ -152,18 +152,19 @@ function CompletedList({
                     <Box
                       sx={(theme) => ({
                         [theme.breakpoints.down("md")]: {
-                          height: "100%",
+                          height: "15%",
                           width: "100%",
+                          right: "0.5%",
                           position: "fixed",
-                          left: "0%",
-                          bottom: "0%",
+                          bottom: "40%",
                           display: "flex",
                           flexDirection: "column",
                           justifyContent: "center",
                           alignItems: "center",
-                          backdropFilter: "blur(10px)",
-                          backgroundColor: "rgba(0,0,30,0.2)",
+                          backgroundColor: "secondary.main",
                           overflowX: "hidden",
+                          borderRadius: 2,
+                          boxShadow: 1,
                         },
                         [theme.breakpoints.up("md")]: {
                           height: "15%",
@@ -175,14 +176,14 @@ function CompletedList({
                           flexDirection: "column",
                           justifyContent: "center",
                           alignItems: "center",
-                          backdropFilter: "blur(10px)",
-                          backgroundColor: "rgba(0,0,30,0.2)",
+                          backgroundColor: "secondary.main",
                           overflowX: "hidden",
                           borderRadius: 2,
+                          boxShadow: 1,
                         },
                       })}
                     >
-                      <Typography variant="p">
+                      <Typography variant="p" fontFamily="Amaranth">
                         Do you really want to remove this from your list?
                       </Typography>
                       <Box margin={2}>
@@ -190,10 +191,10 @@ function CompletedList({
                           className="confirm"
                           onClick={() => handleDelete(item.id)}
                         >
-                          confirm
+                          CONFIRM
                         </Button>
                         <Button className="confirm" onClick={handleCancel}>
-                          cancel
+                          CANCEL
                         </Button>
                       </Box>
                     </Box>
