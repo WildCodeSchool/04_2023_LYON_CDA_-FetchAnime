@@ -24,7 +24,7 @@ function WatchingList({
     JSON.parse(localStorage.getItem("watchingList"))
   );
   const [modal, setModal] = useState(false);
-
+  const [selectedAnimeId, setSelectedAnimeId] = useState(null);
   const navigate = useNavigate();
   const handleClick = (itemId) => {
     localStorage.setItem("animeId", itemId);
@@ -46,19 +46,22 @@ function WatchingList({
       progress: undefined,
       theme: "light",
     });
-  const handleConfirm = () => {
+  const handleConfirm = (animeId) => {
+    setSelectedAnimeId(animeId);
     setModal(true);
   };
+
   const handleCancel = () => {
     setModal(false);
   };
-  const handleDelete = (animeId) => {
-    const updatedList = animeList.filter((anime) => anime.id !== animeId);
-    localStorage.setItem("watchingList", JSON.stringify([...updatedList]));
-    setAnimeList(JSON.parse(localStorage.getItem("watchingList")));
-    setMyWatchingList(JSON.parse(localStorage.getItem("watchingList")));
+  const handleDelete = () => {
+    const updatedList = animeList.filter(
+      (anime) => anime.id !== selectedAnimeId
+    );
+    localStorage.setItem("watchingList", JSON.stringify(updatedList));
+    setAnimeList(updatedList);
+    setMyWatchingList(updatedList);
     notify();
-
     setModal(false);
   };
 
@@ -99,9 +102,9 @@ function WatchingList({
             })}
           >
             {myWatchingList ? (
-              myWatchingList.map((item, index) => (
+              myWatchingList.map((item) => (
                 <Box
-                  key={index}
+                  key={item.id}
                   fluid
                   item
                   sx={(theme) => ({
@@ -115,7 +118,7 @@ function WatchingList({
                   })}
                 >
                   <ClearIcon
-                    onClick={handleConfirm}
+                    onClick={() => handleConfirm(item.id)}
                     sx={(theme) => ({
                       [theme.breakpoints.down("md")]: {
                         mb: 0.2,
@@ -153,49 +156,60 @@ function WatchingList({
                           left: "0%",
                           bottom: "0%",
                           display: "flex",
-                          justifyContent: "space-around",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
                           backdropFilter: "blur(10px)",
                           backgroundColor: "rgba(0,0,30,0.2)",
                           overflowX: "hidden",
                         },
                         [theme.breakpoints.up("md")]: {
-                          height: "10%",
+                          height: "15%",
                           width: "20%",
-                          position: "absolute",
+                          position: "fixed",
                           left: "38%",
-                          bottom: "72.5%",
+                          bottom: "75.5%",
                           display: "flex",
-                          justifyContent: "space-around",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
                           backdropFilter: "blur(10px)",
                           backgroundColor: "rgba(0,0,30,0.2)",
+                          overflowX: "hidden",
                           borderRadius: 2,
                         },
                       })}
                     >
-                      <Button
-                        variant="text"
-                        color="primary"
-                        sx={{
-                          height: "25px",
-                          alignSelf: "center",
-                          backgroundColor: "#FDFBE2",
-                        }}
-                        onClick={() => handleDelete(item.id)}
-                      >
-                        confirm
-                      </Button>
-                      <Button
-                        sx={{
-                          height: "25px",
-                          alignSelf: "center",
-                          backgroundColor: "#FDFBE2",
-                        }}
-                        variant="text"
-                        color="primary"
-                        onClick={handleCancel}
-                      >
-                        cancel
-                      </Button>
+                      <Typography variant="p">
+                        Do you really want to remove this from your list?
+                      </Typography>
+                      <Box margin={2}>
+                        <Button
+                          variant="text"
+                          color="primary"
+                          sx={{
+                            height: "25px",
+                            alignSelf: "center",
+                            backgroundColor: "#FDFBE2",
+                            marginX: 2,
+                          }}
+                          onClick={() => handleDelete(item.id)}
+                        >
+                          confirm
+                        </Button>
+                        <Button
+                          sx={{
+                            height: "25px",
+                            alignSelf: "center",
+                            backgroundColor: "#FDFBE2",
+                          }}
+                          variant="text"
+                          color="primary"
+                          onClick={handleCancel}
+                        >
+                          cancel
+                        </Button>
+                      </Box>
                     </Box>
                   ) : null}
                 </Box>

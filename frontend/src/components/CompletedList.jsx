@@ -22,6 +22,7 @@ function CompletedList({
   setDate,
 }) {
   const [modal, setModal] = useState(false);
+  const [selectedAnimeId, setSelectedAnimeId] = useState(null);
   const [myCompletedList, setMyCompletedList] = useState(
     JSON.parse(localStorage.getItem("completedList"))
   );
@@ -47,19 +48,22 @@ function CompletedList({
       progress: undefined,
       theme: "light",
     });
-  const handleConfirm = () => {
+  const handleConfirm = (animeId) => {
+    setSelectedAnimeId(animeId);
     setModal(true);
   };
+
   const handleCancel = () => {
     setModal(false);
   };
-  const handleDelete = (animeId) => {
-    const updatedList = animeList.filter((anime) => anime.id !== animeId);
-    localStorage.setItem("completedList", JSON.stringify([...updatedList]));
-    setAnimeList(JSON.parse(localStorage.getItem("completedList")));
-    setMyCompletedList(JSON.parse(localStorage.getItem("completedList")));
+  const handleDelete = () => {
+    const updatedList = animeList.filter(
+      (anime) => anime.id !== selectedAnimeId
+    );
+    localStorage.setItem("completedList", JSON.stringify(updatedList));
+    setAnimeList(updatedList);
+    setMyCompletedList(updatedList);
     notify();
-
     setModal(false);
   };
 
@@ -116,7 +120,7 @@ function CompletedList({
                   })}
                 >
                   <ClearIcon
-                    onClick={handleConfirm}
+                    onClick={() => handleConfirm(item.id)}
                     sx={(theme) => ({
                       [theme.breakpoints.down("md")]: {
                         mb: 0.2,
@@ -154,33 +158,44 @@ function CompletedList({
                           left: "0%",
                           bottom: "0%",
                           display: "flex",
-                          justifyContent: "space-around",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
                           backdropFilter: "blur(10px)",
                           backgroundColor: "rgba(0,0,30,0.2)",
+                          overflowX: "hidden",
                         },
                         [theme.breakpoints.up("md")]: {
-                          height: "10%",
+                          height: "15%",
                           width: "20%",
-                          position: "absolute",
+                          position: "fixed",
                           left: "38%",
-                          bottom: "72.5%",
+                          bottom: "75.5%",
                           display: "flex",
-                          justifyContent: "space-around",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
                           backdropFilter: "blur(10px)",
                           backgroundColor: "rgba(0,0,30,0.2)",
+                          overflowX: "hidden",
                           borderRadius: 2,
                         },
                       })}
                     >
-                      <Button
-                        className="confirm"
-                        onClick={() => handleDelete(item.id)}
-                      >
-                        CONFIRM
-                      </Button>
-                      <Button className="confirm" onClick={handleCancel}>
-                        CANCEL
-                      </Button>
+                      <Typography variant="p">
+                        Do you really want to remove this from your list?
+                      </Typography>
+                      <Box margin={2}>
+                        <Button
+                          className="confirm"
+                          onClick={() => handleDelete(item.id)}
+                        >
+                          confirm
+                        </Button>
+                        <Button className="confirm" onClick={handleCancel}>
+                          cancel
+                        </Button>
+                      </Box>
                     </Box>
                   ) : null}
                 </Box>
