@@ -42,3 +42,10 @@ a:visited {
 .link {
   color: #c90d56;
 }
+.confirm {
+  height: 25px;
+  align-self: center;
+  background-color: "#FDFBE2";
+  color: #c90d56;
+  padding: 0 5px;
+}
