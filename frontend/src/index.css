@@ -46,9 +46,11 @@ a:visited {
   height: 25px;
   margin: 0 5px;
   align-self: center;
-  background-color: "#FDFBE2";
+  background-color: "initial";
   color: #c90d56;
   padding: 0 5px;
   border: none;
   border-radius: 5px;
+  font-family: "Amaranth";
+  
 }
