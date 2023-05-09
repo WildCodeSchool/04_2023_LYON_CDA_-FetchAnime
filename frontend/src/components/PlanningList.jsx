@@ -25,6 +25,7 @@ function PlanningList({
     JSON.parse(localStorage.getItem("planningList"))
   );
   const [modal, setModal] = useState(false);
+  const [selectedAnimeId, setSelectedAnimeId] = useState(null);
 
   const navigate = useNavigate();
   const handleClick = (itemId) => {
@@ -47,19 +48,22 @@ function PlanningList({
       progress: undefined,
       theme: "light",
     });
-  const handleConfirm = () => {
+  const handleConfirm = (animeId) => {
+    setSelectedAnimeId(animeId);
     setModal(true);
   };
+
   const handleCancel = () => {
     setModal(false);
   };
-  const handleDelete = (animeId) => {
-    const updatedList = animeList.filter((anime) => anime.id !== animeId);
-    localStorage.setItem("planningList", JSON.stringify([...updatedList]));
-    setAnimeList(JSON.parse(localStorage.getItem("planningList")));
-    setMyPlanningList(JSON.parse(localStorage.getItem("planningList")));
+  const handleDelete = () => {
+    const updatedList = animeList.filter(
+      (anime) => anime.id !== selectedAnimeId
+    );
+    localStorage.setItem("planningList", JSON.stringify(updatedList));
+    setAnimeList(updatedList);
+    setMyPlanningList(updatedList);
     notify();
-
     setModal(false);
   };
   return (
@@ -115,7 +119,7 @@ function PlanningList({
                   })}
                 >
                   <ClearIcon
-                    onClick={handleConfirm}
+                    onClick={() => handleConfirm(item.id)}
                     sx={(theme) => ({
                       [theme.breakpoints.down("md")]: {
                         mb: 0.2,
@@ -153,38 +157,44 @@ function PlanningList({
                           left: "0%",
                           bottom: "0%",
                           display: "flex",
-                          justifyContent: "space-around",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
                           backdropFilter: "blur(10px)",
                           backgroundColor: "rgba(0,0,30,0.2)",
+                          overflowX: "hidden",
                         },
                         [theme.breakpoints.up("md")]: {
-                          height: "10%",
+                          height: "15%",
                           width: "20%",
-                          position: "absolute",
+                          position: "fixed",
                           left: "38%",
-                          bottom: "72.5%",
+                          bottom: "75.5%",
                           display: "flex",
-                          justifyContent: "space-around",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
                           backdropFilter: "blur(10px)",
                           backgroundColor: "rgba(0,0,30,0.2)",
+                          overflowX: "hidden",
                           borderRadius: 2,
                         },
                       })}
                     >
-                      <Button
-                        className="confirm"
-                        onClick={() => handleDelete(item.id)}
-                      >
-                        CONFIRM
-                      </Button>
-                      <Button
-                        className="confirm"
-                        variant="text"
-                        color="primary"
-                        onClick={handleCancel}
-                      >
-                        CANCEL
-                      </Button>
+                      <Typography variant="p">
+                        Do you really want to remove this from your list?
+                      </Typography>
+                      <Box margin={2}>
+                        <Button
+                          className="confirm"
+                          onClick={() => handleDelete(item.id)}
+                        >
+                          CONFIRM
+                        </Button>
+                        <Button className="confirm" onClick={handleCancel}>
+                          CANCEL
+                        </Button>
+                      </Box>
                     </Box>
                   ) : null}
                 </Box>
