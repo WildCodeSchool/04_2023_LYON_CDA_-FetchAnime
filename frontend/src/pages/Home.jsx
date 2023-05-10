@@ -1,36 +1,63 @@
-import Counter from "../components/Counter";
-import logo from "../assets/logo.svg";
+import React from "react";
+import BurgerMenu from "../components/BurgerMenu";
+import AnimeList from "../components/AnimeList";
+import HomeSection from "../components/HomeSection";
 
-export default function Home() {
+function Home({
+  setPage,
+  page,
+  search,
+  setSearch,
+  genres,
+  setGenres,
+  date,
+  setDate,
+  setId,
+  trending,
+  setTrendingPage,
+  popularList,
+  setPopularPage,
+}) {
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello Vite + React !</p>
+    <>
+      {search === "" ? (
+        <>
+          <HomeSection
+            title="Trending"
+            trending={trending}
+            setTrendingPage={setTrendingPage}
+            trendingPage={null}
+            setId={setId}
+            slice="true"
+            navigation="/trending"
+          />
+          <HomeSection
+            title="Popular"
+            trending={popularList}
+            setTrendingPage={setPopularPage}
+            trendingPage={null}
+            setId={setId}
+            slice="true"
+            navigation="/popular"
+          />
+        </>
+      ) : (
+        <AnimeList
+          setPage={setPage}
+          page={page}
+          search={search}
+          setSearch={setSearch}
+          genres={genres}
+          setGenres={setGenres}
+          date={date}
+          setDate={setDate}
+          setId={setId}
+        />
+      )}
 
-      <Counter />
-
-      <p>
-        Edit <code>App.jsx</code> and save to test HMR updates.
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {" | "}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vite Docs
-        </a>
-      </p>
-    </header>
+      <BurgerMenu />
+    </>
   );
 }
+
+export default Home;

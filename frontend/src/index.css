@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Amaranth&family=Roboto:wght@300&family=Wallpoet&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+body {
+  background-color: #fdfbe2;
+  color: #c90d56;
+}
+a,
+a:visited {
+  color: black;
+}
+/* .react-swipeable-view-container {
+  width: 50%;
+} */
+.slider-container {
+  overflow: hidden;
+  padding: 2%;
+}
+.slider-wrapper {
+  width: 100%;
+  display: flex;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  margin-bottom: -20px;
+  padding-bottom: 30px;
+  padding-left: 5px;
+}
+
+.mui-item {
+  background-color: #c90d56;
+}
+.lol {
+  color: blue;
+}
+
+.link {
+  color: #c90d56;
+}
+.confirm {
+  height: 25px;
+  margin: 0 5px;
+  align-self: center;
+  background-color: "initial";
+  color: #c90d56;
+  padding: 0 5px;
+  border: none;
+  border-radius: 5px;
+  font-family: "Amaranth";
+}
+.player-wrapper {
+  width: auto;
+  height: auto;
+}
+.player {
+  position: relative;
+  top: 0;
+  left: 0;
+}
