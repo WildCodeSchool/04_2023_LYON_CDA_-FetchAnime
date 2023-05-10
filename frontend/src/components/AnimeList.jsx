@@ -154,7 +154,7 @@ function AnimeList({
             </Grid>
           ))
         ) : (
-          <NothingAvailable />
+          <NothingAvailable position="absolute" />
         )}
         {filteredList.length === 15 ? (
           <Box

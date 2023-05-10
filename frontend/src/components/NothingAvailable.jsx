@@ -7,12 +7,13 @@ function NothingAvailable({ position }) {
     <Box
       sx={(theme) => ({
         [theme.breakpoints.down("md")]: {
-          position: "absolute",
+          position: position || "relative",
           top: "40%",
-          left: "30%",
+          left: "20%",
         },
         [theme.breakpoints.up("md")]: {
           position: position || "relative",
+          left: "0%",
           width: "100vw",
           maxHeight: "100vh",
         },

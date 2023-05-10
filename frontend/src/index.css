@@ -52,5 +52,13 @@ a:visited {
   border: none;
   border-radius: 5px;
   font-family: "Amaranth";
-  
+}
+.player-wrapper {
+  width: auto;
+  height: auto;
+}
+.player {
+  position: relative;
+  top: 0;
+  left: 0;
 }
